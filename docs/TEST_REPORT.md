@@ -46,3 +46,5 @@ No physical Android/iOS phone/tablet, native soft keyboard, Safari/Firefox/offic
 
 ## CI follow-up
 Initial v0.4 CI38183717653: unit/build succeeded; Desktop Canvas/Co-design/Levels and RF routing passed, but Optical route selection failed at `net click n15` in Chromium151. Added a12 CSS px screen-space route hit region without changing centerline/Solver geometry, and required both exact and rounded mouse coordinates to hit the intended Net. Reran related Routing22, Mobile13 and Touch routing/recovery5 groups locally, all PASS. A revised head is published and its actual CI conclusion is recorded in PR/final response.
+
+Final targeted PNG Export was rerun and visually inspected after excluding invisible Route hit paths. Export contains actual visible net geometry and no filled interaction polygons.
