@@ -4,7 +4,7 @@ Date: 2026-10-11. Baseline: v0.1 implementation `c0a54d30c670d9dd1024d7cf7702df6
 
 ## Final local evidence
 
-**39 unit PASS / 0 FAIL; 17 retained Canvas browser scenario groups PASS / 0 FAIL; 16 Co-design browser scenario groups PASS / 0 FAIL. Zero page errors.** Browser groups are named scenarios, not individual assertion counts. Syntax check/build PASS. Standalone runs at file:/// with embedded JS/CSS and no external assets. SHA256SUMS validates all release artifacts.
+**43 unit PASS / 0 FAIL; 17 retained Canvas browser scenario groups PASS / 0 FAIL; 16 Co-design browser scenario groups PASS / 0 FAIL; 9 guided-Level/O-band browser scenario groups PASS / 0 FAIL. Zero page errors.** Browser groups are named scenarios, not individual assertion counts. Syntax check/build PASS. Standalone runs at file:/// with embedded JS/CSS and no external assets. SHA256SUMS validates all release artifacts.
 
 Runtime: Node v24.19.0; Playwright 1.62.1; available Chromium headless executable. Browser testing sends actual mouse clicks, pointer drags, key presses and Inspector input/select events; UI is not replaced by solver fixtures. Retained Canvas suite places 14 components and wires 13 nets through the UI. Co-design suite seeds a schema1 IndexedDB record solely for migration, then uses actual UI selection/parameters/export/import for alternatives.
 
@@ -32,7 +32,7 @@ Additional: disconnected optical path; cross-kind invalid connection; occupied R
 The same manually wired geometry is validated with each matching packet. Compact constraint 6.4 mm² is a **summed planning footprint** constraint, not a package envelope.
 
 - MZM First: VALID 100G; reference summed footprint 7.91 mm²; nominal Driver power 1.00 W. Stable four sampled corners also VALID. Default geometry does not meet Compact area.
-- MRM Compact: VALID 100G; footprint 4.98 mm²; nominal Driver power 0.32 W. Fixed tuning fails Stable variation. Cold resonance 1549.6 nm and bounded Auto Lock restore Stable with additional heater power; all sampled corners meet constraints.
+- MRM Compact: VALID 100G; footprint 4.98 mm²; nominal Driver power 0.32 W. Fixed tuning fails Stable variation. Cold resonance 1309.6 nm and bounded Auto Lock restore Stable with additional heater power; all sampled corners meet constraints.
 - EAM Compact: VALID 100G; footprint 5.33 mm²; nominal Driver 0.64 W + Bias load 0.03 W. Stable corners also VALID in the explicitly limited model.
 
 Values above are educational calculated outputs, not vendor specifications or measured data. Device parameters, high/low levels and final screenshots come from the released model, including revised ring linewidth-derived bandwidth. The regression logs contain complete pass labels.
@@ -43,8 +43,24 @@ Legacy unit test initially rejected schema2 because that was the old unsupported
 
 ## NOT RUN / known limits
 
-Official Chrome and Edge Desktop binaries, manual human playtesting, Windows/Mac render verification, storage quota/denial fault injection, cross-profile/file relocation persistence and native palette drag-and-drop separately are **NOT RUN**. Canvas mouse dragging and click placement are executed. Headless environment lacks Korean fonts: screenshots contain missing-glyph boxes, while Korean DOM text is intact. User's OS font rendering requires verification. Do not infer validated game enjoyment from automated PASS.
+Official Chrome and Edge Desktop binaries, manual human playtesting, Windows/Mac render verification, storage quota/denial fault injection, cross-profile/file relocation persistence and native palette drag-and-drop separately are **NOT RUN**. Canvas mouse dragging and click placement are executed. Korean glyphs and goal/Canvas/HUD geometry are inspected in headless Chromium with installed Noto Sans KR QA fonts. No font/network dependency was added to the app; end-user rendering uses the installed OS fonts. Windows/Mac font rendering is not independently verified. Do not infer validated game enjoyment from automated PASS.
 
 Models are Educational Assumptions, not Measured or Validated. Thermal kernel and resonance approximation, automatic Manhattan/straight routing, EAM absorption surrogate, minimum-stage BW ratio and spectral-equivalent optical levels have documented limits. No Eye/BER, PDK DRC/LVS, Full-wave, GDS or measured thermal model. Four Stable corners do not prove continuous environmental stability. EIC/PIC share a planning Canvas, not a monolithic foundry die. Source uses JavaScript ES modules, not TypeScript. Max six Snapshots; Undo history is session-only.
 
-GitHub CI is configured for 39-unit test/build and both browser suites. Remote CI conclusions are reported on the PR separately; local totals do not include remote executions. Main merge, tag and formal Release are not authorized.
+GitHub CI is configured for 43-unit test/build and all three browser suites. Remote CI conclusions are reported on the PR separately; local totals do not include remote executions. Main merge, tag and formal Release are not authorized.
+
+## v0.2 correction: 1310 nm / guided Levels
+
+Correction baseline: PR #2 head `888671028a5ff5436785f5ab84dd5f49c0d242a8`, open/unmerged, stacked on v0.1. Release stays v0.2, solver/model/component/packet revision 0.2.1.
+
+Added UI evidence (`tests/levels-browser.cjs`):
+- Initial Level 1 explicitly shows 1310 nm, 4 optical outputs, 100G, per-lane Average/ER, area and fresh Test; five familiar initial building blocks; Next disabled.
+- Test the First Engine and click Next to Level 2; Engine/13 nets survive and prior design is captured. Goal is ≤6.4 mm² at 100G.
+- Select EAM and matching Bias-capable EIC through the Inspector; VALID; advance to Level 3 and meet nominal plus four ±3 °C / ±0.03 nm corners.
+- Edit parameters: STALE and completion action disabled; Undo/re-Test restores completion.
+- Save/Resume: selected/completed levels persist and fresh Test is required.
+- 1280×720 and 1920×1080: goal, Canvas (>150 px tall) and HUD remain visible; no page scroll/goal overlap.
+- Old C-band current save: immutable raw archive, visible conversion notice, Laser/Cold Resonance translated, fresh Test. Old JSON imports migrate too; subsequent imports preserve the original archive.
+- Standalone HTML executed with browser context **offline**: zero HTTP requests, zero page errors.
+
+New unit coverage: O-band defaults/domains; immutable C-band envelope/snapshot migration; malformed legacy range rejection; bounded Level progress persistence. Source logs: `unit-test.log`, `canvas-browser.log`, `codesign-browser.log`, `levels-browser.log`. Screenshots: `v02-level1-start.png`, `v02-level2-complete.png`, `v02-level3-complete.png` plus retained updated play/comparison captures. Human playtesting and full wavelength/temperature continuum stability remain NOT RUN.

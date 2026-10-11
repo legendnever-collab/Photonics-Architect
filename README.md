@@ -4,7 +4,7 @@ Build your 100G Optical Engine with MZM, MRM or EAM and a compatible Generic EIC
 
 ## Offline play
 
-Download [photonics-architect-v0.2.0.html](dist/photonics-architect-v0.2.0.html), then open locally in a desktop browser. No server, CDN or network required. Four 25 Gb/s NRZ lanes = 25 GBd/lane; Net Throughput is not modeled.
+Download [photonics-architect-v0.2.0.html](dist/photonics-architect-v0.2.0.html), then open locally in a desktop browser. No server, CDN or network required. **v0.2 correction: 1310 nm O-band and guided Level 1 → Level 2 → Level 3.** Goal, success checks and NEXT ACTION remain above Canvas. Fresh VALID Test unlocks Next Level while preserving the Engine and a Snapshot. Model/solver revision is 0.2.1; the release file remains v0.2.0. Four 25 Gb/s NRZ lanes = 25 GBd/lane; Net Throughput is not modeled.
 
 Choose First, Compact or Stable; place Laser, 1×4 Splitter, Modulators, Driver Packets and Edge Couplers. Click compatible ports to wire. Move Driver to explore RF and thermal effects. Select Modulator for Length/Bias/Resonance/Heater/Technology, Driver for Packet/Swing. Technology swaps keep net IDs. Test, Snapshot, build another alternative and Compare. Compact supports at least MRM and EAM; Stable examines nominal plus four temperature/wavelength corners.
 
