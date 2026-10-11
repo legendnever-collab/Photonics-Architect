@@ -1,0 +1,20 @@
+✔ dBm conversion round trip (1.034693ms)
+✔ ideal splitter conserves power (0.143287ms)
+✔ four independent lanes valid 100G (1.669151ms)
+✔ disconnected optical output blocked (0.674189ms)
+✔ RF length has mm units and longer route reduces margin (1.274034ms)
+✔ length 100 canvas units equals one mm (0.116887ms)
+✔ invalid cross-kind connection rejected atomically (0.290438ms)
+✔ boundary and overlap diagnosed (0.69489ms)
+✔ import round trip and rejection leave original untouched (1.774129ms)
+✔ deterministic solver and library separation (4.239363ms)
+✔ optical length raises loss (0.425914ms)
+✔ duplicate occupied port rejected (0.274805ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.632711
