@@ -1,7 +1,7 @@
-# Engineering baseline
+# Authoritative baseline and release record
 
-4 × 25 Gb/s NRZ, 100 Gb/s gross; External CW Laser; single 1×4 Splitter; four independent MZM channels and RF Drivers; four Edge Couplers. Die reference area: 10 × 6.5 mm. 100 SVG coordinates = 1 mm. Component geometry is educational and not a vendor physical drawing. EIC footprints are displayed on the same planning floorplan as PIC components; this is schematic co-design placement, not fabrication-ready monolithic PIC integration.
+main verified2026-10-11:fa0383207a191b6c9a7b3ae749bf210f2137a467 (README-only). v0.1 PR#1 open,not merged; headc0a54d30c670d9dd1024d7cf7702df6b066bb90f. Both v0.1 GitHub workflows successful. Tree inspected:README/docs/source/tests/artifacts present; no AGENTS.md or other repository instruction file. Original local baseline rerun:12 unit tests and17 browser scenario groups pass.
 
-All numerical device values are Generic Educational Assumptions, not claims derived from uploaded company reports. Model version 0.1.0. Identical serializable design and model version yield deterministic results. Disconnected paths have null optical power and do not count as functional lanes. Single input/output port occupancy prevents unintended fan-out. Only a graph path containing a Laser, one Splitter and one MZM qualifies as a lane.
+v0.2 branch`feature/v0.2-modulator-eic-codesign` created directly from that v0.1 implementation commit. Neither PR is authorized for merge. Source upgrade preserves original interaction and persistence origin. v0.1 standalone and ZIPs remain available; v0.2 has new versioned artifacts, schema and solver.
 
-No PDK, DRC/LVS, BER, Eye, packaging parasitics, thermal solver or GDS. Optical routes can cross objects and each other without geometric connectivity; bends are Manhattan approximations with no minimum radius validation. RF route is straight line. Overlap checks use rotated rectangle bounds. Use for trade-off exploration, not tape-out.
+Engineering scenario:4×25Gb/s NRZ=25GBd per lane,100Gb/s gross. No FEC/net rate calculation. Models and new requirements are documented in MODELS_V02.md. Planning Canvas mixes PIC and packaged EIC footprints; not a single foundry die or fabrication-ready design. Generic coefficients only; company attachments are not embedded in public repository.

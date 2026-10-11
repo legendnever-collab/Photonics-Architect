@@ -1,0 +1,16 @@
+PASS v1 IndexedDB migration/legacy preservation/MZM Test
+PASS Test Snapshot
+PASS wrong packet rate/configuration/convention diagnostic
+PASS MRM/EIC swap preserves 13 nets and Compact build
+PASS Driver Channel reuse rejected / Undo restores Net
+PASS Temperature drift/STALE/Operating Point
+PASS wavelength variation UI
+PASS MRM Heater Lock restores Stable and increases power
+PASS Heater does not fix RF swing
+PASS EAM Bias/Swing two optical levels/Extinction
+PASS MRM vs EAM same Compact Brief comparison
+PASS different Environment comparison warning
+PASS nonphysical numeric UI reject
+PASS schema/model/solver JSON Export/Import recalculation
+PASS v2 Save/Resume/Snapshot preservation
+page errors []

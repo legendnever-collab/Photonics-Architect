@@ -1,7 +1,7 @@
-# Roadmap
+# Next development
 
-v0.2 권장: 첫 플레이 사용자 평가 후 placement ghost와 compatible-port 강조, editable routing waypoint, obstacle-aware routing, richer success milestone를 먼저 개선한다. 이어서 Driver Packet capability schema와 MZM size/voltage/bandwidth 선택을 도입해 같은 100G 목표에 여러 설계 해법을 만든다.
+v0.3 우선순위는 실제 사용자 플레이 피드백이다. Co-design 세 전략의 재미와 진단 이해도를 확인한 뒤 routing waypoint/placement ghost, lane array와 clearer port affordances를 개선한다. Packet library는 능력 schema와 model version을 유지하면서 확장한다.
 
-MRM/EAM은 별도 transfer function·bias·thermal·driver requirement 모델과 정확한 학습 목표를 정의한 후 추가한다. 26G/52G/112G/224G/448G-class는 symbol rate, bit rate, modulation format을 분리하고 검증된 evidence와 함께 도입한다. WDM·1.6T·3.2T·TIA/Control·thermal·GDS-oriented export는 후속 단계다.
+다음 물리 개선 후보: 검증 가능한 ring coupled-mode/cavity response, MZM distributed electrode, EAM 공개 measured fit, documented wavelength/temperature domains, better package placement thermal model. 실제 vendor 데이터는 공개·허가 범위 내에서만 Reference로 추가하고 교육용 가정과 구분한다.
 
-Core separation: data definitions → instance graph/geometry → deterministic optical/electrical solver → validation/scoring → UI. A future packet adds definitions and resolver logic, not canvas-specific physics. v0.1 uses ES modules; introduce TypeScript and split library/schema modules before external packets grow.
+1.6T/Advanced WDM/224G/448G/Full-wave/Thermal FEM/Foundry DRC/Manufacturing GDS는 현 릴리스 범위 밖이다. Symbol Rate와 Bit Rate는 Modulation별로 분리한다. 추가 기능이 첫 플레이를 개선하는지 확인한 후 범위를 확장한다.

@@ -1,14 +1,14 @@
 {
-  "version": "0.1.0",
-  "baseline": "fa0383207a191b6c9a7b3ae749bf210f2137a467",
+  "version": "0.2.0",
+  "baseline": "c0a54d30c670d9dd1024d7cf7702df6b066bb90f",
   "artifacts": {
-    "photonics-architect-v0.1.0.html": {
-      "sha256": "59328ca84486d42c0f56a6bad1c3b998865bc1ac458ec13c39124e904f492885",
-      "bytes": 32309
+    "photonics-architect-v0.2.0.html": {
+      "sha256": "51cac9c089305e15320e9de7120e97c153accafb6030fe04bd9ed427374ed9db",
+      "bytes": 64998
     },
-    "photonics-architect-v0.1.0-source.zip": {
-      "sha256": "654d3a85fd0e3b98e4b3b1a1c02799df9f02a618d4dfbfaa0caf2857aba62375",
-      "bytes": 393823
+    "photonics-architect-v0.2.0-source.zip": {
+      "sha256": "cc9d0ee47cfc1ea3a85fcba218a757abf8d679ecf35768e7dd4d28cff9172ed5",
+      "bytes": 1441271
     }
   }
 }
