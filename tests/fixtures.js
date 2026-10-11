@@ -1,0 +1,4 @@
+import {empty,add,connect,changeTechnology} from '../src/core.js';
+export function fixture(){const d=empty(),laser=add(d,'laser',20,285),split=add(d,'splitter',160,250);connect(d,{component:laser.id,port:'out'},{component:split.id,port:'in'});for(let i=0;i<4;i++){const y=100+i*130,m=add(d,'mzm',430,y),driver=add(d,'driver',455,y-60),out=add(d,'output',800,y+5);connect(d,{component:split.id,port:'o'+i},{component:m.id,port:'in'});connect(d,{component:driver.id,port:'rf'},{component:m.id,port:'rf'});connect(d,{component:m.id,port:'out'},{component:out.id,port:'in'});}return d;}
+
+export function engine(type='mzm',brief='first'){const d=fixture();d.brief=brief;for(const c of d.components){if(c.type==='mzm')changeTechnology(d,c.id,type);else if(c.type==='driver')changeTechnology(d,c.id,{mzm:'driver',mrm:'drivermrm',eam:'driveream'}[type]);}return d;}

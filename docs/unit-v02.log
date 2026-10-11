@@ -1,0 +1,47 @@
+✔ mzm representative First Engine and deterministic solver (6.896651ms)
+✔ mrm representative First Engine and deterministic solver (2.387511ms)
+✔ eam representative First Engine and deterministic solver (1.304678ms)
+✔ Compact Brief has two independent technology solutions (0.901619ms)
+✔ Stable MZM and EAM solutions valid at four corners (2.982037ms)
+✔ MRM thermal and wavelength drift changes operating point (1.153289ms)
+✔ MRM stable cold design and heater lock pay real power (2.718059ms)
+✔ heater limits and nonnegative power, not blanket pass (0.227613ms)
+✔ heater tuning cannot fix low RF swing or rate mismatch (1.35923ms)
+✔ EAM bias changes both transmission levels and ER (0.353453ms)
+✔ EAM increasing swing changes ER and high/low (0.199451ms)
+✔ MZM length changes Vpi, geometry, loss and BW consistently (0.396618ms)
+✔ high/low, average and OMA in linear units are consistent (2.067979ms)
+✔ RF length increases attenuation, lowers pad and effective swing (0.149195ms)
+✔ packet incompatibility checks convention/configuration/platform/bias/rate (0.130056ms)
+✔ wrong driver and EAM voltage endpoints are rejected (0.686175ms)
+✔ driver channel duplicate detected even on corrupt netlist (1.69054ms)
+✔ driver thermal location alters MRM resonance (0.891344ms)
+✔ v1 migration preserves positions/nets and safe defaults (1.210636ms)
+✔ nonfinite/range/version errors import atomically rejected (1.890381ms)
+✔ technology swap preserves all Net IDs and endpoint relationships (0.69646ms)
+✔ comparison marks different environmental and solver conditions (2.809447ms)
+✔ snapshot serialization bounded and roundtrips (1.49216ms)
+✔ power boundary and pJ per bit use valid gross denominator (0.342646ms)
+✔ MRM linewidth and cavity bandwidth use consistent units (0.08577ms)
+✔ stable outside thermal model range is unsupported not valid (0.908791ms)
+✔ export envelope version guard and result payload not trusted (0.753496ms)
+✔ dBm conversion round trip (0.959407ms)
+✔ ideal splitter conserves power (0.116126ms)
+✔ four independent lanes valid 100G (3.232965ms)
+✔ disconnected optical output blocked (1.833075ms)
+✔ RF length has mm units and longer route reduces margin (1.174221ms)
+✔ length 100 canvas units equals one mm (0.107672ms)
+✔ invalid cross-kind connection rejected atomically (0.437049ms)
+✔ boundary and overlap diagnosed (1.69754ms)
+✔ import round trip and rejection leave original untouched (3.210812ms)
+✔ deterministic solver and library separation (0.944875ms)
+✔ optical length raises loss (0.793237ms)
+✔ duplicate occupied port rejected (0.218049ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.45028

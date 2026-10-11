@@ -1,5 +1,5 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import {LIB,empty,add,connect,solve,length,route,dbmToMw,mwToDbm,validateImport} from '../src/core.js';
-export function fixture(){const d=empty(),laser=add(d,'laser',20,285),split=add(d,'splitter',160,250);connect(d,{component:laser.id,port:'out'},{component:split.id,port:'in'});for(let i=0;i<4;i++){const y=100+i*130,m=add(d,'mzm',430,y),driver=add(d,'driver',455,y-60),out=add(d,'output',800,y+5);connect(d,{component:split.id,port:'o'+i},{component:m.id,port:'in'});connect(d,{component:driver.id,port:'rf'},{component:m.id,port:'rf'});connect(d,{component:m.id,port:'out'},{component:out.id,port:'in'});}return d;}
+import {fixture} from './fixtures.js';
 test('dBm conversion round trip',()=>assert.ok(Math.abs(mwToDbm(dbmToMw(13))-13)<1e-12));
 test('ideal splitter conserves power',()=>assert.ok(Math.abs(4*dbmToMw(13-10*Math.log10(4))-dbmToMw(13))<1e-12));
 test('four independent lanes valid 100G',()=>{const r=solve(fixture());assert.equal(r.status,'VALID');assert.equal(r.gross,100);assert.equal(r.lanes.length,4)});
@@ -8,7 +8,7 @@ test('RF length has mm units and longer route reduces margin',()=>{const d=fixtu
 test('length 100 canvas units equals one mm',()=>assert.equal(length([{x:0,y:0},{x:100,y:0}]),1));
 test('invalid cross-kind connection rejected atomically',()=>{const d=empty(),a=add(d,'laser',0,0),b=add(d,'mzm',100,0);assert.throws(()=>connect(d,{component:a.id,port:'out'},{component:b.id,port:'rf'}));assert.equal(d.nets.length,0)});
 test('boundary and overlap diagnosed',()=>{const d=fixture();d.components[0].x=-20;d.components[1].x=-20;d.components[1].y=285;assert.ok(solve(d).issues.some(i=>i.text.includes('Boundary')));assert.ok(solve(d).issues.some(i=>i.text.includes('Overlap')))});
-test('import round trip and rejection leave original untouched',()=>{const d=fixture();assert.deepEqual(validateImport(JSON.parse(JSON.stringify(d))),d);assert.throws(()=>validateImport({...d,schema:2}));assert.equal(d.schema,1)});
+test('import round trip and rejection leave original untouched',()=>{const d=fixture();assert.deepEqual(validateImport(JSON.parse(JSON.stringify(d))),d);assert.throws(()=>validateImport({...d,schema:99}));assert.equal(d.schema,2)});
 test('deterministic solver and library separation',()=>{const d=fixture();assert.deepEqual(solve(d),solve(d));d.components[0].x=50;assert.equal(LIB.laser.w,80)});
 test('optical length raises loss',()=>{const d=fixture(),before=solve(d).lanes[0].power;d.components.find(c=>c.type==='output').x=900;assert.ok(solve(d).lanes[0].power<before)});
 test('duplicate occupied port rejected',()=>{const d=fixture();assert.throws(()=>connect(d,d.nets[0].a,d.nets[0].b))});
