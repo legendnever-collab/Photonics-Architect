@@ -1,53 +1,45 @@
-# Actual verification — Photonics Architect v0.3.0
+# Actual verification — Photonics Architect v0.4.0
 
-Executed 2026-10-11 UTC / 2026-10-12 KST. Baseline: `221e868758dc4a2c5368fcfd32476952b5b252c2`; final implementation is identified by the PR head. Historical v0.2 report is preserved as TEST_REPORT_V02.md.
+Baseline main `fecf883e0b447c6fc871ae1e745391e2a68963c9` (v0.3 / PR #3); actual approved merges #1/#2/#3 completed after CI verification. v0.3 head `78a65dffee843f2ea878ae55199d9cd2b8a62aec`, PR CI run 38181831572 succeeded. Historical v0.3 report preserved as TEST_REPORT_V03.md. Tests executed 2026-10-12 KST in local Chromium141.0.7390.0 / Playwright1.62.1; native source is Node JavaScript/SVG with no runtime dependencies.
 
 ## Executed results
 
 | Suite | Actual result | Evidence |
 |---|---|---|
-| Baseline v0.2 unit |43 PASS /0 fail|baseline-v02/unit.log|
-| Baseline v0.2 UI |17 Canvas +16 Co-design +9 Level groups PASS|baseline-v02/*.log|
-| v0.3 unit |70 PASS /0 fail /0 skipped|unit-test.log|
-| v0.3 Canvas UI |17 groups PASS /0 page errors|canvas-browser.log|
-| v0.3 Co-design UI |16 groups PASS /0 page errors|codesign-browser.log|
-| v0.3 existing Level UI |9 groups PASS /0 HTTP requests /0 page errors|levels-browser.log|
-| v0.3 Routing UI |22 groups PASS /0 HTTP requests /0 page errors|routing-test.log|
-| Standalone build |syntax checks and embedded HTML PASS|scripts/build.js|
+| Unit: 70 existing +8 Reference |78 PASS /0 FAIL /0 skipped|v04-unit.log|
+| Desktop Canvas |17 groups PASS /0 page errors|v04-canvas.log|
+| Desktop Co-design |16 groups PASS /0 page errors|v04-codesign.log|
+| Existing Guided Levels |9 groups PASS /0 HTTP/page errors|v04-levels.log|
+| Existing Routing |22 groups PASS /0 HTTP/page errors|v04-routing.log|
+| Mobile Studio |13 groups PASS /0 HTTP/page errors|v04-mobile.log|
+| Touch routing/recovery |5 groups PASS /0 page errors|v04-touch-routing.log|
 
-Browser evidence is **actual mouse/control interaction in headless Chromium**, not only solver fixtures. Playwright 1.62.1, Node runtime used in the local environment, desktop viewports 1440×900, 1280×720 and 1920×1080. Browser does not need HTTP assets: routing/level tests set offline mode and require zero HTTP requests. Font fallback remains system-provided, no external font dependency.
+These are **actual browser input interactions**, not only fixtures or a mobile viewport with mouse events. Mobile context has `hasTouch:true`, `isMobile:true`; touchscreen.tap invokes actual touch events. CDP Input.dispatchTouchEvent executes touchStart/touchMove/touchEnd with multiple simultaneous touch points, radius5 and force1. Actual Touch Pointer Events are observed independently at document capture. Test suites open the standalone file offline. Keyboard-sized viewport is simulated; physical soft keyboard and physical phones are NOT tested.
 
-## Physics and migration
+## Mobile and preservation
 
-Original 43 tests are retained. New 27 tests cover all three technologies' actual v0.2-to-v0.3 optical/RF/power equivalence, centerline length and bend identities, manual RF attenuation improvement, Keep-out clearance, endpoint movement/rotation, strict manual geometry vs legacy warning, independent domains, same-domain Unsupported crossing/overlap, finite corrupted-data handling, deterministic results, challenge baseline serialization and original snapshot result preservation.
+14 required Components were placed by actual Library touch → Preview → Canvas touch. Cancellation and one-placement completion verified. Tap-to-connect built actual Optical and RF nets, highlights compatible targets, resolves overlapping 44px hit candidates and rejects invalid ports atomically. Inspector Component/Port alternative and explicit cancellation were exercised.
 
-Splitter power conservation, modulation levels/ER, RF attenuation/range, MRM detuning/tuning limits/nonnegative heater power, drive failures not fixed by heater, EAM bias/swing response and representatives/failures remain covered. MRM Driver relocation test shows shorter RF with increased local temperature and changed detuning. Optical Keep-out solutions independently pass with MZM, MRM and EAM. O-band defaults / reference domains and C-band original archives are checked by existing suites.
+Actual tap selects, selected-component drag changes the intended component, Undo/Redo restores positions. Direction step .01mm and numeric X edit verified. Real two-pointer pinch reduces viewBox width; two-finger constant-distance pan changes origin without changing Design. World coordinates remain correct for subsequent placement after zoom/pan. One-finger explicit Pan never modifies Components/Nets. A component drag already in motion is rolled back when a second finger starts a gesture. Enlarged Waypoint hit starts a real manual-route edit and produces STALE; Undo restores anchor. Native touch sheet scrolling leaves Design unchanged.
 
-## Real routing play
+Portrait390×844 / Landscape844×390 render within viewport, Canvas remains visible, Touch buttons approximately44px. Numeric position editing works after a keyboard-sized390×480 viewport reduction. Inspector/Dialog retain scroll independently of board. Actual design engine and migration/core regressions preserved. Desktop mouse suites verify legacy build, packet/device changes, ports, numeric input, wheel/space pan, routing, diagnostics, before/after, progress, storage migration and exports.
 
-- Route-less v0.2 save resumed with previous Level records,1310 nm, original archive and generated schema3 routes. Imported/exported results do not unlock Next.
-- Good already-short Engine recognized after Fresh Test, without degrading its layout. Incomplete Engine cannot make a trusted RF Baseline and gives Build-first guidance.
-- Separate RF Practice preserves Original Engine Snapshot; repeated Test remains incomplete.
-- Real two-Waypoint drags shorten targeted RF **2.43→0.585 mm**; loss **1.944→approximately0.468 dB**; delivered swing **approximately2.64→3.13 Vppd**. 100G remains valid and Level4 completes only after fresh Test. Rendered SVG point list equals core Route geometry.
-- Route selection/hover keep result fresh; actual edit makes it STALE. Grid Snap coordinates verified; blank numeric input rejected without changing the result. Reset, add/delete, Simplify, Undo/Redo and actual Driver drag exercise shared history and endpoint update while retaining manual anchors.
-- Level4→5 keeps Engine and Snapshots, shows distinct persistent Goal / NEXT ACTION and activates Keep-out. Two blocked routes initially yield50G.
-- Click actual Canvas warning opens affected Optical Inspector. Real Optical Waypoint drags route above/below K1, clear both invasions, restore four valid outputs and complete Level5 at100G. The optical detour grows total route length **20.95→23.95 mm**, with increased propagation/bend loss shown rather than hidden.
-- Before / After uses actual saved baseline and recomputed current values; RF improvements and optical detour trade-off shown. Original result retained and direct-comparison limits checked.
-- Out-of-boundary impossible geometry blocks with diagnosis; Undo repairs. Damaged serialized geometry is visibly reset to recoverable default and requires Test.
-- Manual geometry, Level4 baseline, Level4/5 records survive Save/Resume and JSON import. PNG exported and visually inspected; manual paths/Keep-out appear without filled polyline artifacts.
-- Goal/Canvas/HUD remain inside tested desktop viewport without page scrolling.
+## References and recovery
 
-Screenshots: v03-level4-before/after.png, v03-before-after.png, v03-level5-before/after.png, v03-optical-comparison.png and v03-floorplan.png. Regression screenshots are prefixed v03-regression-; historical screenshots remain untouched.
+All14 default references independently pass actual Solver/Goal checks: Level1/3/4/5 MZM/MRM/EAM, Level2 MRM/EAM. At25°C /1310nm they deliver4 lanes/100G; Stable checks four ±3°C/±.03nm corners. RF examples shorten real same-condition baseline anchors. Optical examples clear K1. Invalid custom-environment references are labelled FAIL and blocked from Apply. Same-Level / same-environment / same-Solver comparison includes footprint-area definition/envelope, Driver/Heater/Bias, RF Length/Swing, optical routing loss/levels/ER and thermal/wavelength/corner trade-offs. Coefficients remain Educational/Assumed.
+
+Viewer opening, architecture tab changes and preview zoom do not alter Design. Apply deep-copies Components/Parameters/Nets/Routes, preserves other Level records, creates current completion only through actual Test and records usage without penalty. Actual UI applies references in all five Levels. Original Design is retained in a separate protected backup. Undo/Redo, Save/Resume with stale result gate, portable JSON backup and Restore Previous Design all verified. Creating8 new snapshots leaves6 bounded snapshots while protected original backup remains restorable. Desktop Reference apply/compare also executed.
 
 ## Resolved during QA
 
-Actual Level4→5 interaction exposed RF-only progress-field access in Optical view; fixed and complete routing suite rerun successfully. Async JSON archive completion is awaited before fresh-gate assertions. Polyline interaction tests hit visible route segments rather than bounding-box centers. These fixes were verified by real control/mouse actions.
+Touch drag initially used the wrong component origin; fixed using the selected ID and verified with actual coordinates. Synthetic compatibility-click after a board tap could operate a new picker; deduplicated. Touch buttons use thresholded pointerup activation and native-click deduplication. Manual-route touch target enlarged in screen pixels. Reference application now fits all components; compact HUD keeps100G on one line. Backup JSON derives route geometry caches consistently. Test CDP streams specify force/radii and allow gesture completion; touch scripts are not replaced with mouse-only checks.
 
-## CI and limits
+## Artifacts and CI
 
-CI runs70 unit tests/build and all four browser suites. Live run IDs/conclusions are recorded in PR/final handoff after publication; this local report does not claim an unobserved run as PASS.
+Syntax-checked offline HTML rebuilt from source; build emits versioned Reference JSON. Source/Release ZIPs and SHA256 manifest generated locally. Binary publication is deferred by owner instruction; Source/HTML/tests/docs/reference data are published first. CI runs78 unit tests/build +four Desktop +two Touch suites on the actual PR head. Actual CI conclusion and link are recorded in PR/final report after observation; this document does not invent a pending run as PASS.
 
-Not tested: Safari/Firefox, native Windows/macOS policies, mobile/touch, storage quota/denial injection, human enjoyment or comprehension. No physical bend radius, RF bend discontinuity, fabricated crossing loss, measured thermal/device calibration, BER/Eye or manufacturing validation. The geometry model is Educational Planning Rule Check with zero added clearance. Keep-out practice is not a physical foundry rule. No automatic obstacle router.
+Screenshots visually inspected: v04-mobile-portrait.png, v04-mobile-landscape.png, v04-reference-mobile.png, v04-desktop-studio.png, v04-reference-desktop.png and PNG Export. Regression images prefixed v04-regression-. QA font Noto CJK Korean installed locally; no font/network dependency added to the application.
 
-## Recovery verification (2026-10-12)
-Recovered existing v0.3 Source into an isolated Git checkout. No prior files deleted. Rebuilt HTML SHA256 `23a38196e313d84c37e0a01315161a91c2da0951205e112bdb05abd75a25e04f` exactly matches delivered HTML. Reran 70 unit tests and all four browser suites: 17 Canvas, 16 Co-design, 9 Level and 22 Routing groups, all passed. Local Chromium 141.0.7390.0 reconstructed from preserved compressed runtime; Playwright 1.62.1. Actual desktop mouse interaction, Level 4/5, Save/Resume, JSON and PNG Export were exercised offline. CLI Push lacks credentials; publication uses authenticated GitHub connector Git Data APIs.
+## Unverified and limits
+
+No physical Android/iOS phone/tablet, native soft keyboard, Safari/Firefox/official Edge, OS file-origin policy, storage quota/eviction/denial injection, screen-reader accessibility or human enjoyment/comprehension validation. Main Canvas supports pinch; Reference Preview uses zoom buttons plus scrolling. If browser storage is unavailable, runtime backup/Undo require portable Export before closure. Protected backup retains the latest Apply original, replaced only by a later explicit Apply. No foundry DRC/LVS, physical bend radius, full-wave/BER/eye, measured device/thermal calibration or fabrication-ready GDS. Existing educational1310nm/25GBd NRZ/100G model remains unchanged.
