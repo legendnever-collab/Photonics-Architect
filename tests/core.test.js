@@ -8,7 +8,7 @@ test('RF length has mm units and longer route reduces margin',()=>{const d=fixtu
 test('length 100 canvas units equals one mm',()=>assert.equal(length([{x:0,y:0},{x:100,y:0}]),1));
 test('invalid cross-kind connection rejected atomically',()=>{const d=empty(),a=add(d,'laser',0,0),b=add(d,'mzm',100,0);assert.throws(()=>connect(d,{component:a.id,port:'out'},{component:b.id,port:'rf'}));assert.equal(d.nets.length,0)});
 test('boundary and overlap diagnosed',()=>{const d=fixture();d.components[0].x=-20;d.components[1].x=-20;d.components[1].y=285;assert.ok(solve(d).issues.some(i=>i.text.includes('Boundary')));assert.ok(solve(d).issues.some(i=>i.text.includes('Overlap')))});
-test('import round trip and rejection leave original untouched',()=>{const d=fixture();assert.deepEqual(validateImport(JSON.parse(JSON.stringify(d))),d);assert.throws(()=>validateImport({...d,schema:99}));assert.equal(d.schema,2)});
+test('import round trip and rejection leave original untouched',()=>{const d=fixture();assert.deepEqual(validateImport(JSON.parse(JSON.stringify(d))),d);assert.throws(()=>validateImport({...d,schema:99}));assert.equal(d.schema,3)});
 test('deterministic solver and library separation',()=>{const d=fixture();assert.deepEqual(solve(d),solve(d));d.components[0].x=50;assert.equal(LIB.laser.w,80)});
 test('optical length raises loss',()=>{const d=fixture(),before=solve(d).lanes[0].power;d.components.find(c=>c.type==='output').x=900;assert.ok(solve(d).lanes[0].power<before)});
 test('duplicate occupied port rejected',()=>{const d=fixture();assert.throws(()=>connect(d,d.nets[0].a,d.nets[0].b))});
