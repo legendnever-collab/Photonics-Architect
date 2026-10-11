@@ -3,12 +3,12 @@
   "baseline": "c0a54d30c670d9dd1024d7cf7702df6b066bb90f",
   "artifacts": {
     "photonics-architect-v0.2.0.html": {
-      "sha256": "51cac9c089305e15320e9de7120e97c153accafb6030fe04bd9ed427374ed9db",
-      "bytes": 64998
+      "sha256": "5b9cff51baa444bd31cf0ef98ccfdff401150f7cea39aa4c8e38e742860c5163",
+      "bytes": 65172
     },
     "photonics-architect-v0.2.0-source.zip": {
-      "sha256": "cc9d0ee47cfc1ea3a85fcba218a757abf8d679ecf35768e7dd4d28cff9172ed5",
-      "bytes": 1441271
+      "sha256": "0e5ba86251448f5d4c1340ba02d280857785f5e2bf0533696d3cb71626f964e1",
+      "bytes": 1441171
     }
   }
 }

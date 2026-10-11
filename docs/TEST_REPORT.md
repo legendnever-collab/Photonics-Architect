@@ -4,7 +4,7 @@ Date: 2026-10-11. Baseline: v0.1 implementation `c0a54d30c670d9dd1024d7cf7702df6
 
 ## Final local evidence
 
-**39 unit PASS / 0 FAIL; 17 retained Canvas browser scenario groups PASS / 0 FAIL; 15 Co-design browser scenario groups PASS / 0 FAIL. Zero page errors.** Browser groups are named scenarios, not individual assertion counts. Syntax check/build PASS. Standalone runs at file:/// with embedded JS/CSS and no external assets. SHA256SUMS validates all release artifacts.
+**39 unit PASS / 0 FAIL; 17 retained Canvas browser scenario groups PASS / 0 FAIL; 16 Co-design browser scenario groups PASS / 0 FAIL. Zero page errors.** Browser groups are named scenarios, not individual assertion counts. Syntax check/build PASS. Standalone runs at file:/// with embedded JS/CSS and no external assets. SHA256SUMS validates all release artifacts.
 
 Runtime: Node v24.19.0; Playwright 1.62.1; available Chromium headless executable. Browser testing sends actual mouse clicks, pointer drags, key presses and Inspector input/select events; UI is not replaced by solver fixtures. Retained Canvas suite places 14 components and wires 13 nets through the UI. Co-design suite seeds a schema1 IndexedDB record solely for migration, then uses actual UI selection/parameters/export/import for alternatives.
 
@@ -39,7 +39,7 @@ Values above are educational calculated outputs, not vendor specifications or me
 
 ## Issues caught and corrected
 
-Legacy unit test initially rejected schema2 because that was the old unsupported-version example; it now rejects schema99 and asserts schema2. UI comparison test initially selected snapshots from different Briefs; the application correctly refused direct comparison, and the test now selects the same Compact Brief. A comparison-row string syntax error introduced during final UI refinement caused browser startup to fail; corrected before release, and Build now checks every source module syntax before generating HTML. Final suites rerun after fixes and model consistency updates.
+Legacy unit test initially rejected schema2 because that was the old unsupported-version example; it now rejects schema99 and asserts schema2. UI comparison test initially selected snapshots from different Briefs; the application correctly refused direct comparison, and the test now selects the same Compact Brief. A comparison-row string syntax error introduced during final UI refinement caused browser startup to fail; corrected before release, and Build now checks every source module syntax before generating HTML. A final interaction check also corrected selection-only actions unnecessarily marking results STALE: history/dirty state now begin at actual movement; invalid connections preserve redo state. UI verifies selection keeps a fresh Test available for Snapshot. Final suites rerun after fixes and model consistency updates.
 
 ## NOT RUN / known limits
 
