@@ -43,3 +43,6 @@ Screenshots visually inspected: v04-mobile-portrait.png, v04-mobile-landscape.pn
 ## Unverified and limits
 
 No physical Android/iOS phone/tablet, native soft keyboard, Safari/Firefox/official Edge, OS file-origin policy, storage quota/eviction/denial injection, screen-reader accessibility or human enjoyment/comprehension validation. Main Canvas supports pinch; Reference Preview uses zoom buttons plus scrolling. If browser storage is unavailable, runtime backup/Undo require portable Export before closure. Protected backup retains the latest Apply original, replaced only by a later explicit Apply. No foundry DRC/LVS, physical bend radius, full-wave/BER/eye, measured device/thermal calibration or fabrication-ready GDS. Existing educational1310nm/25GBd NRZ/100G model remains unchanged.
+
+## CI follow-up
+Initial v0.4 CI38183717653: unit/build succeeded; Desktop Canvas/Co-design/Levels and RF routing passed, but Optical route selection failed at `net click n15` in Chromium151. Added a12 CSS px screen-space route hit region without changing centerline/Solver geometry, and required both exact and rounded mouse coordinates to hit the intended Net. Reran related Routing22, Mobile13 and Touch routing/recovery5 groups locally, all PASS. A revised head is published and its actual CI conclusion is recorded in PR/final response.

@@ -36,7 +36,7 @@ export function installStudio(api){
   const ports=nearbyPorts(x,y);
   if(ports.length===1)return selectPort(ports[0].end);
   if(ports.length>1){api.modal('<h2>Port 선택</h2><p>Touch 영역에 여러 Port가 있습니다. 원하는 Port를 선택하세요.</p><div class="port-choices">'+ports.map((q,i)=>'<button data-port-choice="'+i+'">'+esc(q.end.component+'.'+q.end.port+' · '+q.name+' · '+q.kind+' '+q.dir)+(usable(q.end)?' · 연결 가능':' · 호환 불가 / 사용 중')+'</button>').join('')+'</div>');document.querySelectorAll('[data-port-choice]').forEach(b=>b.onclick=()=>{$('modal').close();selectPort(ports[+b.dataset.portChoice].end);});return;}
-  const c=target?.closest('[data-instance]'),n=target?.closest('[data-net]'),w=target?.closest('[data-warning]');api.set({selected:c?.dataset.instance||n?.dataset.net||w?.dataset.warning||null});api.render();
+  const c=target?.closest('[data-instance]'),n=target?.closest('[data-net],[data-hit-net]'),w=target?.closest('[data-warning]');api.set({selected:c?.dataset.instance||n?.dataset.net||n?.dataset.hitNet||w?.dataset.warning||null});api.render();
  }
  function startGesture(){const points=[...touches.values()].slice(0,2),a=points[0],b=points[1],mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2};
   if(session?.changed)api.rollbackInteraction(session.initial);

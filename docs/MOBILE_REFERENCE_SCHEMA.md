@@ -17,3 +17,5 @@ Reference comparison uses the same selected Level, environment and current Solve
 Touch routing: board-only Pointer Events with real two-pointer anchor-preserving zoom/pan, selected-component drag threshold, rollback when a second finger arrives, and suppression of synthetic follow-on clicks after board taps. Port candidates use 22 CSS px radius in screen coordinates regardless of zoom; overlapping candidates use a picker. Component body taps prioritize selection; starting/tapping a port supports compatible-target highlighting. Inspector port lists bypass Canvas hit ambiguity. Sheets/dialogs retain native scroll. Native keyboard / file-origin storage behavior remains browser-dependent and requires real-device validation.
 
 Touch buttons activate on short pointerup, with trusted compatibility-click deduplication. Scroll drags exceeding8px do not activate their starting button. Mouse/keyboard click handling is retained.
+
+Route selection additionally uses a12 CSS px invisible hit polyline in screen space; visible polyline/physics centerline remain unchanged. It is separate from Net count and exported geometry.
