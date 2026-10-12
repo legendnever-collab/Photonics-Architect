@@ -14,8 +14,8 @@
   "browserSuites": 10,
   "artifacts": {
     "photonics-architect-v0.5.1.html": {
-      "bytes": 293773,
-      "sha256": "f5fd2b46836531edf3080efa20c3f5772a022bfec231e77eb0a72db37d305bdf"
+      "bytes": 293920,
+      "sha256": "3e6332c68fedb67020e921a4f65eff11f6181a74fe0dc353cf9d5c895fea292e"
     }
   }
 }
