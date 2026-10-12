@@ -1,0 +1,14 @@
+PASS Level9 entry retains 16×100G Engine + explicit backup; invalid package starts as editable challenge
+PASS two validated Level9 solutions / Package preview / Apply / Fresh Test / explained score
+PASS Numeric Zone edit / STALE score / completion gate / Undo
+PASS estimated Heatmap / clickable hottest EIC / overlays do not mutate design
+PASS removing Cooling changes temperature + functional throughput / Undo restores real solver result
+PASS 8 Stress Corners / seeded repeated MC equality / Wilson interval / Fresh completion
+PASS changing Seed invalidates MC score and direct comparison; saved Baseline preserved
+PASS responsive 512-sample MC progress / cancel keeps last complete report STALE
+PASS schema5 IndexedDB Save/Resume / JSON Paste / Package+FAU+Heatmap PNG
+PASS actual Touch Level10 solution / Heatmap / Numeric Cooling adjustment / Undo
+PASS actual one-finger FAU drag changes shared package state and Undo restores it
+PASS actual Touch Cooling resize handle / Numeric size evidence / Undo
+PASS actual two-finger pinch on Package / portrait+landscape / always accessible Goal and Solution
+PASS file:/// Offline zero HTTP requests / no page errors

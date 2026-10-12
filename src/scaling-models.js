@@ -1,7 +1,7 @@
 // Coefficients are scenario assumptions, not a commercial device calibration.
 export const SCALING_VERSION='0.4.1';
 export const SCALING_MODEL_VERSION='1.0.0';
-export const SCALING_LEVELS=['scale400','scale1600','architecture'];
+export const SCALING_LEVELS=['scale400','scale1600','architecture','package','thermal','assembly'];
 export const isScaling=d=>SCALING_LEVELS.includes(d.brief);
 export const planningBounds=d=>isScaling(d)?{w:2000,h:1600}:{w:1000,h:650};
 export const HS_PROFILES={
@@ -15,7 +15,7 @@ for(const [type,profile,w,h] of [['eic100','hs100',190,45],['eic200','hs200',240
 HS_LIB.laserhs={name:'External CW · Scaling',w:80,h:55,color:'#5ce1e6',ports:[hsPort('out','optical','out',80,28)],params:{power:23}};
 for(const count of [8,16])HS_LIB['split'+count]={name:'Educational 1×'+count+' Splitter',w:85,h:count*24+20,color:'#59dfe9',division:count,ports:[hsPort('in','optical','in',0,(count*24+20)/2),...Array.from({length:count},(_,i)=>hsPort('o'+i,'optical','out',85,22+i*24))],params:{excess:count===8?.9:1.2}};
 for(const [type,def] of Object.entries(HS_LIB))Object.assign(def,{id:type,version:SCALING_MODEL_VERSION,grade:'Educational',evidence:'Assumed',format:'PAM4',source:'docs/MODELS_V041.md',model:type+'-1'});
-export function hsRF(profile,swing,mm){const p=HS_PROFILES[profile],f=p.baud/2,alpha=.35*Math.sqrt(f/25)+.05*f/25,loss=alpha*mm,routeBW=130/(1+mm/2),poles=[p.driverBW,p.bw,routeBW];const attenuation=freq=>(.35*Math.sqrt(freq/25)+.05*freq/25)*mm,amplitude=freq=>10**(-attenuation(freq)/20)*poles.reduce((a,bw)=>a/Math.sqrt(1+(freq/bw)**2),1),effective=swing*amplitude(f);
+export function hsRF(profile,swing,mm,driverTemperature=25){const p=HS_PROFILES[profile],f=p.baud/2,alpha=.35*Math.sqrt(f/25)+.05*f/25,loss=alpha*mm,routeBW=130/(1+mm/2),poles=[p.driverBW/(1+.0015*Math.max(0,driverTemperature-25)),p.bw,routeBW];const attenuation=freq=>(.35*Math.sqrt(freq/25)+.05*freq/25)*mm,amplitude=freq=>10**(-attenuation(freq)/20)*poles.reduce((a,bw)=>a/Math.sqrt(1+(freq/bw)**2),1),effective=swing*amplitude(f);
  // A conservative sum of pole tail residues at half a symbol: a planning proxy, not an eye/BER simulation.
  const residual=Math.min(1,poles.reduce((a,bw)=>a+Math.exp(-Math.PI*bw/p.baud),0));
  return {length:mm,loss,swing:swing*10**(-loss/20),effectiveSwing:effective,convention:'Vppd',requiredSwing:1,bw:Math.min(...poles),bwRatio:Math.min(...poles)/f,bandwidthRatioName:'minimum pole / half-baud (screen only)',residual,spectrum:[.25,.5,.75].map(k=>({ghz:p.baud*k,loss:attenuation(p.baud*k),amplitude:amplitude(p.baud*k)}))};}

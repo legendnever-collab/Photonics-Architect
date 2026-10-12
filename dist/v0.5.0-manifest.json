@@ -1,0 +1,15 @@
+{
+  "version": "0.5.0",
+  "baseline": "811463882a4eb7008b6622887088c177e3629a17",
+  "solver": "0.5.0",
+  "packageModel": "1.1.0",
+  "file": "photonics-architect-v0.5.0.html",
+  "bytes": 256623,
+  "sha256": "f0566e38251eb1c171a45249047850a9f90a1c55e22d9e1f5bab799393112726",
+  "offline": true,
+  "unitTests": {
+    "passed": 139,
+    "failed": 0
+  },
+  "browserSuites": 9
+}

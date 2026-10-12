@@ -75,3 +75,9 @@ v0.4 baseline: merged main `fecf883e0b447c6fc871ae1e745391e2a68963c9` (PR #3). P
 [Mobile/Reference schema](docs/MOBILE_REFERENCE_SCHEMA.md) · [v0.4 Handoff](docs/HANDOFF_v0.4.0.md).
 
 Screenshots are included in the downloadable package. Binary upload is deferred; source and standalone HTML remain directly available in this repository.
+
+## v0.5.0 — Package Engineering Challenge
+
+Develop your existing1.6T engine into an editable package: EIC/PIC/Optical I/O Zones, Package Boundary, Clearance, FAU mapping and centerline routes. Level9 fits the package; Level10 adds location-based steady-state temperature and functional thermal effects; Level11 adds fixed Stress Corners and cancellable seeded assembly Monte Carlo. Optical/RF/Temperature/Assembly overlays are read-only. Two verified Package Solutions per new Level support explained scoring, Apply/Undo/Restore and same-condition comparison. Level1–8 and their scoring remain preserved.
+
+Run **[photonics-architect-v0.5.0.html](dist/photonics-architect-v0.5.0.html)** offline. Build:`npm run build`; validation:`npm test`. See [model / assumptions / primary sources](docs/MODELS_V050.md), [schema / migration](docs/SCHEMA_V050.md), [executed test report](docs/TEST_REPORT_V050.md), [handoff / limitations](docs/HANDOFF_v0.5.0.md) and [verified solution data](data/solution-designs-v0.5.0.json). Thermal and coupling profiles are Educational Assumptions; Simulated Assembly Pass Fraction is not manufacturing yield or lifetime.
