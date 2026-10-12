@@ -27,3 +27,5 @@
 @media(min-width:1650px){header small{display:block}}
 
 .route-hit{fill:none;stroke-width:12px;vector-effect:non-scaling-stroke;pointer-events:stroke;cursor:pointer}
+
+#scalingPanel[hidden],#laneNavigator[hidden],button[hidden]{display:none!important}#scalingPanel{border:1px solid #385772;padding:10px;margin:10px 0;border-radius:9px}#scalingPanel button,#laneNavigator button{min-height:44px;white-space:normal}#scalingPanel .row{flex-wrap:wrap}#scalingPanel input{max-width:100%;width:90px}#scalingPanel p{font-size:12px;line-height:1.5}#laneNavigator{border-top:1px solid #385772;margin-top:12px}.reference-scroll{overflow:auto}#scalingPanel select,#laneNavigator select{min-height:44px;width:100%}.lane summary{cursor:pointer;min-height:44px;display:flex;align-items:center}@media(prefers-reduced-motion:reduce){.flow{animation:none}}

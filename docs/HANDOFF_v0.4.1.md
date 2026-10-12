@@ -1,0 +1,11 @@
+# v0.4.1 handoff
+
+Start from merged v0.4 main `4dd4a398cf82b4b37d97dfc24dd58bb9e98857dd`. Feature branch `feature/v0.4.1-architecture-scaling`; PR must remain unmerged for user review.
+
+Play: Level6 → Build Lane → Optical Distribution → Test → designate valid Lane Tile → Preview 4-lane Array → Apply → Distribution → Test400G. Level7: choose100G or200G, build one lane and repeat for16 or8. Reference is optional and opens without editing the design. Level8: Test and save both real valid architectures under the same environment/laser powers → Compare → choose Power or Optical I/O customer profile → choose the current architecture → fresh Test. Legacy engine is preserved as a snapshot when entering scaling levels or starting a new architecture. Level1–5 remain accessible.
+
+Mobile: Library contains architecture controls with44px targets, Inspector contains Lane Navigator/Zoom to Lane, normal fine moves and port-list alternatives. Array groups have numeric moves; each lane remains editable. Two-finger gestures preserve the graph and cancel an interrupted component drag. Physics preview is cached by design content; selecting/panning does not rerun the solver. High-speed animation is disabled to reduce unnecessary visual work.
+
+Build: `npm run build` → `dist/photonics-architect-v0.4.1.html` and Reference JSON. Open HTML offline. `npm test` runs deterministic unit regression. Browser suite uses Playwright1.62.1; `CODEX_PRIMARY_RUNTIME_NODE_MODULES` may point to its installation, `BROWSER_EXECUTABLE` optionally selects an installed Chromium. CI installs its browser and runs all seven suites.
+
+Known limits: educational generic coefficients, no commercial calibration; only nominal25°C/1310nm high-speed profile, no high-speed thermal model, no BER/eye/net-rate/standards/manufacturing claim. Crossings are logical independent nets with Unsupported physical implementation. Auto routing does not avoid obstacles; manual route editing is supported. Horizontal or excessive-pitch arrays can exceed RF/layout screens; the preview is not an auto-success promise. Physical phone/browser/OS keyboard and GPU latency require device testing; CDP touch is exercised but is not a substitute for hardware QA. Source/HTML/JSON publication precedes optional ZIP. Existing source/artifacts are preserved.

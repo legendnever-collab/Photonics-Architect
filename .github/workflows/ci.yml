@@ -15,7 +15,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: photonics-architect-offline
-          path: dist/photonics-architect-v0.4.0.html
+          path: dist/photonics-architect-v0.4.1.html
   browser:
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +26,6 @@ jobs:
       - run: npm install --no-save playwright@1.62.1
       - run: npx playwright install --with-deps chromium
       - run: npm run build
-      - run: node tests/browser.cjs && node tests/codesign-browser.cjs && node tests/levels-browser.cjs && node tests/routing-browser.cjs && node tests/mobile-browser.cjs && node tests/touch-routing-browser.cjs
+      - run: node tests/browser.cjs && node tests/codesign-browser.cjs && node tests/levels-browser.cjs && node tests/routing-browser.cjs && node tests/mobile-browser.cjs && node tests/touch-routing-browser.cjs && node tests/scaling-browser.cjs
         env:
           CODEX_PRIMARY_RUNTIME_NODE_MODULES: ${{ github.workspace }}/node_modules
