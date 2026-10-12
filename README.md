@@ -1,5 +1,7 @@
 # Photonics Architect v0.4.1 — Build Your 1.6T Engine
 
+Solution update: every Level1–8 now has an optional Solution button with My Design comparison, transparent Goal Score and an explicit Test action. [Scoring/QA details](docs/SOLUTIONS_SCORING_V041.md).
+
 Offline game: [v0.4.1 HTML](dist/photonics-architect-v0.4.1.html). Build with Node20+: `npm run build`; verify: `npm test`. Source is in `src/`.
 
 Level6:4×100G PAM4; Level7:16×100G or8×200G (1.6T Gross); Level8:same-condition architecture comparison and customer choice. Build a lane, designate an editable tile, preview/expand the array, wire distribution, Test and diagnose. Mobile touch and Level1–5 are preserved. Generic educational profiles are not real BER, Ethernet or manufacturing validation.
