@@ -1,6 +1,7 @@
 PASS Level9 entry retains 16×100G Engine + explicit backup; invalid package starts as editable challenge
 PASS two validated Level9 solutions / Package preview / Apply / Fresh Test / explained score
 PASS Numeric Zone edit / STALE score / completion gate / Undo
+PASS deleting Output removes its FAU mapping / incomplete design saves safely / Undo restores full engine
 PASS estimated Heatmap / clickable hottest EIC / overlays do not mutate design
 PASS removing Cooling changes temperature + functional throughput / Undo restores real solver result
 PASS 8 Stress Corners / seeded repeated MC equality / Wilson interval / Fresh completion

@@ -1,6 +1,6 @@
 # Photonics Architect0.5.0 — From Engine to Package
 
-Open `dist/photonics-architect-v0.5.0.html` locally. No external assets or network requests are needed. Source:src / index.html. Build:`npm run build`. Unit:`npm test`. Browser tests use Playwright and Chromium with `CODEX_PRIMARY_RUNTIME_NODE_MODULES` / optional `BROWSER_EXECUTABLE`; package scenario test:`node tests/package-browser.cjs`. CI runs all eight existing browser suites plus the new package suite against the rebuilt0.5 standalone file.
+Open `dist/photonics-architect-v0.5.0.html` locally. No external assets or network requests are needed. Source:src / index.html. Build:`npm run build`. Optional Source/Release ZIP:`python3 scripts/package.py` (versioned manifest and SHA256SUMS). Unit:`npm test`. Browser tests use Playwright and Chromium with `CODEX_PRIMARY_RUNTIME_NODE_MODULES` / optional `BROWSER_EXECUTABLE`; package scenario test:`node tests/package-browser.cjs`. CI runs all eight existing browser suites plus the new package suite against the rebuilt0.5 standalone file.
 
 Flow: existing1.6T Engine → Level9 Package → place EIC/PIC/IO Zones and FAU / map channels / routes → Nominal Test → Level10 Heatmap / driver movement / Cooling → Level11 Precision/Interface profiles / Corners / Seeded MC → Snapshot Compare.
 
