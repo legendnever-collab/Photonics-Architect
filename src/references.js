@@ -47,7 +47,7 @@ export function prepareReferenceApplication(current,ref){
  if(ref.brief!==current.brief)throw Error('현재 Level과 Reference가 다릅니다.');
  const next=validateImport(structuredClone(ref.design)),r=solve(next);
  if(!(isScaling(next)?r.status==='VALID':challengeProgress(next,r).complete))throw Error('이 환경에서 Reference가 목표를 만족하지 못합니다.');
- next.name=(ref.name+' · My Design').slice(0,100);
+ next.name=(ref.name+' · My Design').slice(0,100);if(current.brief==='architecture'){next.scaling.customer=current.scaling.customer;next.scaling.choice=null;}
  next.completedLevels=current.completedLevels.filter(k=>k!==current.brief);
  next.snapshots=structuredClone(current.snapshots);
  next.referenceUsage=[...(current.referenceUsage||[]),{id:ref.id,level:current.brief,version:ref.version,at:new Date().toISOString()}].slice(-200);
