@@ -1,3 +1,4 @@
+import {campaignNumbers} from './campaign-registry.js';
 import {isPackage,PACKAGE_BRIEF} from './package-models.js';
 import {packageGoal,assemblyFresh} from './package-engine.js';
 // Transparent gameplay rubric. It does not alter or calibrate the physics solver.
@@ -5,7 +6,7 @@ import {solve,componentRect} from './core.js';
 import {challengeProgress} from './campaign.js';
 import {BRIEFS,PACKETS,compatibility} from './models.js';
 import {isScaling} from './scaling-models.js';
-export const SOLUTION_LEVELS={first:1,compact:2,stable:3,rf:4,optical:5,scale400:6,scale1600:7,architecture:8,package:9,thermal:10,assembly:11};
+export const SOLUTION_LEVELS=campaignNumbers;
 export function solutionAssessment(design,result=solve(design)){
  if(isPackage(design))return packageAssessment(design,result);
  const high=isScaling(design),target=high?(design.brief==='scale400'?400:1600):100,needed=high?(design.brief==='scale400'?4:design.scaling.profile==='hs200'?8:16):4;

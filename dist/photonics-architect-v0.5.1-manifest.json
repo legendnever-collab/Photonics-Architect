@@ -1,0 +1,21 @@
+{
+  "version": "0.5.1",
+  "baseline": "3ea3a628464351468c801df8639f5f4d95fd5bd6",
+  "physicsModelsUnchanged": true,
+  "solverVersions": {
+    "legacy": "0.3.0",
+    "scaling": "0.4.1",
+    "package": "0.5.0"
+  },
+  "unitTests": {
+    "pass": 173,
+    "fail": 0
+  },
+  "browserSuites": 10,
+  "artifacts": {
+    "photonics-architect-v0.5.1.html": {
+      "bytes": 293773,
+      "sha256": "f5fd2b46836531edf3080efa20c3f5772a022bfec231e77eb0a72db37d305bdf"
+    }
+  }
+}
