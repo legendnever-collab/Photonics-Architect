@@ -34,7 +34,7 @@ New UI evidence also checks: STALE prior-result labels versus frozen Test Design
 4. Unifying transitions initially omitted the same-Level Optical Start snapshot, so Optical Before/After correctly refused an RF-versus-Optical comparison. Registry entry now captures a same-Level Optical baseline after preserving the previous complete design.
 
 5. Goal content height changes during a mouse drag could shift the SVG transform and redirect a Waypoint. Mouse component/Waypoint/Package drags now keep the initial coordinate matrix, as the existing touch path already does; out-of-bound routing and Undo are tested.
-6. Resizing from a tall desktop to1280×720 left a stale Goal height reservation. A ResizeObserver now synchronizes the Canvas reservation, with compact Goal content on short desktops; routing viewport checks cover both1280×720 and1920×1080.
+6. Resizing from a tall desktop to1280×720 left a stale Goal height reservation. A ResizeObserver now synchronizes the Canvas reservation, with compact Goal content on short desktops; routing viewport checks cover both1280×720 and1920×1080. The first remote Chromium151 run exposed a resize-frame race in the immediate geometry assertion; desktop viewport assertions now wait two animation frames before applying the unchanged overlap / minimum-height checks.
 
 These are observed interaction problems and fixes, not an automated claim of improved fun or measured learning. See GAMEPLAY_REVIEW_V051.md.
 
