@@ -1,0 +1,15 @@
+# Persistence and architecture schema
+
+Legacy design schema 1/2/3 continues through the existing migration path; legacy 1310 nm data, prior level records and protected reference backup are retained. New scaling designs use schema4 with legacy modelVersion0.2.1 for shared components and per-component version1.0.0 for high-speed educational definitions. Scaling solverVersion0.4.1 is independent of product and legacy solver version.
+
+`scaling = {version:1, profile:'hs100'|'hs200', tiles:[], arrays:[], customer:'power'|'io', choice:null|'hs100'|'hs200'}`.
+
+Tile records point to editable modulator, output and packet/channel IDs and copy the internal route records. Array records hold profile, pitch90–300 canvas units, direction, component IDs, and ordered lane mappings `{modulator, output, driver, channel}`. Each four lanes share one newly allocated four-channel EIC. Clone IDs come from the design's monotonic `next`; channel ports remain unique. Array expansion replaces the source tile, copies parameters/internal anchors, and leaves shared optical distribution disconnected. Explicit Distribution wiring connects the new graph. Placement preview is nonmutating. Individual components, channels, ports and routes remain normal editable design entities. Group move translates owned components and internal manual anchors; external manual anchors remain fixed as in v0.3.
+
+Validation rejects malformed profiles, metadata versions, out-of-range values, duplicate array/channel records, missing component membership and reused port/channel connections. Cached exported route results are never trusted; graph/geometry and solver are recalculated. Deleting an array member releases its group metadata while retaining remaining editable components and connections. JSON export includes schema4 and actual solver version; import is atomic.
+
+Scaling floorplan is 2000×1600 canvas units (20×16 mm); legacy stays1000×650. Both use shared transformed endpoints and solver route geometry. Optical physical crossings remain Unsupported warnings; no fictitious crossing attenuation is added. Auto route obstacle avoidance is not implemented; manual route rules remain inspectable.
+
+Level8 compares two valid recomputed 1.6T designs with different physical lane counts, same environment, solver and laser input powers. Completion also requires valid tested snapshot records and an explicit architecture choice satisfying the selected customer constraints, followed by a fresh Test. Opening/applying a reference never fabricates another level's completion. Reference application deep-copies and independently tests the selected design, retaining existing protected backup, Undo and Restore Previous behavior.
+
+High-speed references: `data/reference-designs-v0.4.1.json` (five designs: one Level6, two each Level7/8). Existing Level1–5 data remains `data/reference-designs-v0.4.0.json`. Both are regenerated directly by source functions; current build writes high-speed data and the new offline HTML. Source modules have no runtime dependencies; `npm test`, `npm run build` on Node20+.

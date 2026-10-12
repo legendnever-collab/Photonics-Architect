@@ -3,7 +3,7 @@ const {chromium}=require((process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES||proces
  const {referenceDesigns}=await import('../src/references.js'),{solve,endpoint}=await import('../src/core.js');
  const browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE?{executablePath:process.env.BROWSER_EXECUTABLE}:{}),args:['--no-sandbox']});
  global.qaBrowser=browser;const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:1}),page=await context.newPage(),cdp=await context.newCDPSession(page),errors=[];let requests=0,touchStarts=0;page.on('pageerror',e=>errors.push(e.stack));page.on('request',r=>{if(/^https?:/.test(r.url()))requests++;});global.qaPage=page;await context.setOffline(true);
- await page.goto('file://'+process.cwd()+'/dist/photonics-architect-v0.4.0.html');await page.waitForTimeout(300);
+ await page.goto('file://'+process.cwd()+'/dist/photonics-architect-v0.4.1.html');await page.waitForTimeout(300);
  await page.evaluate(()=>{window.observedTouches=0;document.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')window.observedTouches++;},true);});
  const tap=async sel=>{await page.locator(sel).tap({timeout:8000});};
  async function files(){await tap('#moreToggle');await tap('#files');}

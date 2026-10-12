@@ -1,3 +1,5 @@
+import {scalingReference} from './arrays.js';
+import {isScaling} from './scaling-models.js';
 import {VERSION,solve,validateImport,editRoute,setWaypoint,definition} from './core.js';
 import {practiceDesign,challengeProgress} from './campaign.js';
 export const REFERENCE_VERSION='0.4.0';
@@ -8,6 +10,7 @@ const NOTES={
  eam:{name:'EAM · Absorption Engine',why:'GeSi EAM과 Bias 지원 EIC를 조합하고 High/Low Level 및 ER를 함께 만족합니다.',trade:'작은 면적과 짧은 RF. Absorption Loss, DC Bias와 GeSi integration 부담이 있습니다.'}
 };
 export function referenceDesigns(brief,environment=REFERENCE_ENV){
+ if(isScaling({brief}))return (brief==='scale400'?[['hs100',4]]:[['hs100',16],['hs200',8]]).map(([type,count])=>{const design=scalingReference(brief,type,count);design.environment=structuredClone(environment);const result=solve(design);return {id:brief+'-'+type,version:'0.4.1',brief,type,name:design.name,why:'Editable Lane Tile / '+count+' Lane Array · 4-channel EIC + explicit 1×'+count+' distribution graph. 모든 Lane을 현재 Solver로 계산했습니다.',tradeoff:type==='hs100'?'16 Optical I/O와 큰 면적 / 낮은 Baud·Channel 전력 부담.':'8 Optical I/O / 높은 Baud·RF attenuation·Channel 전력 부담. 이 교육 시나리오의 결과이며 보편적 제품 비교가 아닙니다.',design,result,satisfied:result.status==='VALID',solverVersion:result.version,modelVersion:result.modelVersion};});
  const types=brief==='compact'?['mrm','eam']:['mzm','mrm','eam'];
  return types.map(type=>{
   const design=practiceDesign(brief,type);design.environment=structuredClone(environment);design.name=NOTES[type].name;
@@ -31,7 +34,7 @@ export function referenceDesigns(brief,environment=REFERENCE_ENV){
  });
 }
 export function referenceMetrics(ref){const r=ref.result,d=ref.design;return {
- satisfaction:ref.satisfied?'PASS · 100G':'FAIL · '+r.status,
+ satisfaction:ref.satisfied?'PASS · '+r.gross+'G':'FAIL · '+r.status,
  devices:[...new Set(d.components.map(c=>c.type))].join(' / '),
  footprint:r.area,
  envelope:(Math.max(...d.components.map(c=>c.x+definition(c).w))-Math.min(...d.components.map(c=>c.x)))*(Math.max(...d.components.map(c=>c.y+definition(c).h))-Math.min(...d.components.map(c=>c.y)))/10000,
@@ -43,10 +46,10 @@ export function referenceMetrics(ref){const r=ref.result,d=ref.design;return {
 export function prepareReferenceApplication(current,ref){
  if(ref.brief!==current.brief)throw Error('현재 Level과 Reference가 다릅니다.');
  const next=validateImport(structuredClone(ref.design)),r=solve(next);
- if(!challengeProgress(next,r).complete)throw Error('이 환경에서 Reference가 목표를 만족하지 못합니다.');
- next.name=(ref.name+' · My Design').slice(0,100);
+ if(!(isScaling(next)?r.status==='VALID':challengeProgress(next,r).complete))throw Error('이 환경에서 Reference가 목표를 만족하지 못합니다.');
+ next.name=(ref.name+' · My Design').slice(0,100);if(current.brief==='architecture'){next.scaling.customer=current.scaling.customer;next.scaling.choice=null;}
  next.completedLevels=current.completedLevels.filter(k=>k!==current.brief);
  next.snapshots=structuredClone(current.snapshots);
- next.referenceUsage=[...(current.referenceUsage||[]),{id:ref.id,level:current.brief,version:REFERENCE_VERSION,at:new Date().toISOString()}].slice(-200);
+ next.referenceUsage=[...(current.referenceUsage||[]),{id:ref.id,level:current.brief,version:ref.version,at:new Date().toISOString()}].slice(-200);
  return {design:next,backup:structuredClone(current)};
 }
