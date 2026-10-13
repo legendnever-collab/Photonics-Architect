@@ -1,3 +1,13 @@
+# Photonics Architect v0.7.1 — Solution & Score Stability
+
+Offline:`dist/photonics-architect-v0.7.1.html`. Header / Campaign Solution share Apply + actual Test. Level14 offers a full worked comparison with actual Spatial/Fast/WDM snapshots and a compatible customer choice; individual example mode remains available. Physical15–18 auto-Test after explicit Solution Apply. Edits/restores/resume keep Fresh Test gates.
+
+Click Score to inspect weighted deficits and concrete Component/Route actions. Levels14–18 display fixed score-improvement guidance. Physical Preview Only re-solves finite geometry experiments without changing My Design; Score100 is an ideal normalization, not a required completion score.
+
+[Patch behavior/model boundaries](docs/STABILIZATION_V071.md), [executed QA](docs/TEST_REPORT_V071.md), [handoff](docs/HANDOFF_v0.7.1.md). Source/model coefficients and schema7 stay compatible. Build:`npm run build`; unit:`npm test`. Existing published releases are preserved. PR stays unmerged for Gameplay review.
+
+---
+
 # Photonics Architect v0.7.0 — Design, Route & Optimize
 
 Physical PIC Design Challenge. Offline executable: `dist/photonics-architect-v0.7.0.html`; build:`npm run build`; unit:`npm test`. Levels1–14 are preserved, and15–18 add PIC floorplan, rounded waveguide routing, physical WDM filter integration and engineering optimization. Use Solution / Compare to inspect Compact, Low-Loss and Balanced layouts, independently restore your first original, and compare saved geometry Versions. Feasibility violations give score0; every completion requires Fresh Test.

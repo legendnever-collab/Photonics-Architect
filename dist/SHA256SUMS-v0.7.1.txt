@@ -1,0 +1,4 @@
+04dc08710d7204624dc081938dc2fcb96fd37d57b2ed3ca6cfa0bcb32986197b  dist/photonics-architect-v0.7.1.html
+52c8ebd599a52d14fb0efb9560507ad6b070979b0dc42420c4212f6eeaedc9c7  data/solution-designs-v0.7.1.json
+925131ec7c42efbb05f1952b6e9d3b0bb7aaf0efafdfee152e1397c7672a5a7f  data/campaign-registry-v0.7.1.json
+01da2209348ba8f19e172f2c6bab4440282835fd00c96d965f6ca43643208a71  dist/photonics-architect-v0.7.1-manifest.json
