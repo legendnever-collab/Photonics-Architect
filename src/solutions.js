@@ -1,3 +1,5 @@
+import {isPhysical} from './physical-models.js';
+import {physicalAssessment} from './physical-engine.js';
 import {isWDM} from './wdm-models.js';
 import {wdmAssessment,wdmConditions} from './wdm-engine.js';
 import {campaignNumbers} from './campaign-registry.js';
@@ -10,6 +12,7 @@ import {BRIEFS,PACKETS,compatibility} from './models.js';
 import {isScaling} from './scaling-models.js';
 export const SOLUTION_LEVELS=campaignNumbers;
 export function solutionAssessment(design,result=solve(design)){
+ if(isPhysical(design))return physicalAssessment(design,result);
  if(isWDM(design))return wdmAssessment(design,result);
  if(isPackage(design))return packageAssessment(design,result);
  const high=isScaling(design),target=high?(design.brief==='scale400'?400:1600):100,needed=high?(design.brief==='scale400'?4:design.scaling.profile==='hs200'?8:16):4;
