@@ -1,4 +1,4 @@
-a360b329e9c3ae372c1004773568fb66cf11361c1e6fc6ec84b28911a6c08f68  dist/photonics-architect-v0.7.0.html
+0e79f4f4ff62694efcaae8da5fe9bd098d79a9f85b4aeedfc6599d3aeca0ea07  dist/photonics-architect-v0.7.0.html
 0f939bc5d353a91d70f88c8e977f4cd615c265e5826b7fc0b556004764f8e75e  data/solution-designs-v0.7.0.json
 925131ec7c42efbb05f1952b6e9d3b0bb7aaf0efafdfee152e1397c7672a5a7f  data/campaign-registry-v0.7.0.json
-ee5c001e23b2f46cc3a9ce1bc9cf2bdf648e55cbc93c9a61827534392494182c  dist/photonics-architect-v0.7.0-manifest.json
+79ba0c8a5e99a393bd227e8556ff81a163e4dbd903f29139bfa9bf0aff6ef7cb  dist/photonics-architect-v0.7.0-manifest.json

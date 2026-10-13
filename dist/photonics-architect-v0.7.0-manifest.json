@@ -25,8 +25,8 @@
   },
   "artifacts": {
     "dist/photonics-architect-v0.7.0.html": {
-      "bytes": 408005,
-      "sha256": "a360b329e9c3ae372c1004773568fb66cf11361c1e6fc6ec84b28911a6c08f68"
+      "bytes": 408148,
+      "sha256": "0e79f4f4ff62694efcaae8da5fe9bd098d79a9f85b4aeedfc6599d3aeca0ea07"
     },
     "data/solution-designs-v0.7.0.json": {
       "bytes": 869689,
