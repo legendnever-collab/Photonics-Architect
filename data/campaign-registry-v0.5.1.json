@@ -1,0 +1,170 @@
+[
+  {
+    "id": "first",
+    "number": 1,
+    "title": "First Engine",
+    "goal": "1310 nm Laser로 4-Lane / 100G NRZ Engine을 완성하세요.",
+    "focus": "Laser → Splitter → Modulator → Output · Driver → RF",
+    "kind": "legacy",
+    "solutions": [
+      "mzm",
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Nominal VALID Test",
+    "next": "compact",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "compact",
+    "number": 2,
+    "title": "Compact Engine",
+    "goal": "100G를 유지하며 Component Area 합을 6.4 mm² 이하로 줄이세요.",
+    "focus": "Modulator / EIC를 함께 선택하고 면적·전력을 비교하세요.",
+    "kind": "legacy",
+    "solutions": [
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Nominal VALID Test / Area",
+    "next": "stable",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "stable",
+    "number": 3,
+    "title": "Stable Engine",
+    "goal": "온도 ±3 °C · Laser ±0.03 nm의 네 Corner에서도 100G를 유지하세요.",
+    "focus": "Nominal과 네 Temperature / Wavelength Corner를 확인하세요.",
+    "kind": "legacy",
+    "solutions": [
+      "mzm",
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Nominal + four Environment Corners",
+    "next": "rf",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "rf",
+    "number": 4,
+    "title": "Shorten the RF Path",
+    "goal": "100G를 유지하며 본인 Baseline의 대상 RF Route 길이와 손실을 줄이세요.",
+    "focus": "Driver 위치 → RF Waypoint → Test → Before / After",
+    "kind": "legacy",
+    "solutions": [
+      "mzm",
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Fresh VALID Test / Same-condition RF Baseline improvement",
+    "next": "optical",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "optical",
+    "number": 5,
+    "title": "Route the Optical Engine",
+    "goal": "Keep-out을 피해 실제 Optical Route를 연결하고 4-Lane / 100G를 유지하세요.",
+    "focus": "Optical Route 선택 → Waypoint 우회 → Test",
+    "kind": "legacy",
+    "solutions": [
+      "mzm",
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Fresh VALID Test / Planning Geometry",
+    "next": "scale400",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "scale400",
+    "number": 6,
+    "title": "4 × 100G Engine",
+    "goal": "4×100G PAM4 / 50GBd로 400G Engine을 만드세요.",
+    "focus": "100G Design을 보존합니다. 고속 MZM / EIC와 Distribution을 다시 구성하세요.",
+    "kind": "scaling",
+    "solutions": [
+      "hs100"
+    ],
+    "requiredTests": "Fresh VALID Test / 400G",
+    "next": "scale1600",
+    "solver": "0.4.1"
+  },
+  {
+    "id": "scale1600",
+    "number": 7,
+    "title": "Build Your 1.6T",
+    "goal": "16×100G / 8×200G PAM4로 1.6T Engine을 만드세요.",
+    "focus": "완료한 Lane을 Tile / Array로 확장하고 모든 Lane을 Test하세요.",
+    "kind": "scaling",
+    "solutions": [
+      "hs100",
+      "hs200"
+    ],
+    "requiredTests": "Fresh VALID Test / 1.6T",
+    "next": "architecture",
+    "solver": "0.4.1"
+  },
+  {
+    "id": "architecture",
+    "number": 8,
+    "title": "Architecture Comparison",
+    "goal": "동일 조건의 16×100G / 8×200G를 비교하고 Customer 조건에 맞게 선택하세요.",
+    "focus": "두 유효 Snapshot → Compare → Customer → Architecture 선택 → Test",
+    "kind": "scaling",
+    "solutions": [
+      "hs100",
+      "hs200"
+    ],
+    "requiredTests": "Fresh VALID Test / two actual tested Architectures / Customer choice",
+    "next": "package",
+    "solver": "0.4.1"
+  },
+  {
+    "id": "package",
+    "number": 9,
+    "title": "Fit the Package",
+    "goal": "1.6T Engine을 ≤18 ×14 mm Package에 배치하고 FAU를 연결하세요.",
+    "focus": "기존 Engine 유지 · Package Boundary / PIC·EIC·I/O Zone / Route 조정",
+    "kind": "package",
+    "solutions": [
+      "compact",
+      "distributed"
+    ],
+    "requiredTests": "Fresh VALID Test / Package Geometry / FAU Mapping",
+    "next": "thermal",
+    "solver": "0.5.0"
+  },
+  {
+    "id": "thermal",
+    "number": 10,
+    "title": "Cool the Engine",
+    "goal": "1.6T를 유지하며 Estimated Hotspot ≤65 °C를 만족하세요.",
+    "focus": "Hotspot 선택 → 배치 / Cooling 조정 → RF·열·전력 Trade-off 확인",
+    "kind": "package",
+    "solutions": [
+      "compact",
+      "distributed"
+    ],
+    "requiredTests": "Fresh VALID Test / Thermal Requirement",
+    "next": "assembly",
+    "solver": "0.5.0"
+  },
+  {
+    "id": "assembly",
+    "number": 11,
+    "title": "Survive Assembly Variation",
+    "goal": "1.6T Nominal과 Stress Corners, Simulated Pass Fraction ≥90% / ≥64 samples를 만족하세요.",
+    "focus": "Interface / Assembly Strategy → Corners → Seeded Monte Carlo → Compare",
+    "kind": "package",
+    "solutions": [
+      "compact",
+      "distributed"
+    ],
+    "requiredTests": "Fresh VALID Test / eight Stress Corners / same-design completed MC",
+    "next": null,
+    "solver": "0.5.0"
+  }
+]
