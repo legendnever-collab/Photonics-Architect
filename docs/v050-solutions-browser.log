@@ -1,0 +1,7 @@
+PASS actual touch Solution button on all eight levels, before completion; preview/score never changes design or progress
+PASS Test My Design confirms explained 100-point score / HUD / actual completion; opening alone did not award completion
+PASS failed RF lane lowers itemized score and points to concrete NEXT ACTION / recomputed Test
+PASS different conditions hide score delta; same-environment/laser recomputation and alternative architecture comparison stay read-only
+PASS Level8 solution displays missing snapshot/customer work; no automatic campaign completion
+PASS compact landscape keeps Solution accessible via header
+PASS desktop mouse Solution / offline zero HTTP / no page errors

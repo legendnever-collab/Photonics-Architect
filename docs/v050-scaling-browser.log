@@ -1,0 +1,11 @@
+PASS touch Build Lane + explicit Distribution; partial lane contributes 100G, level not complete
+PASS mobile Tile / Array placement preview does not mutate design
+PASS touch editable 4 Lane expansion; unconnected array zero gross; wire + actual Test 400G
+PASS guided Level6 → Level7 retains prior engine and completion
+PASS Level7 two references compare actual solver data / viewer nonmutation / deep-copy apply + Test
+PASS Reference apply Undo/Redo and protected original design backup
+PASS 16 Lane touch navigator / Zoom to Lane / drag coordinates / Undo
+PASS real CDP multi-pointer Pinch + Pan leaves all 16 lanes and graph unchanged
+PASS Level8 two actual tested architectures / same-condition comparison / customer IO choice + Fresh Test
+PASS schema4 Save/Resume + JSON import recomputes arrays, channel mapping, snapshots and profile
+PASS full scaling floorplan PNG / portrait and landscape touch layout
