@@ -1,3 +1,5 @@
+import {isWDM} from './wdm-models.js';
+import {wdmAssessment,wdmConditions} from './wdm-engine.js';
 import {campaignNumbers} from './campaign-registry.js';
 import {isPackage,PACKAGE_BRIEF} from './package-models.js';
 import {packageGoal,assemblyFresh} from './package-engine.js';
@@ -8,6 +10,7 @@ import {BRIEFS,PACKETS,compatibility} from './models.js';
 import {isScaling} from './scaling-models.js';
 export const SOLUTION_LEVELS=campaignNumbers;
 export function solutionAssessment(design,result=solve(design)){
+ if(isWDM(design))return wdmAssessment(design,result);
  if(isPackage(design))return packageAssessment(design,result);
  const high=isScaling(design),target=high?(design.brief==='scale400'?400:1600):100,needed=high?(design.brief==='scale400'?4:design.scaling.profile==='hs200'?8:16):4;
  const clamp=v=>Math.max(0,Math.min(1,Number.isFinite(v)?v:0)),ratio=count=>clamp(count/needed),brief=BRIEFS[design.brief],goal=challengeProgress(design,result);
@@ -26,11 +29,12 @@ export function solutionAssessment(design,result=solve(design)){
 }
 export function solutionLaserInputs(design){return design.components.filter(c=>['laser','laserhs'].includes(c.type)).map(c=>c.params.power).sort((a,b)=>a-b);}
 export function solutionComparison(current,reference){
+ if(isWDM(current))return {mine:wdmAssessment(current),solution:wdmAssessment(reference),comparable:wdmConditions(current,reference),sameEnvironment:JSON.stringify(current.environment)===JSON.stringify(reference.environment),sameLaser:Math.abs(solve(current).sourceTotalMw-solve(reference).sourceTotalMw)<1e-8,sameSolver:true,sameCustomer:current.wdm.customer===reference.wdm.customer,scoreDelta:wdmConditions(current,reference)?wdmAssessment(current).score-wdmAssessment(reference).score:null,envelopes:[solve(current).envelope,solve(reference).envelope]};
  const mine=solutionAssessment(current),solution=solutionAssessment(reference),a=current.environment,b=reference.environment,sameEnvironment=a.temperature===b.temperature&&a.wavelength===b.wavelength,sameLaser=JSON.stringify(solutionLaserInputs(current))===JSON.stringify(solutionLaserInputs(reference)),sameSolver=mine.result.version===solution.result.version,sameCustomer=current.brief!=='architecture'||current.scaling.customer===reference.scaling?.customer,sameAssembly=!isPackage(current)||current.package.width===reference.package?.width&&current.package.height===reference.package?.height&&JSON.stringify(current.package.assembly)===JSON.stringify(reference.package?.assembly),comparable=current.brief===reference.brief&&sameEnvironment&&sameLaser&&sameSolver&&sameCustomer&&sameAssembly;
  const envelope=d=>{const r=d.components.map(componentRect);return r.length?(Math.max(...r.map(c=>c.x+c.w))-Math.min(...r.map(c=>c.x)))*(Math.max(...r.map(c=>c.y+c.h))-Math.min(...r.map(c=>c.y)))/10000:0;};
  return {mine,solution,comparable,sameEnvironment,sameLaser,sameSolver,sameCustomer,scoreDelta:comparable?mine.score-solution.score:null,envelopes:[envelope(current),envelope(reference)]};
 }
-export function solutionWorkflow(brief){return isPackage({brief})?'Engine 보존 → EIC / PIC Zone 배치 → FAU Channel 연결·Route → Nominal Test → Heatmap / Cooling 개선 → Corner / Seeded Assembly Test → 같은 조건으로 Compare.':brief==='architecture'?'16×100G를 Test → Snapshot 저장 → 8×200G를 Test → Snapshot 저장 → 같은 조건으로 Compare → Customer 조건 선택 → 현재 Architecture 선택 → Fresh Test. 한 예시를 적용하는 것만으로 Level 8이 완료되지 않습니다.':brief==='rf'?'본인 RF Baseline의 표시된 Route를 선택 → Driver 또는 Waypoint 수정 → RF 길이·손실 감소 확인 → Test → Before / After. 예시의 위치를 그대로 복제할 필요는 없습니다.':brief==='stable'?'Nominal Test → 네 Temperature / Wavelength Corner 확인 → 실패 Lane의 Bias / Tuning / Swing 조정 → 다시 Test.':isScaling({brief})?'한 Lane 제작 → Optical / RF 연결 → Test → Tile 지정 → Array Preview / 생성 → Distribution 연결 → 모든 Lane Test → Snapshot.':'Layout에서 Optical / RF 연결과 주요 Parameter 확인 → 내 설계와 비교 → 부족한 Lane / Route 수정 → Test → 다음 Level.';}
+export function solutionWorkflow(brief){return isWDM({brief})?'독립 Electrical Data → 파장별 Source / Splitter → Mux Port Mapping → 실제 Output Test → Tile /4 Path → 같은 Total Optical Budget에서 Architecture 비교.':isPackage({brief})?'Engine 보존 → EIC / PIC Zone 배치 → FAU Channel 연결·Route → Nominal Test → Heatmap / Cooling 개선 → Corner / Seeded Assembly Test → 같은 조건으로 Compare.':brief==='architecture'?'16×100G를 Test → Snapshot 저장 → 8×200G를 Test → Snapshot 저장 → 같은 조건으로 Compare → Customer 조건 선택 → 현재 Architecture 선택 → Fresh Test. 한 예시를 적용하는 것만으로 Level 8이 완료되지 않습니다.':brief==='rf'?'본인 RF Baseline의 표시된 Route를 선택 → Driver 또는 Waypoint 수정 → RF 길이·손실 감소 확인 → Test → Before / After. 예시의 위치를 그대로 복제할 필요는 없습니다.':brief==='stable'?'Nominal Test → 네 Temperature / Wavelength Corner 확인 → 실패 Lane의 Bias / Tuning / Swing 조정 → 다시 Test.':isScaling({brief})?'한 Lane 제작 → Optical / RF 연결 → Test → Tile 지정 → Array Preview / 생성 → Distribution 연결 → 모든 Lane Test → Snapshot.':'Layout에서 Optical / RF 연결과 주요 Parameter 확인 → 내 설계와 비교 → 부족한 Lane / Route 수정 → Test → 다음 Level.';}
 
 export function packageAssessment(d,r=solve(d)){
  const goal=packageGoal(d,r),fraction=assemblyFresh(d)?d.package.assemblyResult.passFraction:0,clamp=x=>Math.max(0,Math.min(1,x)),geometry=r.packageGeometry,thermal=r.thermal;

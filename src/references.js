@@ -1,3 +1,5 @@
+import {isWDM} from './wdm-models.js';
+import {wdmReference,wdmGoal} from './wdm-engine.js';
 import {campaignLevel} from './campaign-registry.js';
 import {isPackage} from './package-models.js';
 import {packageSolution,assemblyTestSync,cornerTests,packageGoal} from './package-engine.js';
@@ -13,6 +15,7 @@ const NOTES={
  eam:{name:'EAM · Absorption Engine',why:'GeSi EAM과 Bias 지원 EIC를 조합하고 High/Low Level 및 ER를 함께 만족합니다.',trade:'작은 면적과 짧은 RF. Absorption Loss, DC Bias와 GeSi integration 부담이 있습니다.'}
 };
 export function referenceDesigns(brief,environment=REFERENCE_ENV){
+ if(isWDM({brief}))return campaignLevel(brief).solutions.map(type=>{const design=wdmReference(brief,type);design.environment=structuredClone(environment);const result=solve(design);return {id:brief+'-'+type,version:'0.6.0',brief,type,name:design.name,why:'독립 Data Channel과 실제 파장별 Source / Route / Filter를 현재 Solver로 검증했습니다. Level14는 세 실제 Snapshot과 고객 선택이 추가로 필요합니다.',tradeoff:type==='wdm'?'16 Data Channels를4 Physical Outputs로 결합합니다. 네 Source setpoint와4 Mux의 손실·면적·파장 관리가 늘어납니다.':type==='fast'?'8 Data Channels /8 Optical Outputs. 높은 Baud / RF / Channel 전력 부담, 작은 면적.':'16 Data Channels /16 Optical Outputs. 단일1310nm Source / 작은 Filter 부담, 큰 I/O 수.',design,result,satisfied:result.status==='VALID',solverVersion:result.version,modelVersion:result.modelVersion};});
  if(isPackage({brief}))return campaignLevel(brief).solutions.map(variant=>{const design=packageSolution(brief,variant);design.environment=structuredClone(environment);if(brief==='assembly'){design.package.cornerResult=cornerTests(design);design.package.assemblyResult=assemblyTestSync(design);}const result=solve(design);return {id:brief+'-'+variant,version:'0.5.0',brief,type:'hs200',name:design.name,why:'별도 EIC / PIC Zone, Clearance, 수동 RF / Optical Route, 8-channel FAU Mapping을 현재 Solver로 검증했습니다.',tradeoff:variant==='compact'?'짧은 RF / 작은 Engine Envelope. EIC 열 집중을 Cooling Conductance로 완화합니다. Expanded-mode FAU는 공간·Interface 비용이 증가합니다.':'EIC와 4 Lane을 2 mm 분산하여 Thermal Coupling을 줄입니다. 더 넓은 Envelope·Cooling 면적과 긴 Optical feed가 필요합니다.',design,result,satisfied:packageGoal(design,result).complete,solverVersion:result.version,modelVersion:result.modelVersion};});
  if(isScaling({brief}))return campaignLevel(brief).solutions.map(type=>[type,brief==='scale400'?4:type==='hs100'?16:8]).map(([type,count])=>{const design=scalingReference(brief,type,count);design.environment=structuredClone(environment);const result=solve(design);return {id:brief+'-'+type,version:'0.4.1',brief,type,name:design.name,why:'Editable Lane Tile / '+count+' Lane Array · 4-channel EIC + explicit 1×'+count+' distribution graph. 모든 Lane을 현재 Solver로 계산했습니다.',tradeoff:type==='hs100'?'16 Optical I/O와 큰 면적 / 낮은 Baud·Channel 전력 부담.':'8 Optical I/O / 높은 Baud·RF attenuation·Channel 전력 부담. 이 교육 시나리오의 결과이며 보편적 제품 비교가 아닙니다.',design,result,satisfied:result.status==='VALID',solverVersion:result.version,modelVersion:result.modelVersion};});
  const types=campaignLevel(brief).solutions;
@@ -50,8 +53,9 @@ export function referenceMetrics(ref){const r=ref.result,d=ref.design;return {
 export function prepareReferenceApplication(current,ref){
  if(ref.brief!==current.brief)throw Error('현재 Level과 Reference가 다릅니다.');
  const next=validateImport(structuredClone(ref.design)),r=solve(next);
- if(!(isPackage(next)?packageGoal(next,r).complete:isScaling(next)?r.status==='VALID':challengeProgress(next,r).complete))throw Error('이 환경에서 Reference가 목표를 만족하지 못합니다.');
+ if(!(isWDM(next)?r.status==='VALID':isPackage(next)?packageGoal(next,r).complete:isScaling(next)?r.status==='VALID':challengeProgress(next,r).complete))throw Error('이 환경에서 Reference가 목표를 만족하지 못합니다.');
  next.name=(ref.name+' · My Design').slice(0,100);if(current.brief==='architecture'){next.scaling.customer=current.scaling.customer;next.scaling.choice=null;}
+ if(isWDM(current)){next.wdm.customer=current.wdm.customer;next.wdm.choice=null;next.wdm.io={...structuredClone(current.wdm.io),channels:next.wdm.io.channels,mapping:next.wdm.io.mapping};}
  next.completedLevels=current.completedLevels.filter(k=>k!==current.brief);
  next.snapshots=structuredClone(current.snapshots);
  next.referenceUsage=[...(current.referenceUsage||[]),{id:ref.id,level:current.brief,version:ref.version,at:new Date().toISOString()}].slice(-200);

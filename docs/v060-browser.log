@@ -1,0 +1,19 @@
+initial Ready · IndexedDB
+PASS mouse placement/13 port connections/four lane run
+PASS mouse drag long RF diagnostic
+PASS file:/// IndexedDB autosave/reload resume
+PASS invalid JSON rollback
+PASS viewport 1280x720
+PASS viewport 1920x1080
+PASS JSON export
+PASS PNG export
+PASS Summary export
+PASS named Save/Load
+PASS invalid connection visual rejection
+PASS zoom/reset
+PASS lane duplicate/undo
+PASS keyboard/rotate/delete undo
+PASS numeric position/redo
+PASS pan
+PASS backup recovery
+page errors []

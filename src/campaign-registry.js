@@ -1,3 +1,5 @@
+import {isWDM} from './wdm-models.js';
+import {enterWDM,wdmGoal} from './wdm-engine.js';
 // One campaign contract for navigation, completion, entry, goals and available solutions.
 import {solve,validateImport,capture} from './core.js';
 import {architectureGoal,startScaling} from './arrays.js';
@@ -14,14 +16,18 @@ const rows=[
  ['architecture','Architecture Comparison','동일 조건의 16×100G / 8×200G를 비교하고 Customer 조건에 맞게 선택하세요.','두 유효 Snapshot → Compare → Customer → Architecture 선택 → Test','scaling',['hs100','hs200'],'Fresh VALID Test / two actual tested Architectures / Customer choice'],
  ['package','Fit the Package','1.6T Engine을 ≤18 ×14 mm Package에 배치하고 FAU를 연결하세요.','기존 Engine 유지 · Package Boundary / PIC·EIC·I/O Zone / Route 조정','package',['compact','distributed'],'Fresh VALID Test / Package Geometry / FAU Mapping'],
  ['thermal','Cool the Engine','1.6T를 유지하며 Estimated Hotspot ≤65 °C를 만족하세요.','Hotspot 선택 → 배치 / Cooling 조정 → RF·열·전력 Trade-off 확인','package',['compact','distributed'],'Fresh VALID Test / Thermal Requirement'],
- ['assembly','Survive Assembly Variation','1.6T Nominal과 Stress Corners, Simulated Pass Fraction ≥90% / ≥64 samples를 만족하세요.','Interface / Assembly Strategy → Corners → Seeded Monte Carlo → Compare','package',['compact','distributed'],'Fresh VALID Test / eight Stress Corners / same-design completed MC']
+ ['assembly','Survive Assembly Variation','1.6T Nominal과 Stress Corners, Simulated Pass Fraction ≥90% / ≥64 samples를 만족하세요.','Interface / Assembly Strategy → Corners → Seeded Monte Carlo → Compare','package',['compact','distributed'],'Fresh VALID Test / eight Stress Corners / same-design completed MC'],
+ ['wdmpath','Build a 4-Wavelength Path','독립4×100G PAM4 Channel을4λ Mux로 묶어 한 Optical Output /400G를 만드세요.','Source λ → 독립 EIC / MZM → Mux Mapping → Detuning / Test','wdm',['wdm'],'Fresh VALID Test / four independent wavelength channels'],
+ ['wdmengine','Scale to a 1.6T WDM Engine','4 Spatial ×4λ ×100G =1.6T ·16 Data Channels /4 Optical Outputs','한 유효 WDM Path를 Tile로 지정 →4 Path Array → 파장별1×4 Distribution → Test','wdm',['wdm'],'Fresh VALID Test / 16 data channels / four output paths'],
+ ['wdmarchitecture','Choose Your Optical Parallelism','동일 고객 / Total Source Budget에서 Spatial·Fast·WDM을 비교하고 선택하세요.','세 Architecture 실제 Test / Snapshot → 동일 조건 Compare → Customer / 선택 → Test','wdm',['spatial','fast','wdm'],'Fresh VALID Test / three tested snapshots / common conditions / customer choice']
 ];
-export const CAMPAIGN=Object.freeze(rows.map(([id,title,goal,focus,kind,solutions,requiredTests],i)=>Object.freeze({id,number:i+1,title,goal,focus,kind,solutions:Object.freeze(solutions),requiredTests,next:rows[i+1]?.[0]||null,solver:kind==='legacy'?'0.3.0':kind==='scaling'?'0.4.1':'0.5.0',completion:(d,r)=>campaignPredicate(id,d,r),entry:(d)=>campaignEntry(d,id)})));
+export const CAMPAIGN=Object.freeze(rows.map(([id,title,goal,focus,kind,solutions,requiredTests],i)=>Object.freeze({id,number:i+1,title,goal,focus,kind,solutions:Object.freeze(solutions),requiredTests,next:rows[i+1]?.[0]||null,solver:kind==='wdm'?'0.6.0':kind==='legacy'?'0.3.0':kind==='scaling'?'0.4.1':'0.5.0',completion:(d,r)=>campaignPredicate(id,d,r),entry:(d)=>campaignEntry(d,id)})));
 export const campaignLevel=id=>CAMPAIGN.find(l=>l.id===id);
 export const campaignNumbers=Object.freeze(Object.fromEntries(CAMPAIGN.map(l=>[l.id,l.number])));
 export function campaignPredicate(id,d,r=solve(d)){
  if(id!==d.brief)return {ready:false,complete:false,reason:'선택 Level과 Design이 다릅니다.'};
  const level=campaignLevel(id);if(!level)return {ready:false,complete:false,reason:'알 수 없는 Level'};
+ if(level.kind==='wdm')return wdmGoal(d,r);
  if(level.kind==='package')return packageGoal(d,r);
  if(level.kind==='scaling')return id==='architecture'?{...architectureGoal(d),ready:true}:{ready:true,complete:r.status==='VALID'&&r.gross===(id==='scale400'?400:1600),reason:r.issues[0]?.text||'모든 Lane의 Fresh Test가 필요합니다.'};
  if(id!=='rf')return {ready:true,complete:r.status==='VALID'&&r.gross===100&&(id!=='optical'||r.routing.errorCount===0),reason:r.issues[0]?.text||'현재 목표의 Fresh VALID Test가 필요합니다.'};
@@ -33,6 +39,7 @@ export function campaignPredicate(id,d,r=solve(d)){
 export function campaignState(d,r,dirty,hasTest=true){const level=campaignLevel(d.brief),goal=level.completion(d,r),fresh=!dirty&&hasTest,complete=fresh&&goal.complete;return {level,goal,fresh,complete,state:fresh?'Fresh Test Result':hasTest?'STALE — 이전 결과':'Live Preview',canNext:complete&&!!level.next,reason:!fresh?'설계 / 조건 변경 또는 Resume 후 Fresh Test가 필요합니다.':!goal.complete?goal.reason||r.issues[0]?.text||'현재 목표를 완료하세요.':level.next?'다음 Level로 이동할 수 있습니다.':'Campaign Complete · Free Design / Compare 가능'};}
 export function campaignEntry(current,id,{newDesign=false}={}){
  const level=campaignLevel(id);if(!level)throw Error('지원하지 않는 Campaign Level');let d=structuredClone(current);
+ if(level.kind==='wdm')return enterWDM(current,id,{newDesign});
  if(newDesign){d=startScaling(current,level.kind==='package'?'scale1600':id,current.scaling?.profile||'hs100');if(level.kind==='legacy'){d.components=[];d.nets=[];d.schema=3;d.brief=id;delete d.scaling;}}
  if(level.kind==='legacy'){d.brief=id;d.schema=3;d.package={enabled:false};}
  else {d.scaling??={version:1,profile:'hs100',tiles:[],arrays:[],customer:'power',choice:null};d.schema=4;if(level.kind==='package')enterPackage(d,id);else {d.brief=id;d.package={enabled:false};}}
@@ -41,4 +48,4 @@ export function campaignEntry(current,id,{newDesign=false}={}){
  const valid=validateImport(d);if(id==='optical'&&current.brief!==id){valid.snapshots.push(capture(valid,'Optical Start · '+valid.name));valid.snapshots=valid.snapshots.slice(-6);}return valid;
 }
 export function campaignTransition(current,r,dirty){const state=campaignState(current,r,dirty,true);if(!state.canNext)throw Error(state.reason);const preserved=capture(current,'Level '+state.level.number+' Complete · '+current.name),input=structuredClone(current);input.snapshots=[...input.snapshots,preserved].slice(-6);const design=campaignEntry(input,state.level.next);return {design,preserved,from:state.level.id,to:state.level.next,notice:state.level.number===5?'100G Engine 원본과 Layout을 보존했습니다. 새 목표는 400G PAM4입니다. 기존 저속 부품은 자동으로 고속 부품이 되지 않습니다. 고속 MZM / EIC를 다시 배치하거나 별도 Architecture를 시작하세요.':state.level.number===8?'1.6T Engine을 보존하고 Package 조건을 활성화했습니다. Boundary / Zone / FAU를 구성하세요.':'기존 Design을 보존했습니다. 새로운 목표로 Fresh Test가 필요합니다.'};}
-export function validateCampaignArchive(value){if(!Array.isArray(value)||value.length>11)throw Error('Campaign Archive 오류');const ids=new Set;return value.map(s=>{if(!campaignLevel(s.level)||ids.has(s.level)||typeof s.name!=='string'||s.name.length>100||s.design?.brief!==s.level)throw Error('Campaign Archive Level 오류');ids.add(s.level);return {level:s.level,name:s.name,solverVersion:s.solverVersion,design:validateImport(s.design)};});}
+export function validateCampaignArchive(value){if(!Array.isArray(value)||value.length>14)throw Error('Campaign Archive 오류');const ids=new Set;return value.map(s=>{if(!campaignLevel(s.level)||ids.has(s.level)||typeof s.name!=='string'||s.name.length>100||s.design?.brief!==s.level)throw Error('Campaign Archive Level 오류');ids.add(s.level);return {level:s.level,name:s.name,solverVersion:s.solverVersion,design:validateImport(s.design)};});}

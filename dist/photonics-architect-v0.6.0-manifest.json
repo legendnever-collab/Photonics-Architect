@@ -1,0 +1,23 @@
+{
+  "version": "0.6.0",
+  "baseline": "9108f1e38d352c3ee0104820801c024359a054ad",
+  "schema": 6,
+  "legacySolversPreserved": [
+    "0.3.0",
+    "0.4.1",
+    "0.5.0"
+  ],
+  "wdmSolver": "0.6.0",
+  "wdmModel": "1.0.0-wdm",
+  "unitTests": {
+    "pass": 204,
+    "fail": 0
+  },
+  "browserSuites": 11,
+  "artifacts": {
+    "photonics-architect-v0.6.0.html": {
+      "bytes": 350550,
+      "sha256": "fe804d3628fe3be0408bace40e2edd398240c81c14dd7b865f4fedd85e4dcc6d"
+    }
+  }
+}

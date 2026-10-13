@@ -1,4 +1,13 @@
-# Photonics Architect v0.4.1 — Build Your 1.6T Engine
+# Photonics Architect v0.6.0 — Choose Your Optical Parallelism
+
+## v0.6 — WDM Architecture Challenge
+
+Offline executable: `dist/photonics-architect-v0.6.0.html`. Build with `npm run build`; tests with `npm test`. Preserves Levels1–11,1310nm/NRZ/PAM4, routing, scaling, package/thermal/assembly, touch, solutions/protected restore, actual result charts and persistence. Levels12–14 add4λ /400G Path,4-Path /1.6T WDM Array and same-condition three-architecture choice.
+
+The educational O-band grid is1304/1308/1312/1316nm; it does not claim CWDM/LAN-WDM compliance. WDM reduces spatial I/O to4 while keeping16 independent100G Electrical Data Channels. Source power is perλ; aggregate output is a linear mW sum. Passband/detuning/separation screens and perλ Waterfalls come from actual graph results. Source electrical power and Receiver/BER are excluded. New WDM thermal/filter drift is explicitly Unsupported; original package/thermal/seeded assembly levels remain. Optional WDM FAU shares each physical-channel offset acrossλ and replaces Edge Coupler loss once.
+
+See [model/sources/assumptions](docs/MODELS_V060.md), [schema/migration](docs/SCHEMA_V060.md), [executed tests](docs/TEST_REPORT_V060.md), [baseline](docs/BASELINE_V060.md) and [handoff](docs/HANDOFF_v0.6.0.md). Solutions and registry are in `data/`. The first WDM user design before Solution Apply is separately protected and included in JSON.
+
 
 Solution update: every Level1–8 now has an optional Solution button with My Design comparison, transparent Goal Score and an explicit Test action. [Scoring/QA details](docs/SOLUTIONS_SCORING_V041.md).
 
