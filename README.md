@@ -1,3 +1,7 @@
+## v0.8 development — Receiver & Complete Optical Link
+
+Baseline v0.7.1 is merged (PR #9,5da597a). Development checkpoints: [DEVELOPMENT_V080.md](docs/DEVELOPMENT_V080.md). The v0.8 branch is under active development and will remain unmerged for user review.
+
 # Photonics Architect v0.7.1 — Solution & Score Stability
 
 Offline:`dist/photonics-architect-v0.7.1.html`. Header / Campaign Solution share Apply + actual Test. Level14 offers a full worked comparison with actual Spatial/Fast/WDM snapshots and a compatible customer choice; individual example mode remains available. Physical15–18 auto-Test after explicit Solution Apply. Edits/restores/resume keep Fresh Test gates.

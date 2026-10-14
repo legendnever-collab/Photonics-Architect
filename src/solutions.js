@@ -1,3 +1,5 @@
+import {isLink} from './link-models.js';
+import {linkAssessment} from './link-solver.js';
 import {isPhysical} from './physical-models.js';
 import {physicalAssessment} from './physical-engine.js';
 import {isWDM} from './wdm-models.js';
@@ -12,6 +14,7 @@ import {BRIEFS,PACKETS,compatibility} from './models.js';
 import {isScaling} from './scaling-models.js';
 export const SOLUTION_LEVELS=campaignNumbers;
 export function solutionAssessment(design,result=solve(design)){
+ if(isLink(design))return linkAssessment(design,result);
  if(isPhysical(design))return physicalAssessment(design,result);
  if(isWDM(design))return wdmAssessment(design,result);
  if(isPackage(design))return packageAssessment(design,result);
