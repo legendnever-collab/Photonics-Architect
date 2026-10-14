@@ -2,7 +2,7 @@
   "version": "0.8.0",
   "baselineMain": "5da597a1096c0be2d848f034805b99a9320ea0ca",
   "branch": "feature/v0.8-complete-optical-link",
-  "sourceDigest": "359c81d782f32089befd7403f1feace7ef7cb1ed88d35374426a9725a0e34e86",
+  "sourceDigest": "e6b03cb410ccabcb6f52eee2cb6ef0891a2384222da180767485c339209adc11",
   "build": "npm run build (Node >=20)",
   "initialThemeOnlyDifference": true,
   "requiredExternalHttpRequests": 0,
@@ -60,8 +60,8 @@
     },
     {
       "path": "src/chapters.js",
-      "bytes": 5363,
-      "sha256": "d6b1bec209a1c710a3414dc25f9a1374163dbf21bfe450375b0ce83642c238f7"
+      "bytes": 5387,
+      "sha256": "35411593aae35f5b05df955da3f59110f6d9e8806a6bee95c4054c9d613b89cc"
     },
     {
       "path": "src/core.js",
@@ -105,8 +105,8 @@
     },
     {
       "path": "src/link-ui.js",
-      "bytes": 26773,
-      "sha256": "e50e927ee818e033bc866ed8eced8d3e196e15ac20cf0b05f99f2e33e684a0b7"
+      "bytes": 28007,
+      "sha256": "b6ec1b0aff732fc6dc8cad5880445533050a27649d9c37def81eda9dbafa80f8"
     },
     {
       "path": "src/models.js",
@@ -237,18 +237,18 @@
   "artifacts": [
     {
       "path": "dist/photonics-architect-v0.8.0.html",
-      "bytes": 531510,
-      "sha256": "ff726659c38fc30a5c2e0b18efdde7f6982fac03c98c141eb23b1d776ceebeb5"
+      "bytes": 532768,
+      "sha256": "2bca274d4d8e797de6dd7ceca811951aa54ae9902abc1238a43aa29e135c5956"
     },
     {
       "path": "dist/photonics-architect-v0.8.0-light.html",
-      "bytes": 531510,
-      "sha256": "ff726659c38fc30a5c2e0b18efdde7f6982fac03c98c141eb23b1d776ceebeb5"
+      "bytes": 532768,
+      "sha256": "2bca274d4d8e797de6dd7ceca811951aa54ae9902abc1238a43aa29e135c5956"
     },
     {
       "path": "dist/photonics-architect-v0.8.0-dark.html",
-      "bytes": 531509,
-      "sha256": "e78f8fe9b103212b144b25105d515b78f163df65d1585047c9c4b01414430c60"
+      "bytes": 532767,
+      "sha256": "125233231460d17a1098c7e9a1ef7fd331b099ba33f9136b403223c850fd1a16"
     },
     {
       "path": "data/campaign-registry-v0.8.0.json",

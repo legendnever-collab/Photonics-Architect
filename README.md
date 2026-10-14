@@ -8,7 +8,7 @@ Light is default; each self-contained file supports both Themes and remembered p
 
 Build: Node≥20, `npm test`, `npm run build`. Browser: install Playwright and Chromium, then `npm run test:browser` (CI config included). Historical browser fixtures are temporarily aliased to **new v0.8 Light bytes** and restored after QA. No required external HTTP, CDN, font, solver service or runtime dependency. Download the HTML and open locally; GitHub's blob page is a source viewer.
 
-[Receiver/Monitoring models, sources and score](docs/MODELS_V080.md) · [Chapters/schema migration](docs/CHAPTERS_MIGRATION_V080.md) · [development checkpoints](docs/DEVELOPMENT_V080.md) · [verified solution data](data/solution-designs-v0.8.0.json).
+[Receiver/Monitoring models, sources and score](docs/MODELS_V080.md) · [Chapters/schema migration](docs/CHAPTERS_MIGRATION_V080.md) · [executed QA](docs/TEST_REPORT_V080.md) · [handoff](docs/HANDOFF_v0.8.0.md) · [development checkpoints](docs/DEVELOPMENT_V080.md) · [verified solution data](data/solution-designs-v0.8.0.json).
 
 Educational / Assumed: no BER/FEC/Eye or standard compliance, no full electrical RC/noise, dispersion/PMD, thermal FEM or foundry sign-off. MIM/GePD PDK-specific rule remains verification required. Baseline v0.7.1 PR #9 is merged (`5da597a`). v0.8 PR #10 stays unmerged pending user gameplay review. Executed final QA/CI evidence is recorded separately; development checkpoints are not release acceptance.
 

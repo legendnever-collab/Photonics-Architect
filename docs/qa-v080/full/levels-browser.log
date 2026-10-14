@@ -1,0 +1,9 @@
+PASS initial Level 1 / explicit goal / 1310 / focused library / gate
+PASS Fresh Test → Level 2 / explicit area goal / preserves Engine and Snapshot
+PASS Level 2 EAM+EIC solution → Level 3 / four-corner stability goal / complete
+PASS edits disable completion action / STALE / Undo and re-Test
+PASS Level progression / completed goals / Resume requires fresh Test
+PASS Goal/Canvas/HUD remain visible at desktop viewport sizes
+PASS old v0.2 C-band Resume / conversion notice / immutable original archive / re-Test
+PASS old C-band JSON Import migration / prior archive preserved
+PASS standalone offline / zero network requests / zero page errors

@@ -1,0 +1,5 @@
+PASS actual component drag interrupted by second finger rolls back without an unintended edit
+PASS explicit one-finger Pan cannot move a component or connect ports
+PASS enlarged Waypoint touch target / true route edit / STALE / Undo
+PASS protected Reference Backup survives six-snapshot eviction limit
+PASS Desktop Reference application and comparison / zero page errors

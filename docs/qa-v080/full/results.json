@@ -1,0 +1,132 @@
+{
+  "build": "0.8.0-light",
+  "sha256": "ff726659c38fc30a5c2e0b18efdde7f6982fac03c98c141eb23b1d776ceebeb5",
+  "results": [
+    {
+      "suite": "browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 13.47,
+      "status": "PASS"
+    },
+    {
+      "suite": "codesign-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 20.1,
+      "status": "PASS"
+    },
+    {
+      "suite": "levels-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.01,
+      "status": "PASS"
+    },
+    {
+      "suite": "routing-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 32.32,
+      "status": "PASS"
+    },
+    {
+      "suite": "mobile-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 17.86,
+      "status": "PASS"
+    },
+    {
+      "suite": "touch-routing-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 12.19,
+      "status": "PASS"
+    },
+    {
+      "suite": "scaling-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 13.06,
+      "status": "PASS"
+    },
+    {
+      "suite": "solutions-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 9.57,
+      "status": "PASS"
+    },
+    {
+      "suite": "package-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 18.39,
+      "status": "PASS"
+    },
+    {
+      "suite": "flow-visualization-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 29.81,
+      "status": "PASS"
+    },
+    {
+      "suite": "wdm-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 42.81,
+      "status": "PASS"
+    },
+    {
+      "suite": "physical-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 41.01,
+      "status": "PASS"
+    },
+    {
+      "suite": "stabilization-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 39.95,
+      "status": "PASS"
+    },
+    {
+      "suite": "chapters-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.98,
+      "status": "PASS"
+    },
+    {
+      "suite": "onboarding-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 7.73,
+      "status": "PASS"
+    },
+    {
+      "suite": "link-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 30.24,
+      "status": "PASS"
+    },
+    {
+      "suite": "link-mobile-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.97,
+      "status": "PASS"
+    },
+    {
+      "suite": "migration-theme-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 16.55,
+      "status": "PASS"
+    }
+  ]
+}
