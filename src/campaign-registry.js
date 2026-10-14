@@ -54,7 +54,7 @@ export function campaignPredicate(id,d,r=solve(d)){
 export function campaignState(d,r,dirty,hasTest=true){const level=campaignLevel(d.brief),goal=level.completion(d,r),fresh=!dirty&&hasTest,complete=fresh&&goal.complete;return {level,goal,fresh,complete,state:fresh?'Fresh Test Result':hasTest?'STALE — 이전 결과':'Live Preview',canNext:complete&&!!level.next,reason:!fresh?'설계 / 조건 변경 또는 Resume 후 Fresh Test가 필요합니다.':!goal.complete?goal.reason||r.issues[0]?.text||'현재 목표를 완료하세요.':level.next?'다음 Level로 이동할 수 있습니다.':'Campaign Complete · Free Design / Compare 가능'};}
 export function campaignEntry(current,id,{newDesign=false}={}){
  const level=campaignLevel(id);if(!level)throw Error('지원하지 않는 Campaign Level');let d=structuredClone(current);
- if(level.kind==='link'){if(newDesign)d={...d,components:[],nets:[],snapshots:[],next:1,challenge:null};d.brief=id;d.link??=linkDefaults();if(id==='fastbuild'){d.link.architecture='fast';d.link.txBrief='architecture';}d.physical={enabled:false};d.package={enabled:false};return validateImport(d);}
+ if(level.kind==='link'){if(newDesign)d={...d,components:[],nets:[],snapshots:[],next:1,challenge:null};d.brief=id;d.link??=linkDefaults();if(id!=='faultdiagnosis'){d.link.fault.active=false;d.link.fault.answer=null;}if(id==='fastbuild'){d.link.architecture='fast';d.link.txBrief='architecture';}d.physical={enabled:false};d.package={enabled:false};return validateImport(d);}
  if(level.kind==='physical')return enterPhysical(current,id,{newDesign});
  if(level.kind==='wdm')return enterWDM(current,id,{newDesign});
  if(newDesign){d=startScaling(current,level.kind==='package'?'scale1600':id,current.scaling?.profile||'hs100');if(level.kind==='legacy'){d.components=[];d.nets=[];d.schema=3;d.brief=id;delete d.scaling;}}
