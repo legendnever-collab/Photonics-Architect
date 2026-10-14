@@ -1,0 +1,7 @@
+PASS side-by-side solver references / multiple Apply / independent original Restore / Undo Redo / fresh gate / score consistency
+PASS manual Route selection / requested-effective radius / DRC and loss gate / mouse Waypoint drag / undo restores valid geometry
+PASS numeric position / rotation / mouse component drag / zoom / inspector scrolling keeps fixed metrics
+PASS actual15→16→17→18 / WDM wavelength routes / final score completion / Versions + Snapshot / Save Resume JSON / protected originals / offline PNG
+PASS real mobile Component Drag and Pan, Undo and Test revalidate physical layout
+PASS mobile actual touch selection / Solution / numeric edit / two-finger zoom / portrait landscape / visible score-progress
+PASS file:/// offline / zero HTTP requests / zero page errors. Physical-device and subjective engagement not measured.

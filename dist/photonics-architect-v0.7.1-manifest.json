@@ -1,0 +1,34 @@
+{
+  "version": "0.7.1",
+  "baseline": "737aff3751672a204c96fb51414587052504a245",
+  "mainBaseline": "31810e05aab9c55436d998dd350ae4462093c373",
+  "schema": 7,
+  "physicalSolver": "0.7.0",
+  "campaignLevels": 18,
+  "unitTests": {
+    "pass": 261,
+    "fail": 0
+  },
+  "browserSuites": {
+    "pass": 13,
+    "fail": 0
+  },
+  "offline": {
+    "requiredHttpRequests": 0,
+    "pageErrors": 0
+  },
+  "artifacts": {
+    "dist/photonics-architect-v0.7.1.html": {
+      "bytes": 427787,
+      "sha256": "04dc08710d7204624dc081938dc2fcb96fd37d57b2ed3ca6cfa0bcb32986197b"
+    },
+    "data/solution-designs-v0.7.1.json": {
+      "bytes": 869724,
+      "sha256": "52c8ebd599a52d14fb0efb9560507ad6b070979b0dc42420c4212f6eeaedc9c7"
+    },
+    "data/campaign-registry-v0.7.1.json": {
+      "bytes": 8470,
+      "sha256": "925131ec7c42efbb05f1952b6e9d3b0bb7aaf0efafdfee152e1397c7672a5a7f"
+    }
+  }
+}

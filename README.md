@@ -1,3 +1,21 @@
+# Photonics Architect v0.7.1 — Solution & Score Stability
+
+Offline:`dist/photonics-architect-v0.7.1.html`. Header / Campaign Solution share Apply + actual Test. Level14 offers a full worked comparison with actual Spatial/Fast/WDM snapshots and a compatible customer choice; individual example mode remains available. Physical15–18 auto-Test after explicit Solution Apply. Edits/restores/resume keep Fresh Test gates.
+
+Click Score to inspect weighted deficits and concrete Component/Route actions. Levels14–18 display fixed score-improvement guidance. Physical Preview Only re-solves finite geometry experiments without changing My Design; Score100 is an ideal normalization, not a required completion score.
+
+[Patch behavior/model boundaries](docs/STABILIZATION_V071.md), [executed QA](docs/TEST_REPORT_V071.md), [handoff](docs/HANDOFF_v0.7.1.md). Source/model coefficients and schema7 stay compatible. Build:`npm run build`; unit:`npm test`. Existing published releases are preserved. PR stays unmerged for Gameplay review.
+
+---
+
+# Photonics Architect v0.7.0 — Design, Route & Optimize
+
+Physical PIC Design Challenge. Offline executable: `dist/photonics-architect-v0.7.0.html`; build:`npm run build`; unit:`npm test`. Levels1–14 are preserved, and15–18 add PIC floorplan, rounded waveguide routing, physical WDM filter integration and engineering optimization. Use Solution / Compare to inspect Compact, Low-Loss and Balanced layouts, independently restore your first original, and compare saved geometry Versions. Feasibility violations give score0; every completion requires Fresh Test.
+
+Documentation:[model](docs/MODELS_V070.md), [score/gates](docs/SCORE_V070.md), [schema/persistence](docs/SCHEMA_V070.md), [executed QA](docs/TEST_REPORT_V070.md), [handoff](docs/HANDOFF_v0.7.0.md), [baseline](docs/BASELINE_V070.md). New modules extend the existing source/solver rather than replace the game. `data/solution-designs-v0.7.0.json` contains12 actual verified layout examples. The educational geometry/filter model is not foundry DRC/LVS, EM/FEM, BER or real GDS tape-out.
+
+---
+
 # Photonics Architect v0.6.0 — Choose Your Optical Parallelism
 
 ## v0.6 — WDM Architecture Challenge

@@ -1,0 +1,14 @@
+2026-10-13T22:37:26.7790289Z AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+2026-10-13T22:37:26.7790533Z
+2026-10-13T22:37:26.7791133Z   assert.ok(await page.locator('[data-campaign-next]').isEnabled())
+2026-10-13T22:37:26.7794996Z
+2026-10-13T22:37:26.7795341Z     at /home/runner/work/Photonics-Architect/Photonics-Architect/tests/physical-browser.cjs:8:308 {
+2026-10-13T22:37:26.7795636Z   generatedMessage: true,
+2026-10-13T22:37:26.7795783Z   code: 'ERR_ASSERTION',
+2026-10-13T22:37:26.7795915Z   actual: false,
+2026-10-13T22:37:26.7796034Z   expected: true,
+2026-10-13T22:37:26.7796151Z   operator: '==',
+2026-10-13T22:37:26.7796265Z   diff: 'simple'
+2026-10-13T22:37:26.7796555Z }
+2026-10-13T22:37:26.7969081Z ##[error]Process completed with exit code 1.
+2026-10-13T22:37:26.8061687Z
