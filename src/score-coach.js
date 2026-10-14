@@ -1,3 +1,4 @@
+import {isLink} from './link-models.js';
 import {solve,endpoint} from './core.js';
 import {isPhysical,PIC_ASSUMPTIONS} from './physical-models.js';
 import {physicalAssessment} from './physical-engine.js';
@@ -8,6 +9,7 @@ const scoreLabels={pic0:'Optical Performance · 출력 여유',pic1:'Layout Comp
 function worstPhysicalRoute(d,r){const lane=r.lanes.filter(l=>Number.isFinite(l.power)).sort((a,b)=>a.power-b.power)[0];const ids=new Set(lane?.steps?.filter(s=>['propagation','bend','crossing'].includes(s.key)).map(s=>s.select));const routes=r.routing.routes.filter(n=>n.domain==='optical'&&(!ids.size||ids.has(n.id))).sort((a,b)=>b.loss-a.loss);return {lane,route:routes[0]};}
 export function scoreAdvice(d,r=solve(d)){
  const a=solutionAssessment(d,r),physical=isPhysical(d),rows=a.items.map(i=>({...i,label:scoreLabels[i.key]||i.label,missing:Math.round((i.max-i.value)*10)/10}));
+ if(isLink(d)){const issue=r.issues.find(i=>i.c)||r.link.tx.issues.find(i=>i.c),net=d.nets.find(n=>n.kind==='optical'&&d.components.find(c=>c.id===n.a.component)?.type==='output'),target=issue?.c||r.link.receivers.find(l=>!l.valid)?.id||net?.id||r.link.receivers[0]?.id||null;const action={key:'link',target,title:issue?'실제 실패 조건의 대상 수정':!a.goalComplete?'Monitoring / Customer / 관측에 근거한 답 확인':'Receiver 여유와 Power / Area Trade-off 개선',detail:issue?.text||(!a.goalComplete?'Tap 위치·Readout Range·제품 Optical Probe Access와 Fault 답을 확인하세요. Monitor 개수만 늘려도 관측성이 개선되지는 않습니다.':'Score의 Receiver 항목은 Average/OMA Lower·Overload Upper 사이 여유를 평가합니다. Channel 손실을 줄이면 Overload 쪽 여유가 감소할 수도 있습니다. Link Panel의 Clone Solver Preview로 확인하세요.')};return {assessment:a,rows,actions:[action],priority:action,gateBlocked:r.status!=='VALID',completion:a.goalComplete,explanation:'Educational Receiver Screen과 현재 Mission 완료를 구분합니다. Throughput / Bias / Bandwidth / Operating Range / Customer / Monitoring 조건과 Fresh Test를 실제로 만족해야 합니다. BER/FEC Margin은 계산하지 않습니다.'};}
  if(!physical){const gate=d.brief==='wdmarchitecture'?wdmGoal(d,r):a.goalComplete;const actions=[];
   if(d.brief==='wdmarchitecture'&&!gate.complete)actions.push({key:'goal',target:null,solution:true,title:'Level14의 비교와 Customer 선택 완료',detail:gate.reason+' 두 Solution 버튼의 전체 Worked Solution 옵션으로 실제 비교 결과와 고객 선택을 확인할 수 있습니다.'});
   if(!actions.length){const issue=r.issues.find(i=>i.c);actions.push({key:'goal',target:issue?.c||null,title:a.goalComplete?'목표 충족 · 다음 Level 가능':'목표에서 부족한 조건 해결',detail:issue?.text||a.nextAction});}

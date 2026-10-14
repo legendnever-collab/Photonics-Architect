@@ -324,7 +324,7 @@
     "id": "linkcustomer",
     "number": 22,
     "title": "Customer Link Challenge",
-    "goal": "거리·Physical I/O·Electrical Power·Rx 조건을 동시에 만족하세요.",
+    "goal": "1.6T의 거리·Physical I/O·Electrical Power·Rx 조건을 동시에 만족하세요.",
     "focus": "Architecture 선택 → Channel → Customer 조건 확인",
     "kind": "link",
     "solutions": [

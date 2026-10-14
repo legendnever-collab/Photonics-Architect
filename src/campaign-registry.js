@@ -30,7 +30,7 @@ const rows=[
  ['fastbuild','Fast & Narrow Engine','실제8×200G PAM4 Engine을 구성하세요.','고속 MZM / EIC 배치 →8 Lane →Test','link',['compact','loss'],'Fresh VALID Test /8×200G'],
  ['rxfirst','First Receiver','Calibrated Optical Input → GePD → TIA → Measurement를 연결하세요.','25G NRZ Profile / Bias / BW / Operating Range','link',['compact','loss'],'Fresh Receiver Screen'],
  ['linkcomplete','Complete the Link','본인의 Tx → Fiber Channel → Receiver Link를 완성하세요.','모든 Tx Lane의 PD / TIA / Electrical Measurement 연결','link',['compact','loss'],'Fresh Tx–Rx Screen'],
- ['linkcustomer','Customer Link Challenge','거리·Physical I/O·Electrical Power·Rx 조건을 동시에 만족하세요.','Architecture 선택 → Channel → Customer 조건 확인','link',['compact','loss'],'Fresh Customer Link Screen'],
+ ['linkcustomer','Customer Link Challenge','1.6T의 거리·Physical I/O·Electrical Power·Rx 조건을 동시에 만족하세요.','Architecture 선택 → Channel → Customer 조건 확인','link',['compact','loss'],'Fresh Customer Link Screen'],
  ['tapmonitor','Monitoring Plan','Tap / DC Readout / 적절한 Test Access를 구성하고 Main Link를 유지하세요.','Tap 손실과 Signal Range → 비교 가능한 관측 Plan','link',['compact','loss'],'Fresh Link + Observability / Access'],
  ['faultdiagnosis','Observable Fault Diagnosis','설치한 Monitor로만 고장을 판별하거나 Ambiguous로 답하세요.','관측값·Baseline 비교 → 구분 가능한 원인만 선택 →Test','link',['compact','loss'],'Fresh Observations + Valid Answer']
 ];
