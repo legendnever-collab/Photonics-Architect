@@ -7,7 +7,7 @@ import {WDM_CUSTOMERS} from './wdm-models.js';
 export async function applyTestedSolution(api,prepared){
  api.checkpoint();api.set({design:prepared.design,selected:null,pending:null,placing:null,addingWaypoint:null});
  api.closePanels?.();api.changed();document.getElementById('modal').close();document.getElementById('fit').click();
- api.run();await api.persist();
+ api.run();if(innerWidth<=900){const d=api.get().design,focus=d.components.find(c=>/^hs/.test(c.type))||d.components[0];if(focus){api.set({selected:focus.id});document.getElementById('selectionZoom').click();}}await api.persist();
 }
 export function bindSolutionEntryPoints(open){for(const id of ['reference','levelSolution']){const button=document.getElementById(id);if(button)button.onclick=open;}}
 export function fitsWDMCustomer(design,result=solve(design)){const cap=WDM_CUSTOMERS[design.wdm.customer];return result.status==='VALID'&&result.gross===1600&&result.powerW<=cap.power&&result.area<=cap.area&&result.physicalLanes<=cap.io;}

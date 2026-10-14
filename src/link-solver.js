@@ -11,7 +11,7 @@ export function solveLink(d,api){
  // Stage 1 changes only the aggregate goal; every per-lane device/route screen remains authoritative.
  const stageIssues=mission?.number===1?tx.issues.filter(i=>!/^Goal /.test(i.text)):tx.issues;
  const identity=tx.lanes.length===expected&&tx.lanes.every(l=>l.valid&&l.type===(d.link.architecture==='fast'?'hs200':'hs100'));
- const complete=identity&&tx.gross===target&&!stageIssues.length&&routing.errorCount===0;
+ const routed=mission?.number!==3||d.nets.some(n=>n.kind==='optical'&&n.route?.mode==='manual');const complete=identity&&tx.gross===target&&!stageIssues.length&&routing.errorCount===0&&routed;if(!routed)stageIssues.push({level:'BLOCKED',c:d.nets.find(n=>n.kind==='optical')?.id,text:'Output으로 가는 Optical Route를 선택하고 Manual Waypoint / Radius를 확인하세요.'});
  const score=complete?100:Math.min(99,Math.round(tx.gross/target*90));
  return {...tx,brief:stableBrief,version:'0.8.0',score,goalScore:score,status:complete?'VALID':'BLOCKED',issues:complete?stageIssues:[...stageIssues,{level:'BLOCKED',c:null,text:'Track Tx: 실제 '+expected+'×'+rate+'G / 호환 EIC / 유효 Route가 필요합니다.'}],link:{receivers:[],monitors:[],probes:[],taps:[],complete,coverage:0,target,expected,score,items:[{key:'tx',label:'Functional Tx / Profile / Routing',max:100,value:score,detail:tx.gross+'/'+target+'G'}],tx,status:complete?'VALID':'BLOCKED',limitations:'Educational Tx Screen; 현재 단계는 Tx이며 같은 Track의 Level 4에서 Receiver를 추가합니다.'}};
  }

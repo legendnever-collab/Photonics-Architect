@@ -1,3 +1,26 @@
+# Photonics Architect v0.8.1
+
+Mobile Canvas First · End-to-End Architecture Tracks
+
+Open `dist/photonics-architect-v0.8.0.html` locally. This is the single v0.8.1 application: Light default, saved Light/Dark toggle in More, zero external runtime assets. The filename follows the requested v0.8 delivery contract. Download the raw file; GitHub blob pages display HTML source.
+
+**Fast & Narrow → Slow & Wide → WDM**. Each Track starts at Level1 with an empty Canvas, then completes Tx, 1.6T scaling, Manual Optical Routing, Channel/Receiver, Monitoring and final Link/Fault evaluation. Tracks keep independent Designs, Progress, Snapshots and protected originals. Resume / Start New / explicit Copy are separate. Old missions and physical/package/assembly challenges remain in Advanced Labs.
+
+Mobile: Add / Inspect / Test / More at the bottom, compact Goal and an initially visible Canvas. Tap Goal for details and the Next blocked reason. Tools exposes Undo/Redo, Zoom, readable Selection Zoom and Fit All. Solution and Score Guide are in More. Tutorial starts at Step1 and preserves its own Design; Skip and Replay are available.
+
+```sh
+npm test
+npm run build
+npm run test:browser
+python3 scripts/package.py
+```
+
+Source in `src/`; stable architecture registry in `src/track-models.js`. [Track / Migration contract](docs/TRACKS_MIGRATION_V081.md) · [Tutorial](docs/TUTORIAL_V081.md) · [Executed QA and limits](docs/TEST_REPORT_V081.md) · [Development](docs/DEVELOPMENT_V081.md). Solver model equations and boundaries in [MODELS_V080.md](docs/MODELS_V080.md) remain authoritative. Reference scores can remain below100; real mission constraints gate completion.
+
+PR #10 is the unmerged v0.8 baseline. v0.8.1 is an incremental review branch and must not be merged before user review. Earlier README sections below are historical release records; current delivery, navigation and UI contracts above supersede older descriptions.
+
+---
+
 # Photonics Architect v0.8.0 — Receiver & Complete Optical Link
 
 [Light Offline HTML](dist/photonics-architect-v0.8.0-light.html) · [Dark Offline HTML](dist/photonics-architect-v0.8.0-dark.html) · [PR #10](https://github.com/legendnever-collab/Photonics-Architect/pull/10)

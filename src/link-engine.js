@@ -19,7 +19,7 @@ export function linkReference(level,kind='compact',architecture=['fastbuild','li
  else {d=startScaling(empty(),'architecture',mission.arch==='fast'?'hs200':'hs100');buildSeed(d,d.scaling.profile);wireDistribution(d);d.components.find(c=>c.type==='laserhs').params.power=13;}
  }else if(mission.txOnly){d=structuredClone(referenceDesigns(mission.arch==='wdm'?'wdmengine':'architecture').find(r=>mission.arch==='wdm'||r.design.scaling?.profile===(mission.arch==='fast'?'hs200':'hs100')).design);}
  else d=linkReference(mission.phase,kind,mission.arch);
- d.brief=level;d.link??=linkDefaults();d.link.architecture=mission.arch;d.link.txBrief=mission.arch==='wdm'?(mission.number===1?'wdmpath':'wdmengine'):'architecture';d.physical={enabled:false};d.package={enabled:false};d.name=mission.track+' · Level '+mission.number+' · '+kind;
+ d.brief=level;d.link??=linkDefaults();d.link.architecture=mission.arch;d.link.txBrief=mission.arch==='wdm'?(mission.number===1?'wdmpath':'wdmengine'):'architecture';d.physical={enabled:false};d.package={enabled:false};d.name=mission.track+' · Level '+mission.number+' · '+kind;if(mission.number===3){const n=d.nets.find(n=>n.kind==='optical'&&d.components.find(c=>c.id===n.b.component)?.type==='output');n.route.mode='manual';n.route.waypoints=[];}
  for(const c of d.components.filter(c=>c.type==='output'))c.linkPort=true;
  return validateImport(d);
  }
