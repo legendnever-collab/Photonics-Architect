@@ -8,4 +8,10 @@ const {referenceDesigns}=await import('../src/references.js');mkdirSync('data',{
 const {CAMPAIGN}=await import('../src/campaign-registry.js');
 
 writeFileSync("data/campaign-registry-v0.8.0.json",JSON.stringify(CAMPAIGN.map(({completion,entry,...r})=>r),null,2));
-writeFileSync("data/solution-designs-v0.8.0.json",JSON.stringify({version:"0.8.0",physicalModelVersion:"0.7.0",solutions:["picfloor","picroute","picwdm","picoptimize"].flatMap(l=>referenceDesigns(l).map(r=>({id:r.id,name:r.name,design:r.design,verified:{status:r.result.status,score:r.result.goalScore,physical:r.result.physical,area:r.result.routing.envelope,crossings:r.result.routing.crossingCount,violations:r.result.routing.errorCount,satisfied:r.satisfied}})))},null,2));
+const {linkReferences}=await import('../src/link-engine.js');
+const {LINK_LEVELS}=await import('../src/link-models.js');
+const {CHAPTERS}=await import('../src/chapters.js');
+writeFileSync("data/chapter-registry-v0.8.0.json",JSON.stringify(CHAPTERS,null,2));
+const linkSolutions=LINK_LEVELS.flatMap(level=>linkReferences(level).map(r=>({id:r.id,name:r.name,brief:level,design:r.design,verified:{status:r.result.status,score:r.result.goalScore,satisfied:r.satisfied,gross:r.result.gross,powerW:r.result.powerW,coverage:r.result.link.coverage,receivers:r.result.link.receivers,items:r.result.link.items}})));
+if(linkSolutions.some(r=>!r.verified.satisfied))throw Error("Reference verification failed");
+writeFileSync("data/solution-designs-v0.8.0.json",JSON.stringify({version:"0.8.0",physicalModelVersion:"0.7.0",solutions:[...linkSolutions,...["picfloor","picroute","picwdm","picoptimize"].flatMap(l=>referenceDesigns(l).map(r=>({id:r.id,name:r.name,design:r.design,verified:{status:r.result.status,score:r.result.goalScore,physical:r.result.physical,area:r.result.routing.envelope,crossings:r.result.routing.crossingCount,violations:r.result.routing.errorCount,satisfied:r.satisfied}})))]},null,2));

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "foundations",
+    "title": "Foundations",
+    "architecture": "100G NRZ Transmitter",
+    "levels": [
+      "first",
+      "compact",
+      "stable",
+      "rf",
+      "optical"
+    ],
+    "tradeoff": "Modulator / RF / Layout",
+    "scope": "5개 과제 · 첫 Engine",
+    "related": []
+  },
+  {
+    "id": "slow-wide",
+    "title": "Slow & Wide",
+    "architecture": "16 ×100G PAM4",
+    "levels": [
+      "scale400",
+      "scale1600"
+    ],
+    "tradeoff": "병렬 Lane 수 · Area / I/O",
+    "scope": "4 Lane →16 Lane",
+    "related": [
+      "foundations"
+    ]
+  },
+  {
+    "id": "decisions",
+    "title": "Architecture Decisions",
+    "architecture": "Spatial / Fast & Narrow 비교",
+    "levels": [
+      "architecture"
+    ],
+    "tradeoff": "실제 Snapshot 비교 / 고객 요구",
+    "scope": "같은1.6T의 두 Architecture",
+    "related": [
+      "slow-wide"
+    ]
+  },
+  {
+    "id": "fast-narrow",
+    "title": "Fast & Narrow",
+    "architecture": "8 ×200G PAM4",
+    "levels": [
+      "fastbuild"
+    ],
+    "tradeoff": "고속 PD / TIA / Drive 대역폭",
+    "scope": "1.6T 고속 Engine",
+    "related": [
+      "foundations"
+    ]
+  },
+  {
+    "id": "wdm",
+    "title": "WDM",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "levels": [
+      "wdmpath",
+      "wdmengine",
+      "wdmarchitecture"
+    ],
+    "tradeoff": "λ Mapping / Filter / Optical I/O",
+    "scope": "Path → Engine → Architecture",
+    "related": [
+      "slow-wide"
+    ]
+  },
+  {
+    "id": "package",
+    "title": "Package Engineering",
+    "architecture": "1.6T Optical Package",
+    "levels": [
+      "package",
+      "thermal",
+      "assembly"
+    ],
+    "tradeoff": "Boundary / Thermal / Assembly Yield",
+    "scope": "3개 Packaging 과제",
+    "related": [
+      "slow-wide",
+      "fast-narrow"
+    ]
+  },
+  {
+    "id": "physical",
+    "title": "Physical PIC",
+    "architecture": "1.6T PIC",
+    "levels": [
+      "picfloor",
+      "picroute",
+      "picwdm",
+      "picoptimize"
+    ],
+    "tradeoff": "Geometry / Routing / Thermal / Score",
+    "scope": "4개 PIC 과제",
+    "related": [
+      "wdm"
+    ]
+  },
+  {
+    "id": "link",
+    "title": "Complete Optical Link",
+    "architecture": "Tx → Channel → PD / TIA",
+    "levels": [
+      "rxfirst",
+      "linkcomplete",
+      "linkcustomer"
+    ],
+    "tradeoff": "OMA / Overload / Bandwidth / Power",
+    "scope": "3개 Link 과제",
+    "related": [
+      "foundations",
+      "wdm"
+    ]
+  },
+  {
+    "id": "monitoring",
+    "title": "Monitoring & Testability",
+    "architecture": "Tap / Readout / Test Access",
+    "levels": [
+      "tapmonitor",
+      "faultdiagnosis"
+    ],
+    "tradeoff": "Tap Loss / 관측 가능성 / Test 단계",
+    "scope": "2개 Monitoring 과제",
+    "related": [
+      "link"
+    ]
+  }
+]
