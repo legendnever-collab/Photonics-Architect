@@ -1,24 +1,20 @@
+"""Package the v0.8.1 single-executable release without copying repository items to other storage."""
 from pathlib import Path
-import zipfile,hashlib,json,subprocess
+import zipfile,hashlib,json
 root=Path(__file__).resolve().parents[1];dist=root/'dist';dist.mkdir(exist_ok=True)
 version=json.loads((root/'package.json').read_text())['version'];stem='photonics-architect-v'+version
-source=dist/(stem+'-source.zip')
-try:
- candidates=[root/p for p in subprocess.check_output(['git','ls-files'],cwd=root,text=True).splitlines()]
-except (subprocess.CalledProcessError,FileNotFoundError):
- candidates=list(root.rglob('*'))
+html=dist/'photonics-architect-v0.8.0.html';source=dist/(stem+'-source.zip')
 with zipfile.ZipFile(source,'w',zipfile.ZIP_DEFLATED) as z:
- for p in sorted(candidates):
-  rel=p.relative_to(root)
-  if p.is_file() and not any(part in ('dist','.git','node_modules') for part in rel.parts) and p.suffix not in ('.png','.zip') and rel.name!='.git':z.write(p,rel)
-html=dist/(stem+'.html');files=[html,source]
-manifest={'version':version,'solverVersion':'0.6.0','modelVersion':'1.0.0-wdm / 1.1.0 (package) / 1.0.0 (scaling) / 0.2.1 (legacy)','routeModelVersion':'0.3.0','schema':6,'referenceVersion':'0.6.0','baseline':'9108f1e38d352c3ee0104820801c024359a054ad','artifacts':{p.name:{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in files}}
-manifest_file=dist/(stem+'-manifest.json');manifest_file.write_text(json.dumps(manifest,indent=2))
-release=dist/(stem+'-release.zip')
-documents=['README.md','docs/SCHEMA_V060.md','docs/TEST_REPORT_V060.md','docs/HANDOFF_v0.6.0.md','docs/MODELS_V060.md','docs/BASELINE_V060.md','data/campaign-registry-v0.6.0.json','data/solution-designs-v0.6.0.json']
-with zipfile.ZipFile(release,'w',zipfile.ZIP_DEFLATED) as z:
- for p in files+[manifest_file]+[root/f for f in documents]:z.write(p,p.name)
- for p in sorted((root/'docs').glob('v060-*.png')):z.write(p,'screenshots/'+p.name)
- for p in sorted((root/'docs').glob('v060-*.log')):z.write(p,'tests/'+p.name)
-(dist/(stem+'-SHA256SUMS')).write_text('\n'.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+p.name for p in files+[release,manifest_file])+'\n')
-for p in files+[release]:print(p.name,p.stat().st_size)
+ for name in ['README.md','package.json','index.html']:
+  z.write(root/name,name)
+ for folder in ['src','scripts','tests','data','docs','.github']:
+  for p in sorted((root/folder).rglob('*')):
+   if p.is_file() and p.suffix not in ('.zip',) and (p.suffix!='.png' or p.name.startswith('v081-')):z.write(p,p.relative_to(root))
+ for p in sorted((root/'artifacts/v081-qa').glob('*')):
+  if p.is_file():z.write(p,p.relative_to(root))
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+files=[html,source]
+manifest={'version':version,'executableName':html.name,'singleExecutable':True,'modelVersion':'existing Educational v0.8.0 / nominal25C; unchanged physical coefficients','baseline':'7f04e9fdb37322b006bff4fe0167f7299a5fb181','branch':'feature/v0.8.1-mobile-architecture-tracks','artifacts':{p.name:{'sha256':sha(p),'bytes':p.stat().st_size} for p in files}}
+m=dist/(stem+'-manifest.json');m.write_text(json.dumps(manifest,indent=2)+'\n')
+(dist/(stem+'-SHA256SUMS.txt')).write_text('\n'.join(sha(p)+'  '+p.name for p in files+[m])+'\n')
+for p in files:print(p.name,p.stat().st_size,sha(p))

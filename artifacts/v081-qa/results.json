@@ -1,0 +1,36 @@
+{
+  "version": "0.8.1",
+  "build": "dist/photonics-architect-v0.8.0.html",
+  "sha256": "77c52eae6ff0df522c1fd3aabfcbfc7dd078af9060cfda23be7dc4d3f680b5be",
+  "results": [
+    {
+      "suite": "tracks-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 58.5,
+      "status": "PASS"
+    },
+    {
+      "suite": "legacy-v081-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 14.8,
+      "status": "PASS"
+    },
+    {
+      "suite": "migration-v081-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.1,
+      "status": "PASS"
+    },
+    {
+      "suite": "score-v081-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": null,
+      "status": "PASS",
+      "execution": "Separate same-build invocation"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+PASS legacy first
+PASS legacy compact
+PASS legacy stable
+PASS legacy rf
+PASS legacy optical
+PASS legacy scale400
+PASS legacy scale1600
+PASS legacy architecture
+PASS legacy package
+PASS legacy thermal
+PASS legacy assembly
+PASS legacy wdmpath
+PASS legacy wdmengine
+PASS legacy wdmarchitecture
+PASS legacy picfloor
+PASS legacy picroute
+PASS legacy picwdm
+PASS legacy picoptimize
+PASS legacy fastbuild
+PASS legacy rxfirst
+PASS legacy linkcomplete
+PASS legacy linkcustomer
+PASS legacy tapmonitor
+PASS legacy faultdiagnosis
+PASS 32 legacy goals /actual new build /offline

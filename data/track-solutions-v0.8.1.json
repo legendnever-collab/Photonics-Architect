@@ -1,0 +1,506 @@
+[
+  {
+    "id": "v08-fast-track-1-compact",
+    "mission": "fast-track-1",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 200,
+      "score": 100,
+      "powerW": 0.78,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-fast-track-1-loss",
+    "mission": "fast-track-1",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 200,
+      "score": 100,
+      "powerW": 0.78,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-fast-track-2-compact",
+    "mission": "fast-track-2",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4.4399999999999995,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-fast-track-2-loss",
+    "mission": "fast-track-2",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4.4399999999999995,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-fast-track-3-compact",
+    "mission": "fast-track-3",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4.4399999999999995,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-fast-track-3-loss",
+    "mission": "fast-track-3",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4.4399999999999995,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-fast-track-4-compact",
+    "mission": "fast-track-4",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 94,
+      "powerW": 8.904,
+      "receivers": 8,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-fast-track-4-loss",
+    "mission": "fast-track-4",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 94,
+      "powerW": 8.904,
+      "receivers": 8,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-fast-track-5-compact",
+    "mission": "fast-track-5",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 89,
+      "powerW": 8.94,
+      "receivers": 8,
+      "coverage": 0.75
+    }
+  },
+  {
+    "id": "v08-fast-track-5-loss",
+    "mission": "fast-track-5",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 84,
+      "powerW": 8.922,
+      "receivers": 8,
+      "coverage": 0.5
+    }
+  },
+  {
+    "id": "v08-fast-track-6-compact",
+    "mission": "fast-track-6",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 89,
+      "powerW": 8.94,
+      "receivers": 8,
+      "coverage": 0.75
+    }
+  },
+  {
+    "id": "v08-fast-track-6-loss",
+    "mission": "fast-track-6",
+    "architecture": "8 ×200G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 84,
+      "powerW": 8.922,
+      "receivers": 8,
+      "coverage": 0.5
+    }
+  },
+  {
+    "id": "v08-slow-track-1-compact",
+    "mission": "slow-track-1",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 100,
+      "score": 100,
+      "powerW": 0.33999999999999997,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-slow-track-1-loss",
+    "mission": "slow-track-1",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 100,
+      "score": 100,
+      "powerW": 0.33999999999999997,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-slow-track-2-compact",
+    "mission": "slow-track-2",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-slow-track-2-loss",
+    "mission": "slow-track-2",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-slow-track-3-compact",
+    "mission": "slow-track-3",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-slow-track-3-loss",
+    "mission": "slow-track-3",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-slow-track-4-compact",
+    "mission": "slow-track-4",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 92,
+      "powerW": 8.064,
+      "receivers": 16,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-slow-track-4-loss",
+    "mission": "slow-track-4",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 92,
+      "powerW": 8.064,
+      "receivers": 16,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-slow-track-5-compact",
+    "mission": "slow-track-5",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 87,
+      "powerW": 8.1,
+      "receivers": 16,
+      "coverage": 0.75
+    }
+  },
+  {
+    "id": "v08-slow-track-5-loss",
+    "mission": "slow-track-5",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 82,
+      "powerW": 8.082,
+      "receivers": 16,
+      "coverage": 0.5
+    }
+  },
+  {
+    "id": "v08-slow-track-6-compact",
+    "mission": "slow-track-6",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 87,
+      "powerW": 8.1,
+      "receivers": 16,
+      "coverage": 0.75
+    }
+  },
+  {
+    "id": "v08-slow-track-6-loss",
+    "mission": "slow-track-6",
+    "architecture": "16 ×100G PAM4",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 82,
+      "powerW": 8.082,
+      "receivers": 16,
+      "coverage": 0.5
+    }
+  },
+  {
+    "id": "v08-wdm-track-1-compact",
+    "mission": "wdm-track-1",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 400,
+      "score": 100,
+      "powerW": 1,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-wdm-track-1-loss",
+    "mission": "wdm-track-1",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 400,
+      "score": 100,
+      "powerW": 1,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-wdm-track-2-compact",
+    "mission": "wdm-track-2",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-wdm-track-2-loss",
+    "mission": "wdm-track-2",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-wdm-track-3-compact",
+    "mission": "wdm-track-3",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-wdm-track-3-loss",
+    "mission": "wdm-track-3",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 100,
+      "powerW": 4,
+      "receivers": 0,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-wdm-track-4-compact",
+    "mission": "wdm-track-4",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 94,
+      "powerW": 8.064,
+      "receivers": 16,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-wdm-track-4-loss",
+    "mission": "wdm-track-4",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 94,
+      "powerW": 8.064,
+      "receivers": 16,
+      "coverage": 0
+    }
+  },
+  {
+    "id": "v08-wdm-track-5-compact",
+    "mission": "wdm-track-5",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 88,
+      "powerW": 8.1,
+      "receivers": 16,
+      "coverage": 0.75
+    }
+  },
+  {
+    "id": "v08-wdm-track-5-loss",
+    "mission": "wdm-track-5",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 83,
+      "powerW": 8.082,
+      "receivers": 16,
+      "coverage": 0.5
+    }
+  },
+  {
+    "id": "v08-wdm-track-6-compact",
+    "mission": "wdm-track-6",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 88,
+      "powerW": 8.1,
+      "receivers": 16,
+      "coverage": 0.75
+    }
+  },
+  {
+    "id": "v08-wdm-track-6-loss",
+    "mission": "wdm-track-6",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "implementation": "src/link-engine.js: linkReference",
+    "verified": {
+      "complete": true,
+      "gross": 1600,
+      "score": 83,
+      "powerW": 8.082,
+      "receivers": 16,
+      "coverage": 0.5
+    }
+  }
+]

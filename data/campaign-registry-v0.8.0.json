@@ -364,5 +364,365 @@
     "requiredTests": "Fresh Observations + Valid Answer",
     "next": null,
     "solver": "0.8.0"
+  },
+  {
+    "id": "fast-track-1",
+    "track": "fast-narrow",
+    "arch": "fast",
+    "number": 25,
+    "title": "첫 Data Channel과 Tx",
+    "target": 200,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "첫 200G PAM4 Tx Lane을 연결하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "fast-track-2",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "fast-track-2",
+    "track": "fast-narrow",
+    "arch": "fast",
+    "number": 26,
+    "title": "1.6T로 확장",
+    "target": 1600,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "8 ×200G PAM4 =1.6T Tx를 완성하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "fast-track-3",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "fast-track-3",
+    "track": "fast-narrow",
+    "arch": "fast",
+    "number": 27,
+    "title": "PIC Routing / Package Interface",
+    "target": 1600,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "1.6T를 유지하고 실제 Route / Output Interface를 검증하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "fast-track-4",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "fast-track-4",
+    "track": "fast-narrow",
+    "arch": "fast",
+    "number": 28,
+    "title": "Channel과 Receiver 연결",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "linkcomplete",
+    "goal": "모든 Data Channel을 호환 PD / TIA / Measurement에 연결하세요.",
+    "focus": "Tx Output → Channel → PD → TIA → Measurement",
+    "next": "fast-track-5",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "fast-track-5",
+    "track": "fast-narrow",
+    "arch": "fast",
+    "number": 29,
+    "title": "Monitoring / Test Access",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "tapmonitor",
+    "goal": "Main Link를 유지하며 DC Monitor와 Optical Test Access를 구성하세요.",
+    "focus": "Optical Net 선택 → Tap / DC Readout → Test Access",
+    "next": "fast-track-6",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "fast-track-6",
+    "track": "fast-narrow",
+    "arch": "fast",
+    "number": 30,
+    "title": "최종 Link 평가",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "faultdiagnosis",
+    "goal": "전체 Link를 Test하고 관측 가능한 Fault 또는 Ambiguous를 평가하세요.",
+    "focus": "Fault Exercise → 설치한 Monitor 관측 → 답 선택 → Test",
+    "next": null,
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "slow-track-1",
+    "track": "slow-wide",
+    "arch": "slow",
+    "number": 31,
+    "title": "첫 Data Channel과 Tx",
+    "target": 100,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "첫 100G PAM4 Tx Lane을 연결하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "slow-track-2",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "slow-track-2",
+    "track": "slow-wide",
+    "arch": "slow",
+    "number": 32,
+    "title": "1.6T로 확장",
+    "target": 1600,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "16 ×100G PAM4 =1.6T Tx를 완성하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "slow-track-3",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "slow-track-3",
+    "track": "slow-wide",
+    "arch": "slow",
+    "number": 33,
+    "title": "PIC Routing / Package Interface",
+    "target": 1600,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "1.6T를 유지하고 실제 Route / Output Interface를 검증하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "slow-track-4",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "slow-track-4",
+    "track": "slow-wide",
+    "arch": "slow",
+    "number": 34,
+    "title": "Channel과 Receiver 연결",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "linkcomplete",
+    "goal": "모든 Data Channel을 호환 PD / TIA / Measurement에 연결하세요.",
+    "focus": "Tx Output → Channel → PD → TIA → Measurement",
+    "next": "slow-track-5",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "slow-track-5",
+    "track": "slow-wide",
+    "arch": "slow",
+    "number": 35,
+    "title": "Monitoring / Test Access",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "tapmonitor",
+    "goal": "Main Link를 유지하며 DC Monitor와 Optical Test Access를 구성하세요.",
+    "focus": "Optical Net 선택 → Tap / DC Readout → Test Access",
+    "next": "slow-track-6",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "slow-track-6",
+    "track": "slow-wide",
+    "arch": "slow",
+    "number": 36,
+    "title": "최종 Link 평가",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "faultdiagnosis",
+    "goal": "전체 Link를 Test하고 관측 가능한 Fault 또는 Ambiguous를 평가하세요.",
+    "focus": "Fault Exercise → 설치한 Monitor 관측 → 답 선택 → Test",
+    "next": null,
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "wdm-track-1",
+    "track": "wdm",
+    "arch": "wdm",
+    "number": 37,
+    "title": "첫 Data Channel과 Tx",
+    "target": 400,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "4λ ×100G의 첫 400G Tx Path를 연결하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "wdm-track-2",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "wdm-track-2",
+    "track": "wdm",
+    "arch": "wdm",
+    "number": 38,
+    "title": "1.6T로 확장",
+    "target": 1600,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "4 Spatial ×4λ ×100G =1.6T Tx를 완성하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "wdm-track-3",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "wdm-track-3",
+    "track": "wdm",
+    "arch": "wdm",
+    "number": 39,
+    "title": "PIC Routing / Package Interface",
+    "target": 1600,
+    "txOnly": true,
+    "phase": "fastbuild",
+    "goal": "1.6T를 유지하고 실제 Route / Output Interface를 검증하세요.",
+    "focus": "Add → Tx Lane / Path → Optical feed → Test",
+    "next": "wdm-track-4",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "wdm-track-4",
+    "track": "wdm",
+    "arch": "wdm",
+    "number": 40,
+    "title": "Channel과 Receiver 연결",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "linkcomplete",
+    "goal": "모든 Data Channel을 호환 PD / TIA / Measurement에 연결하세요.",
+    "focus": "Tx Output → Channel → Demux → PD → TIA → Measurement",
+    "next": "wdm-track-5",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "wdm-track-5",
+    "track": "wdm",
+    "arch": "wdm",
+    "number": 41,
+    "title": "Monitoring / Test Access",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "tapmonitor",
+    "goal": "Main Link를 유지하며 DC Monitor와 Optical Test Access를 구성하세요.",
+    "focus": "Optical Net 선택 → Tap / DC Readout → Test Access",
+    "next": "wdm-track-6",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "wdm-track-6",
+    "track": "wdm",
+    "arch": "wdm",
+    "number": 42,
+    "title": "최종 Link 평가",
+    "target": 1600,
+    "txOnly": false,
+    "phase": "faultdiagnosis",
+    "goal": "전체 Link를 Test하고 관측 가능한 Fault 또는 Ambiguous를 평가하세요.",
+    "focus": "Fault Exercise → 설치한 Monitor 관측 → 답 선택 → Test",
+    "next": null,
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh actual Track Test",
+    "solver": "0.8.0"
   }
 ]

@@ -1,0 +1,27 @@
+VIEWPORT {"viewport":[390,844],"canvas":[390,648],"ratio":0.7677725118483413,"bodyScroll":844,"bodyWidth":390,"font":"14px","targets":[44,44,44,44]}
+VIEWPORT {"viewport":[360,640],"canvas":[360,444],"ratio":0.69375,"bodyScroll":640,"bodyWidth":360,"font":"14px","targets":[44,44,44,44]}
+VIEWPORT {"viewport":[375,667],"canvas":[375,471],"ratio":0.7061469265367316,"bodyScroll":667,"bodyWidth":375,"font":"14px","targets":[44,44,44,44]}
+VIEWPORT {"viewport":[412,915],"canvas":[412,719],"ratio":0.7857923497267759,"bodyScroll":915,"bodyWidth":412,"font":"14px","targets":[44,44,44,44]}
+VIEWPORT {"viewport":[844,390],"canvas":[844,222],"ratio":0.5692307692307692,"bodyScroll":390,"bodyWidth":844,"font":"14px","targets":[44,44,44,44]}
+VIEWPORT {"viewport":[667,375],"canvas":[667,207],"ratio":0.552,"bodyScroll":375,"bodyWidth":667,"font":"14px","targets":[44,44,44,44]}
+VIEWPORT {"viewport":[320,568],"canvas":[320,372],"ratio":0.6549295774647887,"bodyScroll":568,"bodyWidth":320,"font":"14px","targets":[44,44,44,44]}
+PASS fast Track Level 1
+PASS fast Track Level 2
+PASS fast Track Level 3
+PASS fast Track Level 4
+PASS fast Track Level 5
+PASS fast Track Level 6
+PASS slow Track Level 1
+PASS slow Track Level 2
+PASS slow Track Level 3
+PASS slow Track Level 4
+PASS slow Track Level 5
+PASS slow Track Level 6
+PASS wdm Track Level 1
+PASS wdm Track Level 2
+PASS wdm Track Level 3
+PASS wdm Track Level 4
+PASS wdm Track Level 5
+PASS wdm Track Level 6
+JSON Paste Restore bytes 9751568
+PASS 163 actual UI checks /18 Track stages / independent Tutorial / mobile allocation /Theme /Save /JSON /PNG /Touch /Offline

@@ -1,5 +1,65 @@
 [
   {
+    "id": "fast-narrow",
+    "title": "Fast & Narrow",
+    "architecture": "8 ×200G PAM4",
+    "arch": "fast",
+    "rate": 200,
+    "lanes": 8,
+    "firstTarget": 200,
+    "tradeoff": "100GBd · 높은 Bandwidth / 적은 Optical I/O",
+    "levels": [
+      "fast-track-1",
+      "fast-track-2",
+      "fast-track-3",
+      "fast-track-4",
+      "fast-track-5",
+      "fast-track-6"
+    ],
+    "scope": "Tx → Channel → Rx → Monitoring · 6 Levels",
+    "related": []
+  },
+  {
+    "id": "slow-wide",
+    "title": "Slow & Wide",
+    "architecture": "16 ×100G PAM4",
+    "arch": "slow",
+    "rate": 100,
+    "lanes": 16,
+    "firstTarget": 100,
+    "tradeoff": "50GBd · 더 많은 Lane / 완화된 Bandwidth",
+    "levels": [
+      "slow-track-1",
+      "slow-track-2",
+      "slow-track-3",
+      "slow-track-4",
+      "slow-track-5",
+      "slow-track-6"
+    ],
+    "scope": "Tx → Channel → Rx → Monitoring · 6 Levels",
+    "related": []
+  },
+  {
+    "id": "wdm",
+    "title": "WDM",
+    "architecture": "4 Spatial ×4λ ×100G",
+    "arch": "wdm",
+    "rate": 100,
+    "lanes": 16,
+    "firstTarget": 400,
+    "tradeoff": "50GBd · 4λ Mapping / Mux–Demux Loss / 적은 Optical I/O",
+    "levels": [
+      "wdm-track-1",
+      "wdm-track-2",
+      "wdm-track-3",
+      "wdm-track-4",
+      "wdm-track-5",
+      "wdm-track-6"
+    ],
+    "scope": "Tx → Channel → Rx → Monitoring · 6 Levels",
+    "related": []
+  },
+  {
     "id": "foundations",
     "title": "Foundations",
     "architecture": "100G NRZ Transmitter",
@@ -15,7 +75,7 @@
     "related": []
   },
   {
-    "id": "slow-wide",
+    "id": "advanced-slow",
     "title": "Slow & Wide",
     "architecture": "16 ×100G PAM4",
     "levels": [
@@ -42,7 +102,7 @@
     ]
   },
   {
-    "id": "fast-narrow",
+    "id": "advanced-fast",
     "title": "Fast & Narrow",
     "architecture": "8 ×200G PAM4",
     "levels": [
@@ -55,7 +115,7 @@
     ]
   },
   {
-    "id": "wdm",
+    "id": "advanced-wdm",
     "title": "WDM",
     "architecture": "4 Spatial ×4λ ×100G",
     "levels": [
