@@ -1,0 +1,149 @@
+{
+  "checks": 163,
+  "httpRequests": 0,
+  "pageErrors": [],
+  "metrics": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "canvas": [
+        390,
+        648
+      ],
+      "ratio": 0.7677725118483413,
+      "bodyScroll": 844,
+      "bodyWidth": 390,
+      "font": "14px",
+      "targets": [
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "viewport": [
+        360,
+        640
+      ],
+      "canvas": [
+        360,
+        444
+      ],
+      "ratio": 0.69375,
+      "bodyScroll": 640,
+      "bodyWidth": 360,
+      "font": "14px",
+      "targets": [
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "viewport": [
+        375,
+        667
+      ],
+      "canvas": [
+        375,
+        471
+      ],
+      "ratio": 0.7061469265367316,
+      "bodyScroll": 667,
+      "bodyWidth": 375,
+      "font": "14px",
+      "targets": [
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "canvas": [
+        412,
+        719
+      ],
+      "ratio": 0.7857923497267759,
+      "bodyScroll": 915,
+      "bodyWidth": 412,
+      "font": "14px",
+      "targets": [
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "canvas": [
+        844,
+        222
+      ],
+      "ratio": 0.5692307692307692,
+      "bodyScroll": 390,
+      "bodyWidth": 844,
+      "font": "14px",
+      "targets": [
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "viewport": [
+        667,
+        375
+      ],
+      "canvas": [
+        667,
+        207
+      ],
+      "ratio": 0.552,
+      "bodyScroll": 375,
+      "bodyWidth": 667,
+      "font": "14px",
+      "targets": [
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "canvas": [
+        320,
+        372
+      ],
+      "ratio": 0.6549295774647887,
+      "bodyScroll": 568,
+      "bodyWidth": 320,
+      "font": "14px",
+      "targets": [
+        44,
+        44,
+        44,
+        44
+      ]
+    }
+  ],
+  "build": "dist/photonics-architect-v0.8.0.html",
+  "sha256": "77c52eae6ff0df522c1fd3aabfcbfc7dd078af9060cfda23be7dc4d3f680b5be"
+}

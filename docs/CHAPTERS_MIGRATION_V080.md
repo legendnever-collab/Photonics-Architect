@@ -50,3 +50,7 @@ Tutorial uses a separate `tutorial` record and records its return workspace. Rea
 No fonts, CDN scripts, styles or runtime APIs are required. System fonts are used. Source links in Tips open only on explicit clicks. Offline tests block HTTP and execute the new HTML via `file:///`. Desktop Chromium and emulated Touch are distinct from physical-phone/native keyboard/Safari validation; see the executed QA report for actual coverage.
 
 Build with Node≥20: `npm test`, `npm run build`. `npm run test:browser` requires externally installed Playwright/browser (CI installs them). The QA runner aliases historical fixture filenames to the **current v0.8 Light bytes**, records their SHA256, then restores historical published HTML/images. Final QA therefore exercises new v0.8 code while preserving historical deliverables.
+
+## Current v0.8.1 structure
+
+The RC Chapter order and twin Theme deliverables above describe the historical v0.8 candidate. Current architecture order, local numbering, independent Tutorial and non-destructive container migration are defined by [TRACKS_MIGRATION_V081.md](TRACKS_MIGRATION_V081.md) and the same source registry used by the UI. Current execution artifact is one HTML.

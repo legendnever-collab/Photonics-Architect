@@ -1,7 +1,8 @@
+import {TRACK_MISSIONS,trackMission} from './track-models.js';
 import {isLink,linkDefaults} from './link-models.js';
 import {isPhysical} from './physical-models.js';
 import {enterPhysical,physicalGoal} from './physical-engine.js';
-import {isWDM} from './wdm-models.js';
+import {isWDM,wdmDefaults} from './wdm-models.js';
 import {enterWDM,wdmGoal} from './wdm-engine.js';
 // One campaign contract for navigation, completion, entry, goals and available solutions.
 import {solve,validateImport,capture} from './core.js';
@@ -34,7 +35,8 @@ const rows=[
  ['tapmonitor','Monitoring Plan','Tap / DC Readout / 적절한 Test Access를 구성하고 Main Link를 유지하세요.','Tap 손실과 Signal Range → 비교 가능한 관측 Plan','link',['compact','loss'],'Fresh Link + Observability / Access'],
  ['faultdiagnosis','Observable Fault Diagnosis','설치한 Monitor로만 고장을 판별하거나 Ambiguous로 답하세요.','관측값·Baseline 비교 → 구분 가능한 원인만 선택 →Test','link',['compact','loss'],'Fresh Observations + Valid Answer']
 ];
-export const CAMPAIGN=Object.freeze(rows.map(([id,title,goal,focus,kind,solutions,requiredTests],i)=>Object.freeze({id,number:i+1,title,goal,focus,kind,solutions:Object.freeze(solutions),requiredTests,next:[17,18,21].includes(i)?null:rows[i+1]?.[0]||null,solver:kind==='link'?'0.8.0':kind==='physical'?'0.7.0':kind==='wdm'?'0.6.0':kind==='legacy'?'0.3.0':kind==='scaling'?'0.4.1':'0.5.0',completion:(d,r)=>campaignPredicate(id,d,r),entry:(d)=>campaignEntry(d,id)})));
+const legacyCampaign=rows.map(([id,title,goal,focus,kind,solutions,requiredTests],i)=>Object.freeze({id,number:i+1,title,goal,focus,kind,solutions:Object.freeze(solutions),requiredTests,next:[17,18,21].includes(i)?null:rows[i+1]?.[0]||null,solver:kind==='link'?'0.8.0':kind==='physical'?'0.7.0':kind==='wdm'?'0.6.0':kind==='legacy'?'0.3.0':kind==='scaling'?'0.4.1':'0.5.0',completion:(d,r)=>campaignPredicate(id,d,r),entry:(d)=>campaignEntry(d,id)}));
+export const CAMPAIGN=Object.freeze([...legacyCampaign,...TRACK_MISSIONS.map((m,i)=>Object.freeze({...m,number:25+i,kind:'link',solutions:['compact','loss'],requiredTests:'Fresh actual Track Test',solver:'0.8.0',completion:(d,r)=>campaignPredicate(m.id,d,r),entry:d=>campaignEntry(d,m.id)}))]);
 export const campaignLevel=id=>CAMPAIGN.find(l=>l.id===id);
 export const campaignNumbers=Object.freeze(Object.fromEntries(CAMPAIGN.map(l=>[l.id,l.number])));
 export function campaignPredicate(id,d,r=solve(d)){
@@ -54,7 +56,7 @@ export function campaignPredicate(id,d,r=solve(d)){
 export function campaignState(d,r,dirty,hasTest=true){const level=campaignLevel(d.brief),goal=level.completion(d,r),fresh=!dirty&&hasTest,complete=fresh&&goal.complete;return {level,goal,fresh,complete,state:fresh?'Fresh Test Result':hasTest?'STALE — 이전 결과':'Live Preview',canNext:complete&&!!level.next,reason:!fresh?'설계 / 조건 변경 또는 Resume 후 Fresh Test가 필요합니다.':!goal.complete?goal.reason||r.issues[0]?.text||'현재 목표를 완료하세요.':level.next?'다음 Level로 이동할 수 있습니다.':'Campaign Complete · Free Design / Compare 가능'};}
 export function campaignEntry(current,id,{newDesign=false}={}){
  const level=campaignLevel(id);if(!level)throw Error('지원하지 않는 Campaign Level');let d=structuredClone(current);
- if(level.kind==='link'){if(newDesign)d={...d,components:[],nets:[],snapshots:[],next:1,challenge:null};d.brief=id;d.link??=linkDefaults();if(id!=='faultdiagnosis'){d.link.fault.active=false;d.link.fault.answer=null;}if(id==='fastbuild'){d.link.architecture='fast';d.link.txBrief='architecture';}d.physical={enabled:false};d.package={enabled:false};return validateImport(d);}
+ if(level.kind==='link'){if(newDesign)d={...d,components:[],nets:[],snapshots:[],next:1,challenge:null};d.brief=id;d.link??=linkDefaults();const mission=trackMission(id);if(mission){d.link.architecture=mission.arch;d.link.txBrief=mission.arch==='wdm'?(mission.number===1?'wdmpath':'wdmengine'):'architecture';d.link.customer='lab';if(mission.arch==='wdm')d.wdm??=wdmDefaults();if(mission.number<6){d.link.fault.active=false;d.link.fault.answer=null;}}if(id!=='faultdiagnosis'){d.link.fault.active=false;d.link.fault.answer=null;}if(id==='fastbuild'){d.link.architecture='fast';d.link.txBrief='architecture';}d.physical={enabled:false};d.package={enabled:false};return validateImport(d);}
  if(level.kind==='physical')return enterPhysical(current,id,{newDesign});
  if(level.kind==='wdm')return enterWDM(current,id,{newDesign});
  if(newDesign){d=startScaling(current,level.kind==='package'?'scale1600':id,current.scaling?.profile||'hs100');if(level.kind==='legacy'){d.components=[];d.nets=[];d.schema=3;d.brief=id;delete d.scaling;}}
@@ -65,4 +67,4 @@ export function campaignEntry(current,id,{newDesign=false}={}){
  const valid=validateImport(d);if(id==='optical'&&current.brief!==id){valid.snapshots.push(capture(valid,'Optical Start · '+valid.name));valid.snapshots=valid.snapshots.slice(-6);}return valid;
 }
 export function campaignTransition(current,r,dirty){const state=campaignState(current,r,dirty,true);if(!state.canNext)throw Error(state.reason);const preserved=capture(current,'Level '+state.level.number+' Complete · '+current.name),input=structuredClone(current);input.snapshots=[...input.snapshots,preserved].slice(-6);const design=campaignEntry(input,state.level.next);return {design,preserved,from:state.level.id,to:state.level.next,notice:state.level.number===5?'100G Engine 원본과 Layout을 보존했습니다. 새 목표는 400G PAM4입니다. 기존 저속 부품은 자동으로 고속 부품이 되지 않습니다. 고속 MZM / EIC를 다시 배치하거나 별도 Architecture를 시작하세요.':state.level.number===8?'1.6T Engine을 보존하고 Package 조건을 활성화했습니다. Boundary / Zone / FAU를 구성하세요.':'기존 Design을 보존했습니다. 새로운 목표로 Fresh Test가 필요합니다.'};}
-export function validateCampaignArchive(value){if(!Array.isArray(value)||value.length>24)throw Error('Campaign Archive 오류');const ids=new Set;return value.map(s=>{if(!campaignLevel(s.level)||ids.has(s.level)||typeof s.name!=='string'||s.name.length>100||s.design?.brief!==s.level)throw Error('Campaign Archive Level 오류');ids.add(s.level);return {level:s.level,name:s.name,solverVersion:s.solverVersion,design:validateImport(s.design)};});}
+export function validateCampaignArchive(value){if(!Array.isArray(value)||value.length>42)throw Error('Campaign Archive 오류');const ids=new Set;return value.map(s=>{if(!campaignLevel(s.level)||ids.has(s.level)||typeof s.name!=='string'||s.name.length>100||s.design?.brief!==s.level)throw Error('Campaign Archive Level 오류');ids.add(s.level);return {level:s.level,name:s.name,solverVersion:s.solverVersion,design:validateImport(s.design)};});}

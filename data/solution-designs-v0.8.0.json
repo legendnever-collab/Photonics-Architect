@@ -1188,7 +1188,16 @@
         "gross": 1600,
         "powerW": 4.4399999999999995,
         "coverage": 0,
-        "receivers": []
+        "receivers": [],
+        "items": [
+          {
+            "key": "tx",
+            "label": "Functional Tx / Profile / Routing",
+            "max": 100,
+            "value": 100,
+            "detail": "1600/1600G"
+          }
+        ]
       }
     },
     {
@@ -2377,7 +2386,16 @@
         "gross": 1600,
         "powerW": 4.4399999999999995,
         "coverage": 0,
-        "receivers": []
+        "receivers": [],
+        "items": [
+          {
+            "key": "tx",
+            "label": "Functional Tx / Profile / Routing",
+            "max": 100,
+            "value": 100,
+            "detail": "1600/1600G"
+          }
+        ]
       }
     },
     {
@@ -18523,7 +18541,7 @@
             "id": "c86",
             "type": "testref",
             "x": 40,
-            "y": 700,
+            "y": 40,
             "rotation": 0,
             "version": "0.8.0",
             "params": {
@@ -20851,7 +20869,7 @@
             "id": "c79",
             "type": "testref",
             "x": 40,
-            "y": 700,
+            "y": 40,
             "rotation": 0,
             "version": "0.8.0",
             "params": {
@@ -23108,7 +23126,7 @@
             "id": "c86",
             "type": "testref",
             "x": 40,
-            "y": 700,
+            "y": 40,
             "rotation": 0,
             "version": "0.8.0",
             "params": {
@@ -25436,7 +25454,7 @@
             "id": "c79",
             "type": "testref",
             "x": 40,
-            "y": 700,
+            "y": 40,
             "rotation": 0,
             "version": "0.8.0",
             "params": {

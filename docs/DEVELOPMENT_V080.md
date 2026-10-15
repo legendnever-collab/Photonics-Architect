@@ -21,3 +21,7 @@ Stabilization checkpoint: first current-build local regression13/17 PASS and CI 
 Final local validation:308 Unit PASS; all18 browser suites PASS on v0.8 SHA256 ff726659c38fc30a5c2e0b18efdde7f6982fac03c98c141eb23b1d776ceebeb5. Final Architecture hint / Tx-only Fast controls + Copy guard then passed Link, Touch Link and migration/theme3/3 on the final build SHA256 2bca274d4d8e797de6dd7ceca811951aa54ae9902abc1238a43aa29e135c5956. Source model equations unchanged by the display delta. Versioned logs, screenshots, QA report, handoff and deterministic release manifest are prepared. Final-head CI is independently verified after the evidence commit; initial CI#74 failure remains documented. No merge.
 
 Source checkpoint0598c18: CI Verify#76 SUCCESS. Final source/display + evidence commit will receive its own full CI; post the exact final-head evidence on PR#10 after completion.
+
+## v0.8.1 continuation
+
+User requested one executable and mobile Canvas-first end-to-end architecture tracks after RC publication. Work continues on `feature/v0.8.1-mobile-architecture-tracks`; see DEVELOPMENT_V081.md. Existing v0.8 release evidence remains historical and is not reused as new-screen PASS.

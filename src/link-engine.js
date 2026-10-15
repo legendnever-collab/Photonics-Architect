@@ -1,3 +1,5 @@
+import {trackMission} from './track-models.js';
+import {startScaling,buildSeed,wireDistribution} from './arrays.js';
 import {empty,add,connect,solve,validateImport,componentRect} from './core.js';
 import {LINK_LIB,isLink,linkDefaults} from './link-models.js';
 import {referenceDesigns} from './references.js';
@@ -9,15 +11,28 @@ export function addReceiverChain(d,source,port='out',index=0,rate=25,lambdaIndex
  const at=add(d,'attenuator',x+300,y),pd=add(d,rate===25?'ge25':rate===100?'ge100':'ge200',x+420,y),tia=add(d,rate===25?'tia25':rate===100?'tia100':'tia200',x+540,y),end=add(d,'measure',x+680,y);connect(d,le(prev,prevPort),le(at,'in'));connect(d,le(at,'out'),le(pd,'in'));connect(d,le(pd,'current'),le(tia,'current'));connect(d,le(tia,'out'),le(end,'in'));return pd;
 }
 export function linkReference(level,kind='compact',architecture=['fastbuild','linkcustomer'].includes(level)?'fast':'nrz'){
+ const mission=trackMission(level);
+ if(mission){
+ let d;
+ if(mission.number===1){
+ if(mission.arch==='wdm')d=structuredClone(referenceDesigns('wdmpath')[0].design);
+ else {d=startScaling(empty(),'architecture',mission.arch==='fast'?'hs200':'hs100');buildSeed(d,d.scaling.profile);wireDistribution(d);d.components.find(c=>c.type==='laserhs').params.power=13;}
+ }else if(mission.txOnly){d=structuredClone(referenceDesigns(mission.arch==='wdm'?'wdmengine':'architecture').find(r=>mission.arch==='wdm'||r.design.scaling?.profile===(mission.arch==='fast'?'hs200':'hs100')).design);}
+ else d=linkReference(mission.phase,kind,mission.arch);
+ d.brief=level;d.link??=linkDefaults();d.link.architecture=mission.arch;d.link.txBrief=mission.arch==='wdm'?(mission.number===1?'wdmpath':'wdmengine'):'architecture';d.physical={enabled:false};d.package={enabled:false};d.name=mission.track+' · Level '+mission.number+' · '+kind;if(mission.number===3){const n=d.nets.find(n=>n.kind==='optical'&&d.components.find(c=>c.id===n.b.component)?.type==='output');n.route.mode='manual';n.route.waypoints=[];}
+ for(const c of d.components.filter(c=>c.type==='output'))c.linkPort=true;
+ return validateImport(d);
+ }
  const d=createLinkDesign(level,architecture);d.name=kind==='loss'?'Low-loss / Minimal Monitoring':'Higher Observability';
  if(level==='fastbuild')return d;
  if(level==='rxfirst'){const input=add(d,'rxinput',50,120),pd=add(d,'ge25',230,120),tia=add(d,'tia25',370,120),measurement=add(d,'measure',520,120);connect(d,le(input,'out'),le(pd,'in'));connect(d,le(pd,'current'),le(tia,'current'));connect(d,le(tia,'out'),le(measurement,'in'));return validateImport(d);}
  const monitoring=['tapmonitor','faultdiagnosis'].includes(level),outs=d.components.filter(c=>c.type==='output');let index=0;const receiverX=Math.max(1000,...d.components.map(c=>componentRect(c).x+componentRect(c).w))+200;
  for(const out of outs){if(architecture==='wdm'){const channel=add(d,'channel',receiverX,120+index*130),demux=add(d,'demux4',receiverX+140,120+index*130);connect(d,le(out,'out'),le(channel,'in'));connect(d,le(channel,'out'),le(demux,'in'));for(let i=0;i<4;i++)addReceiverChain(d,demux,'o'+i,index++,100,i,'none',receiverX);}else addReceiverChain(d,out,'out',index++,architecture==='fast'?200:architecture==='slow'?100:25,null,monitoring&&index===1?'one':'none',receiverX);}
- if(monitoring){const firstTap=d.components.find(c=>c.type==='tap');if(kind==='compact'){const inNet=d.nets.find(n=>n.b.component===firstTap.id&&n.b.port==='in'),src=d.components.find(c=>c.id===inNet.a.component),earlier=d.nets.find(n=>n.b.component===src.id&&n.b.port==='in'),tap=add(d,'tap',src.x-90,src.y-90);d.nets=d.nets.filter(n=>n.id!==earlier.id);connect(d,earlier.a,le(tap,'in'));connect(d,le(tap,'through'),le(src,'in'));const pd=add(d,'monitorpd',src.x-120,src.y-10),read=add(d,'readout',src.x-120,src.y+50);connect(d,le(tap,'monitor'),le(pd,'in'));connect(d,le(pd,'current'),le(read,'current'));}const freeOut=outs.at(-1),old=d.nets.find(n=>n.a.component===freeOut.id&&n.a.port==='out'),tap=add(d,'tap',freeOut.x+110,freeOut.y-80),probe=add(d,'gratingprobe',freeOut.x+270,freeOut.y+80);d.nets=d.nets.filter(n=>n.id!==old.id);connect(d,le(freeOut,'out'),le(tap,'in'));connect(d,le(tap,'through'),old.b);connect(d,le(tap,'monitor'),le(probe,'in'));add(d,'testref',40,700);}
+ if(monitoring){if(architecture==='wdm'){const channel=d.components.find(c=>c.type==='channel'),n=d.nets.find(n=>n.a.component===channel.id&&n.a.port==='out'),tap=add(d,'tap',channel.x+60,channel.y-100),pd=add(d,'monitorpd',channel.x+200,20),read=add(d,'readout',channel.x+340,20);d.nets=d.nets.filter(v=>v.id!==n.id);connect(d,n.a,le(tap,'in'));connect(d,le(tap,'through'),n.b);connect(d,le(tap,'monitor'),le(pd,'in'));connect(d,le(pd,'current'),le(read,'current'));}const firstTap=d.components.find(c=>c.type==='tap');if(kind==='compact'){const inNet=d.nets.find(n=>n.b.component===firstTap.id&&n.b.port==='in'),src=d.components.find(c=>c.id===inNet.a.component),earlier=d.nets.find(n=>n.b.component===src.id&&n.b.port==='in'),tap=add(d,'tap',src.x-90,src.y-90);d.nets=d.nets.filter(n=>n.id!==earlier.id);connect(d,earlier.a,le(tap,'in'));connect(d,le(tap,'through'),le(src,'in'));const pd=add(d,'monitorpd',src.x-120,src.y-10),read=add(d,'readout',src.x-120,src.y+50);connect(d,le(tap,'monitor'),le(pd,'in'));connect(d,le(pd,'current'),le(read,'current'));}const freeOut=outs.at(-1),old=d.nets.find(n=>n.a.component===freeOut.id&&n.a.port==='out'),tap=add(d,'tap',freeOut.x+110,freeOut.y-80),probe=add(d,'gratingprobe',freeOut.x+270,freeOut.y+80);d.nets=d.nets.filter(n=>n.id!==old.id);connect(d,le(freeOut,'out'),le(tap,'in'));connect(d,le(tap,'through'),old.b);connect(d,le(tap,'monitor'),le(probe,'in'));add(d,'testref',40,40);}
  if(level==='linkcustomer'){d.link.customer='reach';for(const c of d.components.filter(c=>c.type==='channel'))c.params.lengthKm=.5;}
  if(level==='faultdiagnosis'){d.link.fault.active=true;d.link.fault.scenario=0;d.link.fault.answer='ambiguous';}
  for(const c of d.components.filter(c=>c.type==='attenuator'))if(architecture==='fast')c.params.loss=4;
+ if(monitoring&&architecture==='wdm')for(const tap of d.components.filter(c=>c.type==='tap'))tap.params.ratio=.005;
  return validateImport(d);
 }
 export function linkReferences(level,environment,customer=null,architecture=null){return ['compact','loss'].map((kind,i)=>{const arch=level==='linkcustomer'?(i?'wdm':'fast'):(architecture||(['fastbuild'].includes(level)?'fast':'nrz')),design=linkReference(level,kind,arch);if(level==='linkcustomer')for(const source of design.components.filter(c=>['source4','laserhs'].includes(c.type)))source.params.power=23-(source.type==='source4'?10*Math.log10(4):0);if(environment)design.environment=structuredClone(environment);if(customer)design.link.customer=customer;const result=solve(design);return {id:'v08-'+level+'-'+kind,brief:level,name:design.name+(level==='linkcustomer'?' · '+arch:''),type:kind,version:'0.8.0',modelVersion:'0.8.0',solverVersion:'0.8.0',design,result,satisfied:!!result.link?.complete,tradeoff:level==='linkcustomer'?'동일1.6T의 실제 I/O·Power·Receiver 조건 비교':kind==='compact'?'관측 위치 추가 · Tap Loss / Readout 비용 증가':'최소 관측 · 동일한 여러 고장은 Ambiguous'};});}
