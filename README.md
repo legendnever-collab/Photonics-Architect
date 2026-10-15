@@ -1,10 +1,30 @@
+# Photonics Architect v0.8.0 — Receiver & Complete Optical Link
+
+[Light Offline HTML](dist/photonics-architect-v0.8.0-light.html) · [Dark Offline HTML](dist/photonics-architect-v0.8.0-dark.html) · [PR #10](https://github.com/legendnever-collab/Photonics-Architect/pull/10)
+
+Understand → Choose Chapter → Build → Test → Diagnose → Monitor → Improve. Nine independent Chapters start empty, support explicit Copy, and preserve Resume/revisions/originals. Existing Levels1–18 remain; new19–24 cover real8×200G Tx, First Receiver, Complete Link,1.6T Customer Link, Tap Monitoring and observable Fault Diagnosis. Both Solution controls Apply through the same real Test path.
+
+Light is default; each self-contained file supports both Themes and remembered preference. Skippable Onboarding includes actual placement/port/Test Tutorial in a separate workspace. Use Help to revisit. Receiver range/waterfall, Monitor readings, Score breakdown and clone-only previews explain trade-offs. A failed hard mission condition cannot be compensated by score.
+
+Build: Node≥20, `npm test`, `npm run build`. Browser: install Playwright and Chromium, then `npm run test:browser` (CI config included). Historical browser fixtures are temporarily aliased to **new v0.8 Light bytes** and restored after QA. No required external HTTP, CDN, font, solver service or runtime dependency. Download the HTML and open locally; GitHub's blob page is a source viewer.
+
+[Receiver/Monitoring models, sources and score](docs/MODELS_V080.md) · [Chapters/schema migration](docs/CHAPTERS_MIGRATION_V080.md) · [executed QA](docs/TEST_REPORT_V080.md) · [handoff](docs/HANDOFF_v0.8.0.md) · [development checkpoints](docs/DEVELOPMENT_V080.md) · [verified solution data](data/solution-designs-v0.8.0.json).
+
+Educational / Assumed: no BER/FEC/Eye or standard compliance, no full electrical RC/noise, dispersion/PMD, thermal FEM or foundry sign-off. MIM/GePD PDK-specific rule remains verification required. Baseline v0.7.1 PR #9 is merged (`5da597a`). v0.8 PR #10 stays unmerged pending user gameplay review. Executed final QA/CI evidence is recorded separately; development checkpoints are not release acceptance.
+
+---
+
+## v0.8 development — Receiver & Complete Optical Link
+
+Baseline v0.7.1 is merged (PR #9,5da597a). Development checkpoints: [DEVELOPMENT_V080.md](docs/DEVELOPMENT_V080.md). The v0.8 branch is under active development and will remain unmerged for user review.
+
 # Photonics Architect v0.7.1 — Solution & Score Stability
 
 Offline:`dist/photonics-architect-v0.7.1.html`. Header / Campaign Solution share Apply + actual Test. Level14 offers a full worked comparison with actual Spatial/Fast/WDM snapshots and a compatible customer choice; individual example mode remains available. Physical15–18 auto-Test after explicit Solution Apply. Edits/restores/resume keep Fresh Test gates.
 
 Click Score to inspect weighted deficits and concrete Component/Route actions. Levels14–18 display fixed score-improvement guidance. Physical Preview Only re-solves finite geometry experiments without changing My Design; Score100 is an ideal normalization, not a required completion score.
 
-[Patch behavior/model boundaries](docs/STABILIZATION_V071.md), [executed QA](docs/TEST_REPORT_V071.md), [handoff](docs/HANDOFF_v0.7.1.md). Source/model coefficients and schema7 stay compatible. Build:`npm run build`; unit:`npm test`. Existing published releases are preserved. PR stays unmerged for Gameplay review.
+[Patch behavior/model boundaries](docs/STABILIZATION_V071.md), [executed QA](docs/TEST_REPORT_V071.md), [handoff](docs/HANDOFF_v0.7.1.md). Source/model coefficients and schema7 stay compatible. Build:`npm run build`; unit:`npm test`. Existing published releases are preserved. v0.7.1 PR #9 was merged into main as5da597a with user approval.
 
 ---
 

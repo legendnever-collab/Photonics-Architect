@@ -1,0 +1,368 @@
+[
+  {
+    "id": "first",
+    "number": 1,
+    "title": "First Engine",
+    "goal": "1310 nm Laser로 4-Lane / 100G NRZ Engine을 완성하세요.",
+    "focus": "Laser → Splitter → Modulator → Output · Driver → RF",
+    "kind": "legacy",
+    "solutions": [
+      "mzm",
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Nominal VALID Test",
+    "next": "compact",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "compact",
+    "number": 2,
+    "title": "Compact Engine",
+    "goal": "100G를 유지하며 Component Area 합을 6.4 mm² 이하로 줄이세요.",
+    "focus": "Modulator / EIC를 함께 선택하고 면적·전력을 비교하세요.",
+    "kind": "legacy",
+    "solutions": [
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Nominal VALID Test / Area",
+    "next": "stable",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "stable",
+    "number": 3,
+    "title": "Stable Engine",
+    "goal": "온도 ±3 °C · Laser ±0.03 nm의 네 Corner에서도 100G를 유지하세요.",
+    "focus": "Nominal과 네 Temperature / Wavelength Corner를 확인하세요.",
+    "kind": "legacy",
+    "solutions": [
+      "mzm",
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Nominal + four Environment Corners",
+    "next": "rf",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "rf",
+    "number": 4,
+    "title": "Shorten the RF Path",
+    "goal": "100G를 유지하며 본인 Baseline의 대상 RF Route 길이와 손실을 줄이세요.",
+    "focus": "Driver 위치 → RF Waypoint → Test → Before / After",
+    "kind": "legacy",
+    "solutions": [
+      "mzm",
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Fresh VALID Test / Same-condition RF Baseline improvement",
+    "next": "optical",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "optical",
+    "number": 5,
+    "title": "Route the Optical Engine",
+    "goal": "Keep-out을 피해 실제 Optical Route를 연결하고 4-Lane / 100G를 유지하세요.",
+    "focus": "Optical Route 선택 → Waypoint 우회 → Test",
+    "kind": "legacy",
+    "solutions": [
+      "mzm",
+      "mrm",
+      "eam"
+    ],
+    "requiredTests": "Fresh VALID Test / Planning Geometry",
+    "next": "scale400",
+    "solver": "0.3.0"
+  },
+  {
+    "id": "scale400",
+    "number": 6,
+    "title": "4 × 100G Engine",
+    "goal": "4×100G PAM4 / 50GBd로 400G Engine을 만드세요.",
+    "focus": "100G Design을 보존합니다. 고속 MZM / EIC와 Distribution을 다시 구성하세요.",
+    "kind": "scaling",
+    "solutions": [
+      "hs100"
+    ],
+    "requiredTests": "Fresh VALID Test / 400G",
+    "next": "scale1600",
+    "solver": "0.4.1"
+  },
+  {
+    "id": "scale1600",
+    "number": 7,
+    "title": "Build Your 1.6T",
+    "goal": "16×100G / 8×200G PAM4로 1.6T Engine을 만드세요.",
+    "focus": "완료한 Lane을 Tile / Array로 확장하고 모든 Lane을 Test하세요.",
+    "kind": "scaling",
+    "solutions": [
+      "hs100",
+      "hs200"
+    ],
+    "requiredTests": "Fresh VALID Test / 1.6T",
+    "next": "architecture",
+    "solver": "0.4.1"
+  },
+  {
+    "id": "architecture",
+    "number": 8,
+    "title": "Architecture Comparison",
+    "goal": "동일 조건의 16×100G / 8×200G를 비교하고 Customer 조건에 맞게 선택하세요.",
+    "focus": "두 유효 Snapshot → Compare → Customer → Architecture 선택 → Test",
+    "kind": "scaling",
+    "solutions": [
+      "hs100",
+      "hs200"
+    ],
+    "requiredTests": "Fresh VALID Test / two actual tested Architectures / Customer choice",
+    "next": "package",
+    "solver": "0.4.1"
+  },
+  {
+    "id": "package",
+    "number": 9,
+    "title": "Fit the Package",
+    "goal": "1.6T Engine을 ≤18 ×14 mm Package에 배치하고 FAU를 연결하세요.",
+    "focus": "기존 Engine 유지 · Package Boundary / PIC·EIC·I/O Zone / Route 조정",
+    "kind": "package",
+    "solutions": [
+      "compact",
+      "distributed"
+    ],
+    "requiredTests": "Fresh VALID Test / Package Geometry / FAU Mapping",
+    "next": "thermal",
+    "solver": "0.5.0"
+  },
+  {
+    "id": "thermal",
+    "number": 10,
+    "title": "Cool the Engine",
+    "goal": "1.6T를 유지하며 Estimated Hotspot ≤65 °C를 만족하세요.",
+    "focus": "Hotspot 선택 → 배치 / Cooling 조정 → RF·열·전력 Trade-off 확인",
+    "kind": "package",
+    "solutions": [
+      "compact",
+      "distributed"
+    ],
+    "requiredTests": "Fresh VALID Test / Thermal Requirement",
+    "next": "assembly",
+    "solver": "0.5.0"
+  },
+  {
+    "id": "assembly",
+    "number": 11,
+    "title": "Survive Assembly Variation",
+    "goal": "1.6T Nominal과 Stress Corners, Simulated Pass Fraction ≥90% / ≥64 samples를 만족하세요.",
+    "focus": "Interface / Assembly Strategy → Corners → Seeded Monte Carlo → Compare",
+    "kind": "package",
+    "solutions": [
+      "compact",
+      "distributed"
+    ],
+    "requiredTests": "Fresh VALID Test / eight Stress Corners / same-design completed MC",
+    "next": "wdmpath",
+    "solver": "0.5.0"
+  },
+  {
+    "id": "wdmpath",
+    "number": 12,
+    "title": "Build a 4-Wavelength Path",
+    "goal": "독립4×100G PAM4 Channel을4λ Mux로 묶어 한 Optical Output /400G를 만드세요.",
+    "focus": "Source λ → 독립 EIC / MZM → Mux Mapping → Detuning / Test",
+    "kind": "wdm",
+    "solutions": [
+      "wdm"
+    ],
+    "requiredTests": "Fresh VALID Test / four independent wavelength channels",
+    "next": "wdmengine",
+    "solver": "0.6.0"
+  },
+  {
+    "id": "wdmengine",
+    "number": 13,
+    "title": "Scale to a 1.6T WDM Engine",
+    "goal": "4 Spatial ×4λ ×100G =1.6T ·16 Data Channels /4 Optical Outputs",
+    "focus": "한 유효 WDM Path를 Tile로 지정 →4 Path Array → 파장별1×4 Distribution → Test",
+    "kind": "wdm",
+    "solutions": [
+      "wdm"
+    ],
+    "requiredTests": "Fresh VALID Test / 16 data channels / four output paths",
+    "next": "wdmarchitecture",
+    "solver": "0.6.0"
+  },
+  {
+    "id": "wdmarchitecture",
+    "number": 14,
+    "title": "Choose Your Optical Parallelism",
+    "goal": "동일 고객 / Total Source Budget에서 Spatial·Fast·WDM을 비교하고 선택하세요.",
+    "focus": "세 Architecture 실제 Test / Snapshot → 동일 조건 Compare → Customer / 선택 → Test",
+    "kind": "wdm",
+    "solutions": [
+      "spatial",
+      "fast",
+      "wdm"
+    ],
+    "requiredTests": "Fresh VALID Test / three tested snapshots / common conditions / customer choice",
+    "next": "picfloor",
+    "solver": "0.6.0"
+  },
+  {
+    "id": "picfloor",
+    "number": 15,
+    "title": "PIC Floorplan Challenge",
+    "goal": "1.6T Engine을 PIC Die에 배치하고 Overlap / Boundary / Clearance를 해결하세요.",
+    "focus": "위반 Marker 선택 → Component 이동 → Port 방향과 Corridor 확인 → Test",
+    "kind": "physical",
+    "solutions": [
+      "compact",
+      "loss",
+      "balanced"
+    ],
+    "requiredTests": "Fresh VALID Test / Placement + DRC-lite",
+    "next": "picroute",
+    "solver": "0.7.0"
+  },
+  {
+    "id": "picroute",
+    "number": 16,
+    "title": "Waveguide Routing Challenge",
+    "goal": "Bend Radius와 실제 Crossing을 평가하고 1.6T Optical Route를 개선하세요.",
+    "focus": "Route 선택 → Waypoint / Radius 편집 → Loss 변화 확인 → Test",
+    "kind": "physical",
+    "solutions": [
+      "compact",
+      "loss",
+      "balanced"
+    ],
+    "requiredTests": "Fresh VALID Test / Rounded Routes + DRC-lite",
+    "next": "picwdm",
+    "solver": "0.7.0"
+  },
+  {
+    "id": "picwdm",
+    "number": 17,
+    "title": "WDM Physical Integration",
+    "goal": "4 Spatial ×4λ Engine의 Mux Mapping과 Thermal Filter Drift를 제어하세요.",
+    "focus": "Mux 배치 → λ Route / Shared Bus → Filter Drift / Loss → Test",
+    "kind": "physical",
+    "solutions": [
+      "compact",
+      "loss",
+      "balanced"
+    ],
+    "requiredTests": "Fresh VALID Test / WDM + Filter Thermal",
+    "next": "picoptimize",
+    "solver": "0.7.0"
+  },
+  {
+    "id": "picoptimize",
+    "number": 18,
+    "title": "PIC Design Optimization",
+    "goal": "고객 가중치에 맞춰 유효 1.6T PIC Design의 Score ≥60을 달성하세요.",
+    "focus": "My PIC → Optimize → Snapshot → 두 Reference와 Layout / Loss / Score 비교",
+    "kind": "physical",
+    "solutions": [
+      "compact",
+      "loss",
+      "balanced"
+    ],
+    "requiredTests": "Fresh VALID Test / Feasibility Gate + Score ≥60",
+    "next": null,
+    "solver": "0.7.0"
+  },
+  {
+    "id": "fastbuild",
+    "number": 19,
+    "title": "Fast & Narrow Engine",
+    "goal": "실제8×200G PAM4 Engine을 구성하세요.",
+    "focus": "고속 MZM / EIC 배치 →8 Lane →Test",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh VALID Test /8×200G",
+    "next": null,
+    "solver": "0.8.0"
+  },
+  {
+    "id": "rxfirst",
+    "number": 20,
+    "title": "First Receiver",
+    "goal": "Calibrated Optical Input → GePD → TIA → Measurement를 연결하세요.",
+    "focus": "25G NRZ Profile / Bias / BW / Operating Range",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh Receiver Screen",
+    "next": "linkcomplete",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "linkcomplete",
+    "number": 21,
+    "title": "Complete the Link",
+    "goal": "본인의 Tx → Fiber Channel → Receiver Link를 완성하세요.",
+    "focus": "모든 Tx Lane의 PD / TIA / Electrical Measurement 연결",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh Tx–Rx Screen",
+    "next": "linkcustomer",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "linkcustomer",
+    "number": 22,
+    "title": "Customer Link Challenge",
+    "goal": "1.6T의 거리·Physical I/O·Electrical Power·Rx 조건을 동시에 만족하세요.",
+    "focus": "Architecture 선택 → Channel → Customer 조건 확인",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh Customer Link Screen",
+    "next": null,
+    "solver": "0.8.0"
+  },
+  {
+    "id": "tapmonitor",
+    "number": 23,
+    "title": "Monitoring Plan",
+    "goal": "Tap / DC Readout / 적절한 Test Access를 구성하고 Main Link를 유지하세요.",
+    "focus": "Tap 손실과 Signal Range → 비교 가능한 관측 Plan",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh Link + Observability / Access",
+    "next": "faultdiagnosis",
+    "solver": "0.8.0"
+  },
+  {
+    "id": "faultdiagnosis",
+    "number": 24,
+    "title": "Observable Fault Diagnosis",
+    "goal": "설치한 Monitor로만 고장을 판별하거나 Ambiguous로 답하세요.",
+    "focus": "관측값·Baseline 비교 → 구분 가능한 원인만 선택 →Test",
+    "kind": "link",
+    "solutions": [
+      "compact",
+      "loss"
+    ],
+    "requiredTests": "Fresh Observations + Valid Answer",
+    "next": null,
+    "solver": "0.8.0"
+  }
+]

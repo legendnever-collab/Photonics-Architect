@@ -1,0 +1,125 @@
+{
+  "build": "0.8.0-light",
+  "sha256": "c8b7c6a7dda6d95b48fc42ba635d542f619f63417143a2c3897463d3528b75e4",
+  "results": [
+    {
+      "suite": "browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 14.63,
+      "status": "PASS"
+    },
+    {
+      "suite": "codesign-browser",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 1.1,
+      "status": "FAIL"
+    },
+    {
+      "suite": "levels-browser",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 0.74,
+      "status": "FAIL"
+    },
+    {
+      "suite": "routing-browser",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 1.21,
+      "status": "FAIL"
+    },
+    {
+      "suite": "mobile-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 17.89,
+      "status": "PASS"
+    },
+    {
+      "suite": "touch-routing-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 11.59,
+      "status": "PASS"
+    },
+    {
+      "suite": "scaling-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 13.93,
+      "status": "PASS"
+    },
+    {
+      "suite": "solutions-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 10.38,
+      "status": "PASS"
+    },
+    {
+      "suite": "package-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 19.26,
+      "status": "PASS"
+    },
+    {
+      "suite": "flow-visualization-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 34.1,
+      "status": "PASS"
+    },
+    {
+      "suite": "wdm-browser",
+      "exitCode": 1,
+      "timedOut": false,
+      "seconds": 29,
+      "status": "FAIL"
+    },
+    {
+      "suite": "physical-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 41.1,
+      "status": "PASS"
+    },
+    {
+      "suite": "stabilization-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 44.59,
+      "status": "PASS"
+    },
+    {
+      "suite": "chapters-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 4.94,
+      "status": "PASS"
+    },
+    {
+      "suite": "onboarding-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 7.59,
+      "status": "PASS"
+    },
+    {
+      "suite": "link-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 28.27,
+      "status": "PASS"
+    },
+    {
+      "suite": "link-mobile-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 8.37,
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+PASS #levelSolution wdmarchitecture -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #levelSolution picfloor -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #levelSolution picroute -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #levelSolution picwdm -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #levelSolution picoptimize -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #reference wdmarchitecture -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #reference picfloor -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #reference picroute -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #reference picwdm -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS #reference picoptimize -> Apply + actual Test + correct Next/Free gate, completion progress100
+PASS customer-specific default / actual14→15 / incompatible solution visibly gated / individual mode keeps comparison requirement
+PASS concrete score entity / actual missing points / read-only what-if matches performed change / edit invalidates Test / hard gate never bypassed
+PASS saved originals and v0.7 schema / Resume and JSON require Fresh Test
+PASS actual mobile Campaign/Header Solution + auto-Test + Next / actionable touch target / portrait landscape
+PASS file:/// standalone /0 HTTP /0 page errors. No physical-phone or subjective-fun claim.

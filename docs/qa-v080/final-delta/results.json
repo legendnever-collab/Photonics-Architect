@@ -1,0 +1,27 @@
+{
+  "build": "0.8.0-light",
+  "sha256": "2bca274d4d8e797de6dd7ceca811951aa54ae9902abc1238a43aa29e135c5956",
+  "results": [
+    {
+      "suite": "link-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 28.11,
+      "status": "PASS"
+    },
+    {
+      "suite": "link-mobile-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 7.11,
+      "status": "PASS"
+    },
+    {
+      "suite": "migration-theme-browser",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 16.64,
+      "status": "PASS"
+    }
+  ]
+}

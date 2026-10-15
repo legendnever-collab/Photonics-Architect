@@ -10,7 +10,7 @@ export function installCampaignUI(api){
  const resizeGoal=()=>{$('board').parentElement.style.setProperty('--goal-height',$('levelCard').offsetHeight+'px');};
  const goalObserver=new ResizeObserver(resizeGoal);goalObserver.observe($('levelCard'));
  function saveUI(){if(api.ready())queue=queue.catch(()=>{}).then(()=>api.storage.write('campaign-ui-v051',{version:1,archive,freeDesign:free})).catch(e=>api.toast('Campaign 보존 실패 · JSON Export: '+e.message));}
- function preserve(design){const entry={level:design.brief,...capture(design,'Level '+campaignLevel(design.brief).number+' · '+design.name)};archive=[...archive.filter(a=>a.level!==entry.level),entry].slice(-18);saveUI();}
+ function preserve(design){const entry={level:design.brief,...capture(design,'Level '+campaignLevel(design.brief).number+' · '+design.name)};archive=[...archive.filter(a=>a.level!==entry.level),entry].slice(-24);saveUI();}
  function setDesign(design,close=false){api.set({design,selected:null,pending:null,placing:null,addingWaypoint:null});continued=false;api.changed();if(close)api.closePanels?.();}
  function enter(id,newDesign=false){try{const current=api.get().design;preserve(current);const next=campaignEntry(current,id,{newDesign});api.checkpoint();setDesign(next);api.toast(campaignLevel(id).focus);}catch(e){api.toast(e.message);}}
  $('brief').onchange=e=>enter(e.target.value);

@@ -1,0 +1,13 @@
+PASS real touchscreen placement of all 14 required components / preview / single placement completion
+PASS placement cancel preserves design
+PASS real tap-to-connect Optical and RF / compatible highlighting / ambiguous hit candidate picker
+PASS Inspector Component/Port alternative / invalid connection is atomic / cancel
+PASS real touch selection / selected component drag / Undo-Redo / direction step / numeric position
+PASS actual CDP multi-touch Pinch Zoom and two-finger Pan / no component or connection changes
+PASS correct world placement coordinates after actual pinch/pan
+PASS touch sheet scroll independent of Canvas / preserves design
+PASS Reference preview, zoom and three architecture comparison never change current design
+PASS Apply deep-copy / real Test / no other level award / Undo-Redo / durable backup / Save-Resume / Restore Previous
+PASS Level1–5 references applied through touch UI and independently tested by actual Solver
+PASS portrait/landscape geometry and numeric editing in keyboard-sized viewport (native keyboard not tested)
+PASS actual touchscreen/multi-pointer event evidence / offline zero HTTP / PNG Export / zero page errors

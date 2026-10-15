@@ -1,0 +1,9 @@
+2bca274d4d8e797de6dd7ceca811951aa54ae9902abc1238a43aa29e135c5956  dist/photonics-architect-v0.8.0.html
+2bca274d4d8e797de6dd7ceca811951aa54ae9902abc1238a43aa29e135c5956  dist/photonics-architect-v0.8.0-light.html
+125233231460d17a1098c7e9a1ef7fd331b099ba33f9136b403223c850fd1a16  dist/photonics-architect-v0.8.0-dark.html
+88d4c07e88b5f4dfc9469e6b2c4fec59038cdfc5fc52f34297b94d3ef5b1f073  data/campaign-registry-v0.8.0.json
+60a8656b9f21aa358d79f105189050fc4628fb0a530d914ea1637d7c8405c7a3  data/chapter-registry-v0.8.0.json
+95ae0150bd6d2a1cba288b1cc1c28000177633a24cfd3fa5841edb56499e2d2c  data/solution-designs-v0.8.0.json
+f9d6e177b59d8ba7a71cc421803e4a014d53195b8750f442d2a90d35724ea023  docs/MODELS_V080.md
+c51fe830b872e9b1001d6aba4cb818180aeec33a3e89b556af512085702dec0e  docs/CHAPTERS_MIGRATION_V080.md
+08aa09dc04042f43f91c6b827be8cc21d94aa7c64031d66987f2e0a06c2450de  dist/release-manifest-v0.8.0.json

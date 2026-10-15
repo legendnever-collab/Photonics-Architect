@@ -1,3 +1,4 @@
+import {isLink,linkDefaults} from './link-models.js';
 import {isPhysical} from './physical-models.js';
 import {enterPhysical,physicalGoal} from './physical-engine.js';
 import {isWDM} from './wdm-models.js';
@@ -25,14 +26,21 @@ const rows=[
  ['picfloor','PIC Floorplan Challenge','1.6T Engine을 PIC Die에 배치하고 Overlap / Boundary / Clearance를 해결하세요.','위반 Marker 선택 → Component 이동 → Port 방향과 Corridor 확인 → Test','physical',['compact','loss','balanced'],'Fresh VALID Test / Placement + DRC-lite'],
  ['picroute','Waveguide Routing Challenge','Bend Radius와 실제 Crossing을 평가하고 1.6T Optical Route를 개선하세요.','Route 선택 → Waypoint / Radius 편집 → Loss 변화 확인 → Test','physical',['compact','loss','balanced'],'Fresh VALID Test / Rounded Routes + DRC-lite'],
  ['picwdm','WDM Physical Integration','4 Spatial ×4λ Engine의 Mux Mapping과 Thermal Filter Drift를 제어하세요.','Mux 배치 → λ Route / Shared Bus → Filter Drift / Loss → Test','physical',['compact','loss','balanced'],'Fresh VALID Test / WDM + Filter Thermal'],
- ['picoptimize','PIC Design Optimization','고객 가중치에 맞춰 유효 1.6T PIC Design의 Score ≥60을 달성하세요.','My PIC → Optimize → Snapshot → 두 Reference와 Layout / Loss / Score 비교','physical',['compact','loss','balanced'],'Fresh VALID Test / Feasibility Gate + Score ≥60']
+ ['picoptimize','PIC Design Optimization','고객 가중치에 맞춰 유효 1.6T PIC Design의 Score ≥60을 달성하세요.','My PIC → Optimize → Snapshot → 두 Reference와 Layout / Loss / Score 비교','physical',['compact','loss','balanced'],'Fresh VALID Test / Feasibility Gate + Score ≥60'],
+ ['fastbuild','Fast & Narrow Engine','실제8×200G PAM4 Engine을 구성하세요.','고속 MZM / EIC 배치 →8 Lane →Test','link',['compact','loss'],'Fresh VALID Test /8×200G'],
+ ['rxfirst','First Receiver','Calibrated Optical Input → GePD → TIA → Measurement를 연결하세요.','25G NRZ Profile / Bias / BW / Operating Range','link',['compact','loss'],'Fresh Receiver Screen'],
+ ['linkcomplete','Complete the Link','본인의 Tx → Fiber Channel → Receiver Link를 완성하세요.','모든 Tx Lane의 PD / TIA / Electrical Measurement 연결','link',['compact','loss'],'Fresh Tx–Rx Screen'],
+ ['linkcustomer','Customer Link Challenge','1.6T의 거리·Physical I/O·Electrical Power·Rx 조건을 동시에 만족하세요.','Architecture 선택 → Channel → Customer 조건 확인','link',['compact','loss'],'Fresh Customer Link Screen'],
+ ['tapmonitor','Monitoring Plan','Tap / DC Readout / 적절한 Test Access를 구성하고 Main Link를 유지하세요.','Tap 손실과 Signal Range → 비교 가능한 관측 Plan','link',['compact','loss'],'Fresh Link + Observability / Access'],
+ ['faultdiagnosis','Observable Fault Diagnosis','설치한 Monitor로만 고장을 판별하거나 Ambiguous로 답하세요.','관측값·Baseline 비교 → 구분 가능한 원인만 선택 →Test','link',['compact','loss'],'Fresh Observations + Valid Answer']
 ];
-export const CAMPAIGN=Object.freeze(rows.map(([id,title,goal,focus,kind,solutions,requiredTests],i)=>Object.freeze({id,number:i+1,title,goal,focus,kind,solutions:Object.freeze(solutions),requiredTests,next:rows[i+1]?.[0]||null,solver:kind==='physical'?'0.7.0':kind==='wdm'?'0.6.0':kind==='legacy'?'0.3.0':kind==='scaling'?'0.4.1':'0.5.0',completion:(d,r)=>campaignPredicate(id,d,r),entry:(d)=>campaignEntry(d,id)})));
+export const CAMPAIGN=Object.freeze(rows.map(([id,title,goal,focus,kind,solutions,requiredTests],i)=>Object.freeze({id,number:i+1,title,goal,focus,kind,solutions:Object.freeze(solutions),requiredTests,next:[17,18,21].includes(i)?null:rows[i+1]?.[0]||null,solver:kind==='link'?'0.8.0':kind==='physical'?'0.7.0':kind==='wdm'?'0.6.0':kind==='legacy'?'0.3.0':kind==='scaling'?'0.4.1':'0.5.0',completion:(d,r)=>campaignPredicate(id,d,r),entry:(d)=>campaignEntry(d,id)})));
 export const campaignLevel=id=>CAMPAIGN.find(l=>l.id===id);
 export const campaignNumbers=Object.freeze(Object.fromEntries(CAMPAIGN.map(l=>[l.id,l.number])));
 export function campaignPredicate(id,d,r=solve(d)){
  if(id!==d.brief)return {ready:false,complete:false,reason:'선택 Level과 Design이 다릅니다.'};
  const level=campaignLevel(id);if(!level)return {ready:false,complete:false,reason:'알 수 없는 Level'};
+ if(level.kind==='link')return {ready:true,complete:!!r.link?.complete,reason:r.issues[0]?.text||'Receiver / Monitoring / Fault 조건을 확인하세요.'};
  if(level.kind==='physical')return physicalGoal(d,r);
  if(level.kind==='wdm')return wdmGoal(d,r);
  if(level.kind==='package')return packageGoal(d,r);
@@ -46,6 +54,7 @@ export function campaignPredicate(id,d,r=solve(d)){
 export function campaignState(d,r,dirty,hasTest=true){const level=campaignLevel(d.brief),goal=level.completion(d,r),fresh=!dirty&&hasTest,complete=fresh&&goal.complete;return {level,goal,fresh,complete,state:fresh?'Fresh Test Result':hasTest?'STALE — 이전 결과':'Live Preview',canNext:complete&&!!level.next,reason:!fresh?'설계 / 조건 변경 또는 Resume 후 Fresh Test가 필요합니다.':!goal.complete?goal.reason||r.issues[0]?.text||'현재 목표를 완료하세요.':level.next?'다음 Level로 이동할 수 있습니다.':'Campaign Complete · Free Design / Compare 가능'};}
 export function campaignEntry(current,id,{newDesign=false}={}){
  const level=campaignLevel(id);if(!level)throw Error('지원하지 않는 Campaign Level');let d=structuredClone(current);
+ if(level.kind==='link'){if(newDesign)d={...d,components:[],nets:[],snapshots:[],next:1,challenge:null};d.brief=id;d.link??=linkDefaults();if(id!=='faultdiagnosis'){d.link.fault.active=false;d.link.fault.answer=null;}if(id==='fastbuild'){d.link.architecture='fast';d.link.txBrief='architecture';}d.physical={enabled:false};d.package={enabled:false};return validateImport(d);}
  if(level.kind==='physical')return enterPhysical(current,id,{newDesign});
  if(level.kind==='wdm')return enterWDM(current,id,{newDesign});
  if(newDesign){d=startScaling(current,level.kind==='package'?'scale1600':id,current.scaling?.profile||'hs100');if(level.kind==='legacy'){d.components=[];d.nets=[];d.schema=3;d.brief=id;delete d.scaling;}}
@@ -56,4 +65,4 @@ export function campaignEntry(current,id,{newDesign=false}={}){
  const valid=validateImport(d);if(id==='optical'&&current.brief!==id){valid.snapshots.push(capture(valid,'Optical Start · '+valid.name));valid.snapshots=valid.snapshots.slice(-6);}return valid;
 }
 export function campaignTransition(current,r,dirty){const state=campaignState(current,r,dirty,true);if(!state.canNext)throw Error(state.reason);const preserved=capture(current,'Level '+state.level.number+' Complete · '+current.name),input=structuredClone(current);input.snapshots=[...input.snapshots,preserved].slice(-6);const design=campaignEntry(input,state.level.next);return {design,preserved,from:state.level.id,to:state.level.next,notice:state.level.number===5?'100G Engine 원본과 Layout을 보존했습니다. 새 목표는 400G PAM4입니다. 기존 저속 부품은 자동으로 고속 부품이 되지 않습니다. 고속 MZM / EIC를 다시 배치하거나 별도 Architecture를 시작하세요.':state.level.number===8?'1.6T Engine을 보존하고 Package 조건을 활성화했습니다. Boundary / Zone / FAU를 구성하세요.':'기존 Design을 보존했습니다. 새로운 목표로 Fresh Test가 필요합니다.'};}
-export function validateCampaignArchive(value){if(!Array.isArray(value)||value.length>18)throw Error('Campaign Archive 오류');const ids=new Set;return value.map(s=>{if(!campaignLevel(s.level)||ids.has(s.level)||typeof s.name!=='string'||s.name.length>100||s.design?.brief!==s.level)throw Error('Campaign Archive Level 오류');ids.add(s.level);return {level:s.level,name:s.name,solverVersion:s.solverVersion,design:validateImport(s.design)};});}
+export function validateCampaignArchive(value){if(!Array.isArray(value)||value.length>24)throw Error('Campaign Archive 오류');const ids=new Set;return value.map(s=>{if(!campaignLevel(s.level)||ids.has(s.level)||typeof s.name!=='string'||s.name.length>100||s.design?.brief!==s.level)throw Error('Campaign Archive Level 오류');ids.add(s.level);return {level:s.level,name:s.name,solverVersion:s.solverVersion,design:validateImport(s.design)};});}

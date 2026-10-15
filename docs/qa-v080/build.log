@@ -1,0 +1,7 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> photonics-architect@0.8.0 build
+> node scripts/build.js
+
+v0.8.0 Light/Dark standalone HTML built without external assets
+v0.8 manifest / SHA256: identical application variants, no required external scripts/styles

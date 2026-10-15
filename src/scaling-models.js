@@ -1,9 +1,10 @@
+import {isLink} from './link-models.js';
 // Coefficients are scenario assumptions, not a commercial device calibration.
 export const SCALING_VERSION='0.4.1';
 export const SCALING_MODEL_VERSION='1.0.0';
 export const SCALING_LEVELS=['scale400','scale1600','architecture','package','thermal','assembly'];
 export const isScaling=d=>SCALING_LEVELS.includes(d.brief);
-export const planningBounds=d=>d.physical?.enabled?{w:d.physical.die.width,h:d.physical.die.height}:(isScaling(d)||['wdmpath','wdmengine','wdmarchitecture'].includes(d.brief))?{w:2000,h:1600}:{w:1000,h:650};
+export const planningBounds=d=>isLink(d)?{w:4000,h:2400}:d.physical?.enabled?{w:d.physical.die.width,h:d.physical.die.height}:(isScaling(d)||['wdmpath','wdmengine','wdmarchitecture'].includes(d.brief))?{w:2000,h:1600}:{w:1000,h:650};
 export const HS_PROFILES={
  hs100:{rate:100,baud:50,modulation:'PAM4',vpi:2.4,loss:3,bw:45,driverBW:50,swing:1.8,channelW:.22,overheadW:.12},
  hs200:{rate:200,baud:100,modulation:'PAM4',vpi:2.2,loss:3.3,bw:75,driverBW:85,swing:2,channelW:.48,overheadW:.30}
